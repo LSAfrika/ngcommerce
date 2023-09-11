@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+<app-hero></app-hero>
+<ng-container *ngIf="uiservice.categories" >
+
+    <app-categoriesbrands [categories]="uiservice.categories"></app-categoriesbrands>
+</ng-container>
+<ng-container *ngIf="uiservice.brands">
+
+    <app-categoriesbrands [brands]="uiservice.brands"></app-categoriesbrands>
+</ng-container>
+<app-homeproducts></app-homeproducts>
+<app-footer></app-footer>
