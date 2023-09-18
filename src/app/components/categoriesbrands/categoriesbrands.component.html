@@ -1,28 +1,50 @@
-<div class=" w-full px-2 pt-5 min-h-[200px] h-fit bg-slate-100 relative flex flex-col justify-start items-start gap-2 my-5">
+<div class=" md:max-w-[750px] lg:hidden   md:mx-auto w-full px-2 pt-5 min-h-[200px] h-fit bg-slate-100 relative flex flex-col justify-start items-start gap-2 my-3">
     <p *ngIf="categories.length>0" class="  text-teal-600 font-bold ">Categories</p>
     <p *ngIf="brands.length>0" class="  text-teal-600 font-bold ">Brands</p>
-    <div class="scrollrect  overflow-scroll scrollbar-thin flex justify-start items-center gap-5 w-full mb-5 ">
+    <div class="scrollrect  bg-white     overflow-scroll scrollbar-thin flex justify-start md:justify-center items-center gap-5 w-full mb-3 
+    
+    ">
 <ng-container *ngIf="categories.length>0" >
-    <div [routerLink]="['categories']" [queryParams]="{ category:'all'}"  class=" min-w-[125px] cursor-pointer h-[125px] bg-teal-500 rounded-sm flex-grow flex flex-col justify-center items-center gap-2">
+    <!-- <div [routerLink]="['categories']" [queryParams]="{ category:'all'}"  class=" min-w-[125px] cursor-pointer h-[125px] bg-teal-500 rounded-sm flex-grow flex flex-col justify-center items-center gap-2">
         <div class="icon w-10 h-10 rounded-full bg-orange-50 shadow-sm shadow-black/40"></div>
         <div class="lable text-lg font-semibold text-white">All categories</div>
-    </div>
-    <div [routerLink]="['categories']" [queryParams]="{ category:category.category}" *ngFor="let category of categories" class=" min-w-[125px] cursor-pointer h-[125px] bg-teal-500 rounded-sm flex-grow flex flex-col justify-center items-center gap-2">
-        <div class="icon w-10 h-10 rounded-full bg-orange-50 shadow-sm shadow-black/40"></div>
+    </div> -->
+    <!-- [routerLink]="['categories']" [queryParams]="{ category:category.category}" -->
+    <div [routerLink]="['categories']" [queryParams]="{ category:category.category}"  *ngFor="let category of categories" class=" shadow-md
+     border-white border-[3px]
+      mb-4 shadow-black/30 min-w-[130px]
+       p-2 cursor-pointer h-[125px] rounded-lg
+        bg-teal-500 flex-grow flex flex-col
+        md:max-w-[125px] justify-center items-center gap-2">
+        <div class="icon overflow-hidden flex justify-center items-center bg-teal-800 w-10 h-10 rounded-full  shadow-sm shadow-black/40">
+            <img src="{{category.icon}}" alt="">
+        </div>
         <div class="lable text-lg font-semibold text-white">{{category.category}}</div>
     </div>
 </ng-container>
 
 <ng-container *ngIf="brands.length>0" >
-    <div [routerLink]="['brands']" [queryParams]="{ brand:'all'}"
-    routerLinkActive="router-link-active"  class=" min-w-[125px] cursor-pointer h-[125px] bg-teal-500 rounded-sm flex-grow flex flex-col justify-center items-center gap-2">
+    <!-- [routerLink]="['brands']" [queryParams]="{ brand:'all'}"
+    routerLinkActive="router-link-active"  
+    <div  class=" min-w-[125px] cursor-pointer h-[125px] bg-teal-500 rounded-sm flex-grow flex flex-col justify-center items-center gap-2">
         <div class="icon w-10 h-10 rounded-full bg-orange-50 shadow-sm shadow-black/40"></div>
         <div class="lable text-lg font-semibold text-white">All brands</div>
-    </div>
-    <div [routerLink]="['brands']" [queryParams]="{ brand:brand.brand}"
-    routerLinkActive="router-link-active" *ngFor="let brand of brands" class=" min-w-[125px] cursor-pointer h-[125px] bg-teal-500 rounded-sm flex-grow flex flex-col justify-center items-center gap-2">
-        <div class="icon w-10 h-10 rounded-full bg-orange-50 shadow-sm shadow-black/40"></div>
-        <div class="lable text-lg font-semibold text-white">{{brand.brand}}</div>
+    </div> -->
+    <!-- 
+    routerLinkActive="router-link-active" -->
+    <div [routerLink]="['brands']" [queryParams]="{ brand:brand.brand}"  *ngFor="let brand of brands" class="
+     mb-4 min-w-[100px] cursor-pointer h-[100px] 
+     p-5 text-white shadow-md border-white
+      shadow-black/30  bg-teal-500 rounded-xl
+       border-[3px]  flex-grow flex flex-col 
+       justify-center items-center 
+       md:max-w-[125px] 
+       ">
+        <!-- <div class="icon w-10 h-10 rounded-full overflow-hidden flex justify-center items-center bg-teal-800/20 shadow-sm shadow-black/40">
+        
+            
+        </div> -->
+        <div class="lable text-xl font-bold text-white">{{brand.brand}}</div>
     </div>
 </ng-container>
        
