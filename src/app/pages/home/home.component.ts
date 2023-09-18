@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { BrandsandcategoriesService } from 'src/app/services/brandsandcategories.service';
 import { UiService } from 'src/app/services/ui.service';
 
 @Component({
@@ -8,5 +9,5 @@ import { UiService } from 'src/app/services/ui.service';
 })
 export class HomeComponent {
 
-  public uiservice=inject(UiService)
+  public brandcategservice=inject(BrandsandcategoriesService)
 }
