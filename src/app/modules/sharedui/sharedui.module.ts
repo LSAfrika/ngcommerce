@@ -6,6 +6,7 @@ import { CategoriesbrandsComponent } from '../../components/categoriesbrands/cat
 import { HomeproductsComponent } from '../../components/homeproducts/homeproducts.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { RouterModule } from '@angular/router';
+import {  SidenavComponent } from '../../components/sidenav/sidenav.component';
 
 
 
@@ -15,14 +16,15 @@ import { RouterModule } from '@angular/router';
     HeroComponent,
     CategoriesbrandsComponent,
     HomeproductsComponent,
-    FooterComponent
+    FooterComponent,
+    SidenavComponent
   ],
   imports: [
     CommonModule,RouterModule
   ],
   exports:[
     NavbarComponent,
-    HeroComponent,CategoriesbrandsComponent,HomeproductsComponent,FooterComponent,
+    HeroComponent,CategoriesbrandsComponent,HomeproductsComponent,FooterComponent,SidenavComponent
   ]
 })
 export class ShareduiModule { }
