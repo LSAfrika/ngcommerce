@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { RouterModule } from '@angular/router';
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
 import { ShareduiModule } from 'src/app/modules/sharedui/sharedui.module';
@@ -12,7 +12,8 @@ import { ShareduiModule } from 'src/app/modules/sharedui/sharedui.module';
   ],
   imports: [
     CommonModule,
-    ProductRoutingModule,ShareduiModule
+    ProductRoutingModule,ShareduiModule,
+    //RouterModule
   ]
 })
 export class ProductModule { }

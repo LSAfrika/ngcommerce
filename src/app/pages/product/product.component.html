@@ -34,27 +34,47 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, consectetur!
     <div class="store">
         <div class="logo"></div>
 <div class="storename">Samsung official store</div>
-<button class="visitstore">Visit store</button>
+<button routerLink="/store" [queryParams]="{ storeid:'samsung'}" class="visitstore">Visit store</button>
 
     </div>
-<div class="similarads"></div>
+<div class="similarads">
 
+    <div class="storename">More From Samsung</div>
 
-</div>
-
-<div class="fullimage "  *ngIf="uiservice.openimage.value==true">
-<div (click)="uiservice.closeproductimage()" class="collapseimage">
-
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M10 4H8v4H4v2h6zM8 20h2v-6H4v2h4zm12-6h-6v6h2v-4h4zm0-6h-4V4h-2v6h6z"></path></svg>
-</div>
-<div class="image">
-
-    <div class="leftarrow">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path></svg>
+    <div *ngFor="let item of [].constructor(5);let i=index" [routerLink]="['/product',i]"   class="storeadvert">
+        <div class="img"></div>
+        <div class="productdesc">
+            <div class="title">galaxy s10</div>
+            <div class="price">Ksh 23,000</div>
+            <div class="arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
+            </div>
+        </div>
     </div>
-    <div class="rightarrow">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
+<div class="bottomseperator ">bottom seperator</div>
+</div>
 
+
+</div>
+<app-footer></app-footer>
+
+
+<ng-container *ngIf="uiservice.openimage.value==true">
+
+    <div class="fullimage "  >
+    <div (click)="uiservice.closeproductimage()" class="collapseimage">
+    
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M10 4H8v4H4v2h6zM8 20h2v-6H4v2h4zm12-6h-6v6h2v-4h4zm0-6h-4V4h-2v6h6z"></path></svg>
     </div>
-</div>
-</div>
+    <div class="image">
+    
+        <div class="leftarrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path></svg>
+        </div>
+        <div class="rightarrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
+    
+        </div>
+    </div>
+    </div>
+</ng-container>
