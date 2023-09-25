@@ -7,6 +7,8 @@ import { HomeproductsComponent } from '../../components/homeproducts/homeproduct
 import { FooterComponent } from '../../components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import {  SidenavComponent } from '../../components/sidenav/sidenav.component';
+import { CategoryComponent } from '../../components/category/category.component';
+import { ProductComponent } from '../../components/product/product.component';
 
 
 
@@ -17,14 +19,17 @@ import {  SidenavComponent } from '../../components/sidenav/sidenav.component';
     CategoriesbrandsComponent,
     HomeproductsComponent,
     FooterComponent,
-    SidenavComponent
+    SidenavComponent,
+    CategoryComponent,
+    ProductComponent
   ],
   imports: [
     CommonModule,RouterModule
   ],
   exports:[
     NavbarComponent,
-    HeroComponent,CategoriesbrandsComponent,HomeproductsComponent,FooterComponent,SidenavComponent
+    HeroComponent,CategoriesbrandsComponent,HomeproductsComponent,FooterComponent,SidenavComponent,
+    CategoryComponent
   ]
 })
 export class ShareduiModule { }

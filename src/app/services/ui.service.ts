@@ -9,6 +9,8 @@ export class UiService {
 
 
   openimage=new BehaviorSubject<boolean>(false)
+  brandspanel=new BehaviorSubject<boolean>(false)
+  categoriespanel=new BehaviorSubject<boolean>(false)
 
   constructor() { }
 
@@ -21,5 +23,29 @@ closeproductimage(){
 
 }
 
+openbrandspanel(){
+  this.brandspanel.next(true)
+
+}
+closebrandspanel(){
+  this.brandspanel.next(false)
+
+}
+
+opencategoriespanel(){
+  this.categoriespanel.next(true)
+
+}
+closecategoriespanel(){
+  this.categoriespanel.next(false)
+
+}
+
+closeallpanels(){
+  this.categoriespanel.next(false)
+  this.brandspanel.next(false)
+
+
+}
 
 }
