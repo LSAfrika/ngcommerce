@@ -28,8 +28,13 @@ import { ProductComponent } from '../../components/product/product.component';
   ],
   exports:[
     NavbarComponent,
-    HeroComponent,CategoriesbrandsComponent,HomeproductsComponent,FooterComponent,SidenavComponent,
-    CategoryComponent
+    HeroComponent,
+    CategoriesbrandsComponent,
+    HomeproductsComponent,
+    FooterComponent,
+    SidenavComponent,
+    CategoryComponent,
+    ProductComponent
   ]
 })
 export class ShareduiModule { }

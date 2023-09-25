@@ -1,0 +1,9 @@
+.card{
+    @apply cursor-pointer 
+    w-[150px] h-[175px]
+
+    sm:max-w-[200px] sm:max-w-[175px]
+    shadow-md shadow-black/40
+     bg-white rounded-sm 
+     flex-grow flex flex-col justify-start items-center
+}
