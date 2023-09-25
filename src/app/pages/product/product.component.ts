@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-product',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class ProductComponent {
 
+
+  public uiservice=inject(UiService)
 }

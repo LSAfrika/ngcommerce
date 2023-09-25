@@ -1,0 +1,112 @@
+.container{
+    @apply w-full min-h-screen px-2 bg-slate-100 flex flex-col
+    justify-start items-center mt-[70px] gap-2
+}
+.mainimage{
+    @apply bg-cover w-full min-h-[200px] rounded-lg bg-slate-800
+    relative;
+    .expandimage{
+        @apply absolute w-[40px] h-[40px] rounded-md bg-white/20
+        flex justify-center items-center left-2 top-4 
+         cursor-pointer
+    }
+    .leftarrow{
+        @apply absolute w-[40px] h-[40px] rounded-full bg-white/20
+        flex justify-center items-center left-2 top-[50%] 
+        translate-y-[-50%] cursor-pointer
+    }
+    .rightarrow{
+        @apply absolute w-[40px] h-[40px] rounded-full bg-white/20
+        flex justify-center items-center right-2 top-[50%] 
+        translate-y-[-50%] cursor-pointer
+    }
+
+}
+
+.gallery{
+    @apply w-full flex justify-start items-center min-h-[50px]
+     bg-orange-600 overflow-x-scroll 
+
+}
+
+.item{
+    @apply w-full  flex justify-between items-center;
+    .name{
+        @apply font-bold text-2xl text-teal-600
+    }
+    .price{
+        @apply w-fit min-h-[20px]  h-fit px-2 text-lg font-semibold
+    }
+}
+
+
+.specification{
+    @apply w-full flex justify-start items-start flex-col  h-fit py-2
+     bg-slate-100 overflow-x-scroll px-2 ;
+     div{
+        @apply font-normal text-base font-semibold flex items-center justify-start;
+        // .dot{
+        //     @apply w-2 h-2 bg-slate-900 rounded-full mr-1
+        // }
+     }
+   
+
+}
+
+.description{
+    @apply w-full block min-h-[50px] h-fit
+      overflow-x-scroll p-2 mb-2;
+     .descriptiontitle{
+@apply w-full block h-fit text-left font-bold 
+text-lg text-teal-600
+     }
+
+}
+
+.store{
+    @apply  w-full min-h-[100px] flex justify-center
+    items-center gap-2 flex-wrap px-2 
+   
+    ;
+    .logo{
+        @apply w-[50px] h-[50px] bg-purple-400 rounded-full
+
+
+    }
+
+    .storename{
+        @apply flex-grow max-w-[250px]
+        text-lg font-bold
+    }
+    .visitstore{
+@apply w-full max-w-[250px] p-2 px-4 bg-slate-900 text-white
+text-sm font-semibold rounded-full mb-1
+    }
+}
+
+.similarads{
+    @apply w-full bg-pink-600 min-h-[200px]
+}
+
+.fullimage{
+    @apply w-full min-h-screen bg-black/80 flex  justify-center items-center
+    fixed top-0 z-50;
+    .collapseimage{
+        @apply absolute w-[40px] h-[40px] rounded-md bg-white/40
+        flex justify-center items-center left-2 top-4 
+         cursor-pointer
+    }
+    .image{
+        @apply  w-full min-h-[50vh] bg-blue-500 max-w-[500px] bg-contain ;
+        .leftarrow{
+            @apply absolute w-[40px] h-[40px] rounded-full bg-white/40
+            flex justify-center items-center left-2 top-[50%] 
+            translate-y-[-50%] cursor-pointer
+        }
+        .rightarrow{
+            @apply absolute w-[40px] h-[40px] rounded-full bg-white/40
+            flex justify-center items-center right-2 top-[50%] 
+            translate-y-[-50%] cursor-pointer
+        }
+    }
+}

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Brands } from '../interfaces/brands';
-import { Categories } from '../interfaces/categories';
+
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,5 +8,18 @@ import { Categories } from '../interfaces/categories';
 export class UiService {
 
 
+  openimage=new BehaviorSubject<boolean>(false)
+
   constructor() { }
+
+openproductimage(){
+  this.openimage.next(true)
+
+}
+closeproductimage(){
+  this.openimage.next(false)
+
+}
+
+
 }
