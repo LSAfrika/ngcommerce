@@ -1,59 +1,64 @@
 <app-navbar></app-navbar>
 <div class="container">
-    <div class="mainimage">
+    <div class="main">
 
-        <div (click)="uiservice.openproductimage()" class="expandimage">
-
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="m21 15.344-2.121 2.121-3.172-3.172-1.414 1.414 3.172 3.172L15.344 21H21zM3 8.656l2.121-2.121 3.172 3.172 1.414-1.414-3.172-3.172L8.656 3H3zM21 3h-5.656l2.121 2.121-3.172 3.172 1.414 1.414 3.172-3.172L21 8.656zM3 21h5.656l-2.121-2.121 3.172-3.172-1.414-1.414-3.172 3.172L3 15.344z"></path></svg>
-
-        </div>
-        <div class="leftarrow">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path></svg>
-        </div>
-        <div class="rightarrow">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
-
-        </div>
-    </div>
-    <!-- <div class="gallery"></div> -->
-    <div class="item">
-        <div class="name">Hp spectre</div>
-
-        <div class="price">Ksh 47,000</div>
-    </div>
-    <div class="specification">
-
-<div>- intel core i5</div>
-<div>- 16Gb ram</div>
-<div>- 256gb ssd</div>
-</div>
-<div class="description">
-    <div class="descriptiontitle">description</div>
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, consectetur!
-</div>
-    <div class="store">
-        <div class="logo"></div>
-<div class="storename">Samsung official store</div>
-<button routerLink="/store" [queryParams]="{ storeid:'samsung'}" class="visitstore">Visit store</button>
-
-    </div>
-<div class="similarads">
-
-    <div class="storename">More From Samsung</div>
-
-    <div *ngFor="let item of [].constructor(5);let i=index" [routerLink]="['/product',i]"   class="storeadvert">
-        <div class="img"></div>
-        <div class="productdesc">
-            <div class="title">galaxy s10</div>
-            <div class="price">Ksh 23,000</div>
-            <div class="arrow">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
+        <div class="mainimage">
+    
+            <div (click)="uiservice.openproductimage()" class="expandimage">
+    
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="m21 15.344-2.121 2.121-3.172-3.172-1.414 1.414 3.172 3.172L15.344 21H21zM3 8.656l2.121-2.121 3.172 3.172 1.414-1.414-3.172-3.172L8.656 3H3zM21 3h-5.656l2.121 2.121-3.172 3.172 1.414 1.414 3.172-3.172L21 8.656zM3 21h5.656l-2.121-2.121 3.172-3.172-1.414-1.414-3.172 3.172L3 15.344z"></path></svg>
+    
+            </div>
+            <div class="leftarrow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path></svg>
+            </div>
+            <div class="rightarrow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
+    
             </div>
         </div>
+        <!-- <div class="gallery"></div> -->
+        <div class="item">
+            <div class="name">Hp spectre</div>
+    
+            <div class="price">Ksh 47,000</div>
+        </div>
+        <div class="specification">
+    
+    <div>- intel core i5</div>
+    <div>- 16Gb ram</div>
+    <div>- 256gb ssd</div>
     </div>
-<div class="bottomseperator ">bottom seperator</div>
-</div>
+    <div class="description">
+        <div class="descriptiontitle">description</div>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, consectetur!
+    </div>
+        <div class="store">
+            <div class="logo"></div>
+    <div class="storename">Samsung official store</div>
+    <button routerLink="/store" [queryParams]="{ storeid:'samsung'}" class="visitstore">Visit store</button>
+    
+        </div>
+    </div>
+    <div class="rightsidepanel">
+        <div class="similarads">
+        
+            <div class="storename">More From Samsung store</div>
+        
+            <div *ngFor="let item of [].constructor(5);let i=index" [routerLink]="['/product',i]"   class="storeadvert">
+                <div class="img"></div>
+                <div class="productdesc">
+                    <div class="title">galaxy s10</div>
+                    <div class="price">Ksh 23,000</div>
+                    <div class="arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
+                    </div>
+                </div>
+            </div>
+        <div class="bottomseperator ">bottom seperator</div>
+        </div>
 
+    </div>
 
 </div>
 <app-footer></app-footer>
