@@ -81,6 +81,7 @@ text-lg text-teal-600
 .addtocart{
   @apply w-full min-h-[50px]  flex
   justify-center mb-3 gap-10 items-center
+  md:justify-start
 ;
   .quantity{
     @apply min-w-fit h-[30px]
