@@ -6,3 +6,8 @@ export interface Product {
     productimages:[string]
     category:string
 }
+
+export interface addproducttocart{
+  productid:string
+  productquantity:number
+}
