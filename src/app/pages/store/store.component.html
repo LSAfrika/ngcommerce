@@ -1,8 +1,29 @@
 <app-navbar></app-navbar>
+<div class="storeowner">
+  <div class="storeavatar"></div>
+  <div class="storeinfo">
+    <div class="storename">K eletronic mart</div>
+    <div class="products">products:35</div>
+
+
+  </div>
+
+  <div class="share">
+
+    <div class="icon"></div>
+    <div class="iconname">Share</div>
+  </div>
+</div>
 <app-category></app-category>
 
 <div class="container">
+<div class="adcontainer">
 
-    <app-product *ngFor="let item of [].constructor(5)"></app-product>
+  <app-product *ngFor="let item of [].constructor(5)"></app-product>
+  <div class="loadmore">
+    <button>Load More</button>
+  </div>
+</div>
+
 </div>
 <app-footer></app-footer>
