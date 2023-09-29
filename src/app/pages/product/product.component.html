@@ -43,9 +43,9 @@
     <div class="addtocart">
 
       <div class="quantity">
-        <button class="btncart">
-          <div>-</div></button> <span>1</span>
-        <button class="btncart">
+        <button (click)="productservice.decrementproduct()" class="btncart">
+          <div>-</div></button> <span>{{productservice.productcount$.value}}</span>
+        <button (click)="productservice.incrementproduct()" class="btncart">
           <div>+</div>
         </button>
       </div>
