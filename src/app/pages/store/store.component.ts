@@ -12,8 +12,8 @@ export class StoreComponent {
   private activeroute=inject(ActivatedRoute)
   _storeid=''
 constructor(){
-this.activeroute.queryParams.pipe(filter(params=>params['storeid'])).subscribe(res=>{this._storeid=res['storeid'];console.log(this._storeid);}
-)
+ this._storeid= this.activeroute.snapshot.queryParamMap.get('storeid')||''
+
 
 }
 }
