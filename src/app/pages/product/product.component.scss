@@ -1,5 +1,5 @@
 .container{
-    @apply min-w-full min-h-screen px-2 bg-slate-500 flex   flex-col
+    @apply min-w-full min-h-screen px-2 bg-slate-100 flex   flex-col
     justify-start items-center mt-[70px] gap-2
     lg:flex-row lg:justify-center
     lg:max-w-[1200px] lg:gap-5
@@ -59,8 +59,8 @@ lg:max-w-[400px]
 .specification{
     @apply w-full flex justify-start items-start flex-col  h-fit py-2
      bg-slate-100 overflow-x-scroll px-2 ;
-     div{
-        @apply font-normal text-base font-semibold flex items-center justify-start;
+     ul li{
+        @apply  text-base font-semibold flex items-center justify-start ;
         // .dot{
         //     @apply w-2 h-2 bg-slate-900 rounded-full mr-1
         // }
@@ -78,7 +78,31 @@ text-lg text-teal-600
      }
 
 }
-
+.addtocart{
+  @apply w-full min-h-[50px]  flex
+  justify-center mb-3 gap-10 items-center
+;
+  .quantity{
+    @apply min-w-fit h-[30px]
+    p-2 flex justify-center gap-2 items-center
+;
+span{
+  @apply text-base font-bold text-slate-950 mx-2
+}
+.btncart{
+  @apply w-[30px] h-[30px]
+   flex justify-center
+  items-center rounded-lg bg-slate-900 text-white text-lg
+  font-semibold
+}
+  }
+.addproduct{
+  @apply min-w-[100px] text-sm
+  text-white
+  font-bold bg-slate-950 p-2 px-4
+  rounded-full pb-2
+}
+}
 .store{
     @apply  w-full min-h-[100px] flex justify-center
     items-center gap-2 flex-wrap px-2
