@@ -1,5 +1,6 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { BrandsandcategoriesService } from 'src/app/services/brandsandcategories.service';
 
 @Component({
   selector: 'app-categories',

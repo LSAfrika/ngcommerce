@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Brands } from '../interfaces/brands';
 import { Categories } from '../interfaces/categories';
 
@@ -8,9 +9,8 @@ import { Categories } from '../interfaces/categories';
 export class BrandsandcategoriesService {
 
 
-  storecategory='Categories'
-  storebrand='Brands'
-
+  currentcategory='categories'
+  currentbrand='Brands'
   brand='brand'
   brands:Brands[]=[
     {brand:'Sony',icon:'../../../assets/brands/sony.png'},
@@ -27,7 +27,7 @@ export class BrandsandcategoriesService {
 category='categories'
 
   categories:Categories[]=[
-    {category:' All',icon:'../../../assets/categories/allcat.svg'},
+    {category:'Categories',icon:'../../../assets/categories/allcat.svg'},
     {category:'Phones',icon:'../../../assets/categories/mobile.svg'},
     {category:'Laptops',icon:'../../../assets/categories/laptop.svg'},
     {category:'Desktops',icon:'../../../assets/categories/computer.svg'},
@@ -37,5 +37,9 @@ category='categories'
 
 
   ]
-  constructor() { }
+
+  constructor() {
+
+
+  }
 }

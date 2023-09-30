@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CategoriesRoutingModule } from './categories-routing.module';
 import { CategoriesComponent } from './categories.component';
+import { ShareduiModule } from 'src/app/modules/sharedui/sharedui.module';
 
 
 @NgModule({
@@ -11,7 +12,7 @@ import { CategoriesComponent } from './categories.component';
   ],
   imports: [
     CommonModule,
-    CategoriesRoutingModule
+    CategoriesRoutingModule,ShareduiModule
   ]
 })
 export class CategoriesModule { }
