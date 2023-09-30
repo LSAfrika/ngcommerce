@@ -10,7 +10,7 @@
 }
 
 .brandspanel,.categoriespanel{
-    @apply  w-full min-h-[200px]  max-w-[200px] h-fit  rounded-lg top-0 min-w-[200px] z-50 sm:max-w-[250px]
+    @apply  w-full min-h-[200px]   h-fit  rounded-lg top-0 min-w-[200px] z-50 max-w-[250px]
      drop-shadow-xl bg-white fixed;
     .line{
       @apply p-2 text-lg font-semibold w-full bg-white min-h-[30px]  cursor-pointer
