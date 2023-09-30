@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import {  SidenavComponent } from '../../components/sidenav/sidenav.component';
 import { CategoryComponent } from '../../components/category/category.component';
 import { ProductComponent } from '../../components/product/product.component';
+import { CartpanelComponent } from '../../components/cartpanel/cartpanel.component';
 
 
 
@@ -21,7 +22,8 @@ import { ProductComponent } from '../../components/product/product.component';
     FooterComponent,
     SidenavComponent,
     CategoryComponent,
-    ProductComponent
+    ProductComponent,
+    CartpanelComponent
   ],
   imports: [
     CommonModule,RouterModule
@@ -34,7 +36,8 @@ import { ProductComponent } from '../../components/product/product.component';
     FooterComponent,
     SidenavComponent,
     CategoryComponent,
-    ProductComponent
+    ProductComponent,
+    CartpanelComponent
   ]
 })
 export class ShareduiModule { }
