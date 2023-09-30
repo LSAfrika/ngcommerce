@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'brands', loadChildren: () => import('./pages/brands/brands.module').then(m => m.BrandsModule) },
   { path: 'store', loadChildren: () => import('./pages/store/store.module').then(m => m.StoreModule) },
   { path: 'adminpanel', loadChildren: () => import('./pages/adminpanel/adminpanel.module').then(m => m.AdminpanelModule) },
+  { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
   { path: '**', loadChildren: () => import('./pages/nf404/nf404.module').then(m => m.Nf404Module) }];
 
 @NgModule({
