@@ -1,3 +1,10 @@
+
+.navbar{
+  @apply fixed top-0 bg-teal-500 shadow-md shadow-black/20 z-50
+}
+
+
+
 .burgermenu{
   @apply hidden lg:flex cursor-pointer mt-1
 }

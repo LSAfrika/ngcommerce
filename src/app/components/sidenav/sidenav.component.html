@@ -1,37 +1,54 @@
-<div
-class="fixed w-full min-h-screen bg-black/40 z-[100] top-0 lg:flex justify-start  hidden"
->
+<div class="sidemenu"
 
-<div class="nav w-full max-w-[250px] bg-slate-100 shadow-md shadow-black/40 min-h-screen max-h-screen overflow-y-scroll px-2">
+(click)="closesidenavbackdrop()">
+
+<div
+ class="nav"
+[ngClass]="{opensidenpanel : uiservice.sidenav$.value==true}"
+(mouseenter)="enter()"
+(mouseleave)="leave()"
+>
 
 <!-- <div class="title text-teal-600 text-2xl  font-semibold py-1 px-2 w-fit pr-8 rounded-r-full mt-5">Electro Mart</div> -->
 <div class="text-lg font-bold text-white px-3 rounded-r-full w-fit bg-teal-500 my-3">Categories</div>
-<div [routerLink]="['categories']" [queryParams]="{ category:category.category}" class="min-h-[30px] my-3 flex justify-between items-center text-sm font-semibold text-teal-500 cursor-pointer" *ngFor="let category of brandandcategories.categories">
+<div
+*ngFor="let category of brandandcategories.categories"
+[routerLink]="['categories']"
+[queryParams]="{ category:category.category}"
+class="min-h-[30px] my-3 flex justify-between items-center text-sm font-semibold text-teal-500 cursor-pointer"
+(click)="closesidenav()"
+>
    <span>
 
        {{category.category}}
-   </span> 
+   </span>
 
    <span>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(20 184 166);"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
- 
+
     <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(20 184 166)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path><path d="M9.293 7.707 13.586 12l-4.293 4.293 1.414 1.414L16.414 12l-5.707-5.707z"></path></svg> -->
 
    </span>
 </div>
 <div class="text-lg font-bold text-white px-3 rounded-r-full w-fit bg-teal-500 my-3">Brands</div>
-<div [routerLink]="['brands']" [queryParams]="{ brand:brand.brand}" class="min-h-[30px] my-3 flex justify-between items-center text-sm font-semibold text-teal-500 cursor-pointer" *ngFor="let brand of brandandcategories.brands">
+<div
+ (click)="closesidenav()"
+ [routerLink]="['brands']"
+ [queryParams]="{ brand:brand.brand}"
+ class="min-h-[30px] my-3 flex justify-between items-center text-sm font-semibold text-teal-500 cursor-pointer"
+ *ngFor="let brand of brandandcategories.brands"
+ >
 
 
     <span>
-    
+
         {{brand.brand}}
-    </span> 
-    
+    </span>
+
     <span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(20 184 166);"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
      <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(20 184 166)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path><path d="M9.293 7.707 13.586 12l-4.293 4.293 1.414 1.414L16.414 12l-5.707-5.707z"></path></svg> -->
-    
+
     </span>
 </div>
 

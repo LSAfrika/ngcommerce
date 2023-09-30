@@ -1,0 +1,19 @@
+.sidemenu{
+  @apply fixed w-full min-h-screen bg-black/40 z-[100] top-0 lg:flex justify-start cursor-pointer  hidden
+}
+
+.nav{
+  @apply  w-full max-w-[250px] bg-slate-100 shadow-md shadow-black/40 min-h-screen max-h-screen overflow-y-scroll px-2 -left-[100%]
+  relative top-0 z-[110]
+}
+
+
+.opensidenpanel{
+  animation: open .5s ease-in forwards ;
+}
+
+
+@keyframes open{
+  0%{@apply -left-[100%]}
+  100%{@apply left-[0%]}
+}
