@@ -6,6 +6,15 @@
 html,body{
     @apply bg-slate-100;
  margin: 0;
- 
+
     padding: 0;
+}
+
+.globalproductscontainer{
+  @apply flex flex-col justify-start items-stretch gap-3 w-full
+
+}
+
+app-product{
+  @apply   mx-auto max-w-[250px] w-full sm:mx-0 sm:max-w-[220px] lg:max-w-[225px]
 }
