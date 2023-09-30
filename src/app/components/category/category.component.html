@@ -3,17 +3,28 @@
 <div (click)="closepanels()" *ngIf="uiservice.brandspanel.value==true || uiservice.categoriespanel.value==true" class="bgpanel "></div>
 
     <div (click)="uiservice.opencategoriespanel()"  class="categoriesbtn">
-        <span>Ctegories</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path></svg>
-        
-    </div>
-    <!--  (click)="uiservice.closecategoriespanel()" -->
-    <div  *ngIf="uiservice.categoriespanel.value==true" class="categoriespanel categoriespositioning"></div>
-    <div (click)="uiservice.openbrandspanel()" class="brandsbtn">
-        <span>Brands</span>
+        <span>{{brandcategoryservice.storecategory}}</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path></svg>
 
     </div>
-    <div *ngIf="uiservice.brandspanel.value==true" class="brandspanel brandspositioning"></div>
+    <!--  (click)="uiservice.closecategoriespanel()" -->
+    <div  *ngIf="uiservice.categoriespanel.value==true" class="categoriespanel categoriespositioning">
+      <ul class="pt-5">
+        <li class="line" (click)="setcategory(category.category)" *ngFor="let category of brandcategoryservice.categories">{{category.category}}</li>
+      </ul>
+    </div>
+    <div (click)="uiservice.openbrandspanel()" class="brandsbtn">
+        <span>{{brandcategoryservice.storebrand}}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path></svg>
+
+    </div>
+    <div *ngIf="uiservice.brandspanel.value==true" class="brandspanel brandspositioning">
+
+      <ul class="pt-5">
+        <li (click)="setbrand(brand.brand)" class="line
+        " *ngFor="let brand of brandcategoryservice.brands"> {{brand.brand}}</li>
+      </ul>
+
+    </div>
 <!-- (click)="uiservice.closebrandspanel()"     -->
 </div>

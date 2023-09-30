@@ -8,6 +8,9 @@ import { Categories } from '../interfaces/categories';
 export class BrandsandcategoriesService {
 
 
+  storecategory='Categories'
+  storebrand='Brands'
+
   brand='brand'
   brands:Brands[]=[
     {brand:'Sony',icon:'../../../assets/brands/sony.png'},

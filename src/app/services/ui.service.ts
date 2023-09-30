@@ -12,6 +12,11 @@ export class UiService {
   brandspanel=new BehaviorSubject<boolean>(false)
   categoriespanel=new BehaviorSubject<boolean>(false)
 
+
+
+  categoriesarray:string[]=[]
+  brandsarray:string[]=[]
+
   constructor() { }
 
 openproductimage(){

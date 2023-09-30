@@ -10,17 +10,21 @@
 }
 
 .brandspanel,.categoriespanel{
-    @apply absolute w-full min-h-[70vh] max-w-[80%] rounded-lg top-0 min-w-[300px] z-50 sm:max-w-[300px]
-    -left-[70px]
+    @apply  w-full min-h-[200px]  max-w-[200px] h-fit  rounded-lg top-0 min-w-[200px] z-50 sm:max-w-[250px]
+     drop-shadow-xl bg-white fixed;
+    .line{
+      @apply p-2 text-lg font-semibold w-full bg-white min-h-[30px]  cursor-pointer
+      hover:bg-slate-200 hover:text-teal-500 rounded-b-lg
+    }
 }
 
 .brandspositioning{
-    @apply left-[70px] top-[120px] bg-green-300
+    @apply left-[40px] top-[200px]
 }
 
 .categoriespositioning{
-    @apply left-[5px] top-[120px] bg-blue-300
+    @apply left-[5px] top-[200px]
 }
 .bgpanel{
-    @apply fixed top-0 w-full min-h-screen bg-black/0 z-30 cursor-pointer
+    @apply fixed top-0 w-full min-h-screen left-0 right-0 bottom-0  bg-black/30 z-30 cursor-pointer max-h-screen
 }
