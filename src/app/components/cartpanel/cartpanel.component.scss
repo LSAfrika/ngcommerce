@@ -7,8 +7,8 @@
 
 .panel{
   @apply fixed min-h-screen max-h-screen
-   md:max-w-[400px] w-full bg-slate-200 drop-shadow-lg right-0 z-[120]
-  flex flex-col justify-start items-center
+   md:max-w-[400px] w-full bg-slate-200 drop-shadow-lg z-[120]
+  flex flex-col justify-start items-center -right-[100%]
 }
 .name{
   @apply w-full flex justify-start
@@ -93,4 +93,17 @@ div{
       }
     }
   }
+}
+
+
+.opencart{
+  animation: opencart .5s ease-in-out forwards ;
+
+}
+
+@keyframes opencart {
+
+  0%{@apply -right-[100%]}
+  100%{@apply right-0}
+
 }
