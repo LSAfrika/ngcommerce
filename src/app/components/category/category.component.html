@@ -13,13 +13,15 @@
 
     </div>
     <!--  (click)="uiservice.closecategoriespanel()" -->
-    <div  *ngIf="uiservice.categoriespanel.value==true" class="categoriespanel categoriespositioning">
+    <div  *ngIf="uiservice.categoriespanel.value==true" class="categoriespanel categoriespositioning"
+     [ngClass]="{categoriespagepositioning:urlpage=='/categories'||urlpage=='/brands'}">
       <ul class="pt-5">
         <li class="line" (click)="setcategory(category.category)" *ngFor="let category of brandcategoryservice.categories">{{category.category}}</li>
       </ul>
     </div>
 
-    <div *ngIf="uiservice.brandspanel.value==true" class="brandspanel brandspositioning">
+    <div *ngIf="uiservice.brandspanel.value==true" class="brandspanel brandspositioning"
+    [ngClass]="{categoriespagepositioning:urlpage=='/categories'||urlpage=='/brands'}">
 
       <ul class="pt-5">
         <li (click)="setbrand(brand.brand)" class="line

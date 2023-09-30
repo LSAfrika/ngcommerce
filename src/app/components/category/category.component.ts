@@ -13,10 +13,21 @@ export class CategoryComponent {
   public uiservice= inject(UiService)
   public brandcategoryservice= inject(BrandsandcategoriesService)
   private router=inject(Router)
-
+urlpage=''
 // close=false
 constructor(){console.log('current route: ',this.brandcategoryservice.currentcategory);
 this.geturlsegmentandquery()
+}
+
+geturlsegmentandquery(){
+  this.urlpage=this.router.url.split('?')[0]
+  const urlquery=this.router.url.split('?')[1]
+
+  const segment= urlquery.split('=')[1]
+  // console.log(segment)
+
+  if(this.urlpage=='/categories'){console.log('page is categories:',this.urlpage);console.log('urlpage segment:',segment);this.brandcategoryservice.currentcategory=segment}
+  if(this.urlpage=='/brands'){console.log('page is brands:',this.urlpage);;console.log('url segment:',segment);this.brandcategoryservice.currentbrand=segment}
 }
   closepanels(){
 
@@ -41,14 +52,5 @@ this.uiservice.closeallpanels()
 
 }
 
-geturlsegmentandquery(){
-  const urlpage=this.router.url.split('?')[0]
-  const urlquery=this.router.url.split('?')[1]
 
-  const segment= urlquery.split('=')[1]
-  // console.log(segment)
-
-  if(urlpage=='/categories'){console.log('page is categories:',urlpage);console.log('urlpage segment:',segment);this.brandcategoryservice.currentcategory=segment}
-  if(urlpage=='/brands'){console.log('page is brands:',urlpage);;console.log('url segment:',segment);this.brandcategoryservice.currentbrand=segment}
-}
 }
