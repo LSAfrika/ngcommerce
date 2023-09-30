@@ -12,6 +12,7 @@ html,body{
 
 .globalproductscontainer{
   @apply flex flex-col justify-start items-stretch gap-3 w-full
+   sm:flex-row sm:flex-wrap sm:justify-center
 
 }
 
