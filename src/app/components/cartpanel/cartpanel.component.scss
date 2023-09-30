@@ -1,0 +1,96 @@
+.cart{
+  @apply min-w-full min-h-screen
+   bg-black/30 rounded-lg
+   drop-shadow-lg z-[110]
+   fixed top-0 left-0 right-0
+}
+
+.panel{
+  @apply fixed min-h-screen max-h-screen
+   md:max-w-[400px] w-full bg-slate-200 drop-shadow-lg right-0 z-[120]
+  flex flex-col justify-start items-center
+}
+.name{
+  @apply w-full flex justify-start
+  items-center px-2 font-bold  py-[10px] text-xl gap-3
+  max-w-[350px];
+  svg{
+    @apply mt-1 cursor-pointer
+  }
+div{
+  @apply ml-auto
+}
+
+}
+
+.cartempty{
+  @apply w-full
+  max-w-[350px]
+   gap-5  h-[calc(100vh-60px)]
+   flex justify-center
+   items-center flex-col;
+  .noproducts{
+    @apply text-3xl font-light text-slate-950
+  }
+
+  .backshopping{
+    @apply p-3 px-4 bg-teal-500 text-sm font-semibold rounded-full
+    text-white
+
+
+
+  }
+}
+
+.cartfull{
+  @apply w-full
+  max-w-[350px]
+   gap-5  h-[calc(100vh-60px)]
+   flex justify-start
+   items-center flex-col
+   ;
+   ul{
+    @apply w-full;
+    .cartheading{
+      @apply bg-teal-500 text-white font-bold rounded-md min-h-[50px] text-sm
+     }
+     .total{
+      @apply mt-10 w-full min-h-[50px] bg-teal-500 text-sm font-bold text-white px-2 flex items-center justify-between
+      pr-8
+     }
+     .checkoutcart{
+        @apply mt-5 w-full min-h-[50px] bg-teal-500 text-sm font-bold text-white px-2 flex items-center justify-center rounded-full
+        max-w-[200px] mx-auto
+
+     }
+   }
+   ul li{
+    @apply w-full flex justify-start gap-5   my-2 items-center text-base font-semibold text-slate-900;
+    span{
+      @apply flex-1 text-center
+    }
+    .productname{
+      @apply text-left
+    }
+   }
+
+   .quantity{
+    @apply flex justify-center items-center gap-[10px] ;
+    .btn{
+      @apply w-5 h-5 max-h-5 text-xl font-semibold bg-slate-200 border-none
+    }
+   }
+}
+
+.overlay{
+  @apply w-full fixed top-0 min-h-screen bg-black/30 flex  justify-center items-center;
+  .deletemodal{
+    @apply min-h-[150px] min-w-[300px] rounded-lg bg-white flex flex-col text-lg font-bold justify-center items-center;
+    .btncontainer{
+      @apply flex justify-center items-center w-full gap-[10px];
+      .btnn{
+        @apply min-w-[100px] px-2  rounded-full text-white bg-teal-500 font-semibold mt-5 min-h-[30px] text-center pb-1
+      }
+    }
+  }
+}

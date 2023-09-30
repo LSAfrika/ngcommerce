@@ -12,5 +12,8 @@ export class NavbarComponent {
   opensidenav(){
     this.uiservice.sidenav$.next(true)
   }
+  opencart(){
+    this.uiservice.cartpanel$.next(true)
+  }
 
 }

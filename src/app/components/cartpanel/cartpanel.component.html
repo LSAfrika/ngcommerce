@@ -1,1 +1,61 @@
-<p>cartpanel works!</p>
+<div class="cart">
+<div class="panel">
+<div class="name">
+  <svg (click)="closecartpanel()" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z"></path></svg>
+
+  <div>My Cart</div>
+</div>
+
+<ng-container *ngIf="cartservice.activecart.length==0" >
+  <div class="cartempty">
+<div class="noproducts">No products in cart</div>
+<button (click)="closecartpanel()" class="backshopping">continue shopping</button>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="cartservice.activecart.length>0" >
+  <div class="cartfull">
+<ul>
+  <li class="cartheading" >
+    <span>Product</span>
+    <span>Quantity</span>
+    <span>Total price</span>
+  </li>
+  <li *ngFor="let product of cartservice.activecart;let i =index">
+    <span class="productname">{{product.productname}}</span>
+    <span class="quantity">
+<div (click)="reducequantity(i)" class="btn">-</div>
+<div>{{product.productquantity}}</div>
+<div (click)="increasequantity(i)" class="btn">+</div>
+
+    </span>
+    <span>{{product.productprice *product.productquantity}}</span>
+  </li>
+
+  <div class="total">
+    <div>cart total</div>
+    <div>{{totalamount}}</div>
+  </div>
+  <button (click)="checkoutprompt()" class="checkoutcart">
+    <div>check out cart</div>
+  </button>
+</ul>
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="uiservice.cartpaneldeleteoverlay$.value==true" >
+  <div class="overlay">
+    <div class="deletemodal">
+<span>Delete item from cart?</span>
+<div class="btncontainer">
+  <button class="btnn" (click)="removeproductfromcart()">yes</button>
+  <button class="btnn" (click)="closemodalpanel()">no</button>
+</div>
+
+    </div>
+  </div>
+</ng-container>
+</div>
+
+</div>

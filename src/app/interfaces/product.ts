@@ -7,7 +7,9 @@ export interface Product {
     category:string
 }
 
-export interface addproducttocart{
+export interface producttocart{
+  productname:string
   productid:string
+  productprice:number
   productquantity:number
 }
