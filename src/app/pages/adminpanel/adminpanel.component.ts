@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,inject } from '@angular/core';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-adminpanel',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AdminpanelComponent {
 
+  public adminservice=inject(AdminService)
 }
