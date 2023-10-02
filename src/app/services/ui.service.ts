@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { BehaviorSubject } from 'rxjs';
 
@@ -7,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class UiService {
 
-
+  currentroute=''
   openimage=new BehaviorSubject<boolean>(false)
   brandspanel=new BehaviorSubject<boolean>(false)
   categoriespanel=new BehaviorSubject<boolean>(false)
@@ -15,13 +16,22 @@ export class UiService {
   cartpanel$=new BehaviorSubject<boolean>(false)
   public cartpaneldeleteoverlay$=new BehaviorSubject(false)
 
-
+private roter=inject(Router)
 
   categoriesarray:string[]=[]
   brandsarray:string[]=[]
 
   constructor() { }
 
+
+  getroute(){
+   this.currentroute= this.roter.url
+
+   console.log('current route',this.currentroute);
+   
+
+    
+  }
 openproductimage(){
   this.openimage.next(true)
 
