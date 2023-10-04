@@ -1,14 +1,15 @@
 
 
 .main{
-  @apply sm:max-w-[400px] w-full md:rounded-md
+  @apply sm:max-w-[400px] w-full
    min-h-screen bg-slate-100
     flex flex-col justify-start items-center px-2
-    max-h-screen overflow-y-scroll pt-[60px]
+    max-h-screen overflow-y-scroll  relative
+     md:max-w-[550px] md:rounded-md md:max-h-[90vh] md:min-h-[500px]
 }
 
 .nav{
-  @apply w-full bg-slate-100 absolute top-0 min-h-[50px] z-20 flex items-center justify-between px-2;
+  @apply w-full bg-slate-100 sticky top-0 min-h-[50px] z-20 flex items-center justify-between px-2;
   .close{
     @apply  rotate-45 cursor-pointer z-50
   }
