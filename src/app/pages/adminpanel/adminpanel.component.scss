@@ -1,7 +1,7 @@
 .container{
-    @apply w-full pt-[75px] flex 
+    @apply w-full pt-[75px] flex
     flex-col justify-start items-center
-    gap-[10px] px-[10px] bg-slate-100 
+    gap-[10px] px-[10px] bg-slate-100
     min-h-screen mx-auto
     sm:flex-row sm:flex-wrap sm:justify-center
 }
@@ -12,12 +12,12 @@
     cursor-pointer gap-2
     px-4
     xl:max-w-[225px] xl:min-h-[125px]
- 
+
     ;
- 
+
 }
 .mxauto{
-    @apply sm:mr-auto md:ml-[70px] 
+    @apply sm:mr-auto md:ml-[70px]
     lg:mr-0 lg:ml-0
 }
 .cardtitle{
@@ -30,11 +30,16 @@
 .myproductstitle{
     @apply text-white drop-shadow-lg w-full
     font-semibold text-base mr-auto pb-2
-    md:ml-[35px] 
-    lg:ml-[25px] 
+    md:ml-[35px]
+    lg:ml-[25px]
     xl:ml-[50px]
     ;
     div{
         @apply p-1 px-4 rounded-sm bg-teal-600 w-fit
     }
+}
+
+
+app-adminmodal{
+  @apply w-full min-h-screen fixed top-0 bg-black/20 flex justify-center items-center flex-col z-[120]
 }

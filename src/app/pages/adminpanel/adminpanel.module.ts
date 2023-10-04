@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { AdminpanelRoutingModule } from './adminpanel-routing.module';
 import { AdminpanelComponent } from './adminpanel.component';
 import { ShareduiModule } from 'src/app/modules/sharedui/sharedui.module';
+import { AdminmodalComponent } from '../../components/adminmodal/adminmodal.component';
 
 
 @NgModule({
   declarations: [
-    AdminpanelComponent
+    AdminpanelComponent,
+    AdminmodalComponent
   ],
   imports: [
     CommonModule,
