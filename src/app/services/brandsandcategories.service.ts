@@ -9,10 +9,11 @@ import { Categories } from '../interfaces/categories';
 export class BrandsandcategoriesService {
 
 
-  currentcategory='categories'
-  currentbrand='Brands'
+  currentcategory='All categories'
+  currentbrand='All Brands'
   brand='brand'
   brands:Brands[]=[
+    {brand:'All Brands',icon:'../../../assets/brands/sony.png'},
     {brand:'Sony',icon:'../../../assets/brands/sony.png'},
     {brand:'samsung',icon:'../../../assets/brands/samsung.png'},
     {brand:'apple',icon:'../../../assets/brands/apple.webp'},
@@ -27,7 +28,7 @@ export class BrandsandcategoriesService {
 category='categories'
 
   categories:Categories[]=[
-    {category:'Categories',icon:'../../../assets/categories/allcat.svg'},
+    {category:'All Categories',icon:'../../../assets/categories/allcat.svg'},
     {category:'Phones',icon:'../../../assets/categories/mobile.svg'},
     {category:'Laptops',icon:'../../../assets/categories/laptop.svg'},
     {category:'Desktops',icon:'../../../assets/categories/computer.svg'},
