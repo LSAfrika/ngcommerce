@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { datamodel } from '../interfaces/admindata.interface';
 
 @Injectable({
@@ -7,8 +8,11 @@ import { datamodel } from '../interfaces/admindata.interface';
 export class AdminService {
 
 
+  viewmodal$=new BehaviorSubject(true)
+  switchmodal$=new BehaviorSubject(1)
+
+
   admindata:datamodel[]=[
-{datatitle:'All products',dataquantity:14},
 {datatitle:'Total views',dataquantity:349},
 {datatitle:'Stock balance',dataquantity:46},
 {datatitle:'Sold products',dataquantity:21},
