@@ -1,27 +1,39 @@
-.close{
-  @apply absolute top-2 right-2 rotate-45 cursor-pointer
-}
+
 
 .main{
   @apply sm:max-w-[400px] w-full md:rounded-md
    min-h-screen bg-slate-100
     flex flex-col justify-start items-center px-2
+    max-h-screen overflow-y-scroll pt-[60px]
+}
+
+.nav{
+  @apply w-full bg-slate-100 absolute top-0 min-h-[50px] z-20 flex items-center justify-between px-2;
+  .close{
+    @apply  rotate-45 cursor-pointer z-50
+  }
 }
 
 .maintitle{
   @apply bg-teal-500 p-1 pr-5
    rounded-r-full text-sm font-bold
   text-white pb-2
-   mr-auto ml-2 mt-2
+   mr-auto ml-2 mt-2 w-fit
 }
 
 .productviewcontainer{
-  @apply flex justify-between items-center
-  min-h-[50px] my-2 p-2 bg-white w-full relative
+  @apply flex justify-start gap-4 items-center
+  min-h-[70px] my-2 p-2 bg-white w-full relative
   drop-shadow-lg
   max-w-[400px];
+
+  .avatar{
+    @apply w-10 h-10 rounded-lg bg-indigo-600 justify-center items-center bg-cover overflow-hidden
+  }
   .description{
     @apply flex flex-col justify-start items-start;
+
+
     .name{
       @apply text-sm font-bold text-slate-900
     }
@@ -31,7 +43,7 @@
     }
   }
   .views{
-    @apply text-teal-500 text-base font-semibold
+    @apply text-teal-500 text-base font-semibold ml-auto
   }
   .mostviewed{
     @apply absolute top-0
