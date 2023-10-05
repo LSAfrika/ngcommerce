@@ -25,7 +25,7 @@
 .productviewcontainer{
   @apply flex justify-start gap-4 items-center
   min-h-[70px] my-2 p-2 bg-white w-full relative
-  drop-shadow-lg
+  drop-shadow-lg cursor-pointer
   max-w-[400px];
 
   .avatar{
@@ -51,6 +51,10 @@
     rounded-full
     pb-1 right-1 text-white bg-teal-400 px-1
     text-[10px] font-semibold
+  }
+
+  .salesview{
+     @apply fixed top-0
   }
 }
 

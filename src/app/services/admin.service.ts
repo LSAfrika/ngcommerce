@@ -9,7 +9,7 @@ export class AdminService {
 
 
   viewmodal$=new BehaviorSubject(true)
-  switchmodal$=new BehaviorSubject(1)
+  switchmodal$=new BehaviorSubject(4)
 
 
   admindata:datamodel[]=[
