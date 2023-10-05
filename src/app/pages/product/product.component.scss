@@ -66,6 +66,10 @@ lg:max-w-[400px]
         // }
      }
 
+     .bullet{
+      @apply w-2 h-2 mt-[3px] mr-2 bg-teal-500 rounded-full
+     }
+
 
 }
 
