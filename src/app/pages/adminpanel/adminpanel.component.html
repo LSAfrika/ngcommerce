@@ -30,7 +30,9 @@
     </ng-container>
 
         <div class="cardtitle">{{card.datatitle}} </div>
-        <div class="cardquantity">{{card.dataquantity}}</div>
+        <div class="cardquantity">
+          <span *ngIf="i==3">$</span>
+          {{card.dataquantity}}</div>
     </div>
 
     <div class="myproductstitle">

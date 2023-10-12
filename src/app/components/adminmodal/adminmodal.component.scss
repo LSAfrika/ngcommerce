@@ -1,7 +1,7 @@
 
 
 .main{
-  @apply sm:max-w-[400px] w-full
+  @apply sm:max-w-[550px] w-full
    min-h-screen bg-slate-100
     flex flex-col justify-start items-center px-2
     max-h-screen overflow-y-scroll  relative
@@ -58,7 +58,7 @@
 
 }
 .sales{
-  @apply fixed z-10 top-[40px] drop-shadow-none bg-slate-100 max-w-[550px]
+  @apply fixed z-10 top-[40px] drop-shadow-none bg-slate-100 max-w-[500px] md:top-[65px]
 }
 
 .margintop{
