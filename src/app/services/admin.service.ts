@@ -9,7 +9,7 @@ import { datamodel } from '../interfaces/admindata.interface';
 export class AdminService {
 
 
-  viewmodal$=new BehaviorSubject(true)
+  viewmodal$=new BehaviorSubject(false)
   switchmodal$=new BehaviorSubject(0)
 
   categories=['Phones','Laptops','Desktops','Tvs','Home theatres','monitors','Head sets']

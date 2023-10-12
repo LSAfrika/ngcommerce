@@ -39,9 +39,9 @@
         <div >   Products</div>
     </div>
 
-    <app-product *ngFor="let products  of [].constructor(14)"></app-product>
+    <app-product *ngFor="let products  of [].constructor(10)"></app-product>
 </div>
-
+<app-footer></app-footer>
 <app-adminmodal
  *ngIf="adminservice.viewmodal$.value==true"
  (closemodalemit)="closemodal($event)"
