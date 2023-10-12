@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { datamodel } from '../interfaces/admindata.interface';
 
@@ -9,8 +10,13 @@ export class AdminService {
 
 
   viewmodal$=new BehaviorSubject(true)
-  switchmodal$=new BehaviorSubject(4)
+  switchmodal$=new BehaviorSubject(0)
 
+  categories=['Phones','Laptops','Desktops','Tvs','Home theatres','monitors','Head sets']
+  brands= ['Samsung','Hp','Dell','Lenovo','Acer','Sony','Apple','Xiaomi','Tecno','Infinix','Hotpoint','Oppo','Huawei','Awei','Oraimo','Lg','Hisense','Synix','Nokia']
+  productimages:File[]=[]
+  productspecs:string[]=[]
+  productspec=''
 
   admindata:datamodel[]=[
 {datatitle:'Total views',dataquantity:349},
@@ -21,5 +27,6 @@ export class AdminService {
 
 
   ]
-  constructor() { }
+
+
 }

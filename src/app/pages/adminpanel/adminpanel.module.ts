@@ -5,6 +5,7 @@ import { AdminpanelRoutingModule } from './adminpanel-routing.module';
 import { AdminpanelComponent } from './adminpanel.component';
 import { ShareduiModule } from 'src/app/modules/sharedui/sharedui.module';
 import { AdminmodalComponent } from '../../components/adminmodal/adminmodal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,7 +15,7 @@ import { AdminmodalComponent } from '../../components/adminmodal/adminmodal.comp
   ],
   imports: [
     CommonModule,
-    AdminpanelRoutingModule,ShareduiModule
+    AdminpanelRoutingModule,ShareduiModule,ReactiveFormsModule,FormsModule
   ]
 })
 export class AdminpanelModule { }

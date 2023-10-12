@@ -4,12 +4,120 @@
   <div class="main">
     <div class="nav">
 
-      <h1 class="maintitle">product view</h1>
-      <svg (click)="closemodal()" class="close" xmlns="http://www.w3.org/2000/svg"
+      <h1 class="maintitle">Add new product</h1>
+      <svg (click)="closemodalandresetform()" class="close" xmlns="http://www.w3.org/2000/svg"
     width="24" height="24" viewBox="0 0 24 24"
     style="fill: rgba(20 184 166)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
     </div>
+
+    <form class="productform" [formGroup]="productform">
+
+      <label class="mb-1 ml-2 mr-auto text-sm font-semibold text-teal-500" for="">product name</label>
+      <input type="text" formControlName="productname" >
+      <div class="erromsg" *ngIf="_productname?.dirty===true && _productname?.value === '' || _productname?.value === null">required*</div>
+
+      <label class="mb-1 ml-2 mr-auto text-sm font-semibold text-teal-500" for="">product price</label>
+
+      <input
+      onpaste="return false" ondrop="return false" onkeypress="return event.charCode>=48&&event.charCode<=57"
+      type="number" formControlName="productprice" >
+      <div class="erromsg" *ngIf="_productprice?.dirty===true && _productprice?.value === 0 || _productprice?.value === null">required*</div>
+
+      <label class="mb-1 ml-2 mr-auto text-sm font-semibold text-teal-500" for="">product description</label>
+
+      <textarea type="number" formControlName="productdescription" ></textarea>
+      <div class="erromsg" *ngIf="_productdescription?.dirty===true && _productdescription?.value === 0 || _productdescription?.value === null">required*</div>
+
+
+
+
+      <select   formControlName="category" placeholder="select category">
+        <optgroup>
+          <option (click)="setcategory('')" style="font-size: 18px; text-align: center;" value="">select  category</option>
+          <option (click)="setcategory(category)" style="font-size: 18px; text-align: center;" *ngFor="let category of adminservice.categories"
+            value="{{category}}">{{category}}</option>
+          <option value="other" style="font-size: 18px; text-align: center;"><strong
+              style="font-size: 24px;">*other</strong></option>
+
+        </optgroup>
+      <div class="erromsg" *ngIf="_brand?.dirty===true && _brand?.value === '' || _brand?.value === null">required*</div>
+
+
+      </select>
+
+      <select   formControlName="brand" placeholder="select brand">
+        <optgroup>
+          <option (click)="setbrand('')" style="font-size: 18px; text-align: center;" value="">select your brand</option>
+          <option style="font-size: 18px; text-align: center;" *ngFor="let brand of adminservice.brands"
+          (click)="setbrand(brand)" value="{{brand}}">{{brand}}</option>
+          <option value="other" style="font-size: 18px; text-align: center;"><strong
+              style="font-size: 24px;">*other</strong></option>
+
+        </optgroup>
+      <div class="erromsg" *ngIf="_brand?.dirty===true && _brand?.value === '' || _brand?.value === null">required*</div>
+
+
+      </select>
+
+      <input type="file" class="hidden" multiple (change)="addimages($event)" #file>
+
+
+
+      <div class="addspec">
+        <input type="text" placeholder="add specification" class="specs" formControlName="spec" >
+      <button
+      [disabled]="_spec?.value.trim().length==0"
+      [ngClass]="{btninactive:_spec?.value.trim().length==0}"
+      class="btnspec" (click)="addspecs()">add </button>
+
+      </div>
+      <ng-container *ngIf="adminservice.productspecs.length>0">
+        <div class="holder" *ngFor="let spec of adminservice.productspecs;let i=index">
+
+          <span>{{spec}}</span>
+          <svg (click)="deletespec(i)" class="cursor-pointer" fill="none" stroke="rgb(20, 184, 166 )" width="25" height="25" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        </div>
+
+
+      </ng-container>
+
+  <button class="mt-5" (click)="file.click()">select images</button>
+
+      <ng-container *ngIf="adminservice.productimages.length!=0">
+      <div class="imageselectsection">
+
+
+      <div *ngFor="let img of adminservice.productimages;let i=index" class="imagecontainer">
+        <span>{{img.name}}</span>
+        <svg (click)="deleteimage(i)" class="cursor-pointer" fill="none" stroke="rgb(20, 184, 166 )" width="25" height="25" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      </div>
+    </div>
+  </ng-container>
+
+<div *ngIf="adminservice.productimages.length>0" class="formbottom">
+<!-- {{adminservice.productimages.length}} -->
+  <button
+  [disabled]="productform.invalid "
+  [ngClass]="{btninactive: productform.invalid||adminservice.productimages.length==0}"
+  (click)="appenddatatoform()"
+  >add product</button>
+</div>
+
+    </form>
   </div>
+
+
+
+
+
   </ng-container>
 
 <ng-container  *ngIf="openmodal==1">
