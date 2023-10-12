@@ -53,9 +53,12 @@
     text-[10px] font-semibold
   }
 
-  .salesview{
-     @apply fixed top-0
-  }
+
+}
+.sales{
+  @apply fixed z-10 top-[60px] drop-shadow-none bg-slate-100 max-w-[550px]
 }
 
-
+.margintop{
+  @apply mt-[60px]
+}
