@@ -1,8 +1,10 @@
 
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { UiService } from 'src/app/services/frontendservices/ui.service';
+import { Subject, retry, takeUntil } from 'rxjs';
+import { UserService } from 'src/app/services/endpoints/user.service';
 
 @Component({
   selector: 'app-login',
@@ -34,8 +36,9 @@ vendoraccount=false
   password=''
   reenterpassword=''
 
-  
-
+  destroy$=new Subject()
+userendpoints=inject(UserService)
+  // emailRegex = new RegExp('^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$');
   emailRegex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
   constructor( public ui:UiService,private router:Router,) {
 
@@ -49,6 +52,10 @@ vendoraccount=false
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(){
+    this.destroy$.next(1)
   }
 toggleregister(){
   this.register=!this.register
@@ -109,8 +116,10 @@ passwordmatch(ev:any){
 registeruser(){
 
   if( this.email.length==0||this.username.length==0||this.password.length==0||this.reenterpassword.length==0 ) return alert('fill all fields')
-
-  if(this.passwordmissmatch==true ||this.passwordlengthmatch==true ||this.invalidemailmatch==true ||this.inavlidusernamelength==true) return alert('form has errors')
+if(this.vendoraccount && this.storename.length==0) return alert('fill all fields')
+  if(this.passwordmissmatch==true ||this.passwordlengthmatch==true 
+    ||this.invalidemailmatch==true ||this.inavlidusernamelength==true 
+    || this.inavlidstorenamelength==true) return alert('form has errors')
  this.registering=true
  this.registertext='registering... '
 let payload
@@ -118,8 +127,9 @@ let payload
    payload={
     email:this.email,
     username:this.username,
-   password: this.password,
-   storenme:this.storename,
+    storename:this.storename,
+    vendor:true,
+    password: this.password,
    reenterpassword:this.reenterpassword
   }
 
@@ -137,12 +147,37 @@ let payload
 
   console.log('user account',payload);
 
-  setTimeout(() => {
- this.registertext='register '
-    
-  }, 2000);
+
+
+
   
  }
+
+this.userendpoints.userdata=payload
+
+this.userendpoints.registeruser().pipe(takeUntil(this.destroy$)).subscribe(res=>{
+  this.registertext='register '
+  if(res.message){
+
+    localStorage.setItem('ecomtoken',res.token)
+    localStorage.setItem('ecomrefreshtoken',res.refreshtoken)
+    this.userendpoints.user=res.user
+
+    alert(res.message)
+   
+    if(res.user.vendor==true) this.router.navigateByUrl('/admin')
+    if(res.user.vendor==false)  this.router.navigateByUrl('/')
+    this.resetform()
+
+  }
+
+  if(res.errormessage) alert(res.errormessage)
+},err=>{
+  this.registertext='register '
+this.resetform()
+alert('error while registering')
+  console.log('error registering user: ',err.message)
+})
 
 
 //   this.createusersub=this.user.createuser(payload).subscribe((res:any)=>{
@@ -188,6 +223,21 @@ loginuser(){
     password:this.password
   }
 console.log('login payload: ',loginpayload);
+
+this.userendpoints.loginuser().pipe(takeUntil(this.destroy$)).subscribe(res=>{
+  if(res.message){
+
+    localStorage.setItem('ecomtoken',res.token)
+    localStorage.setItem('ecomrefreshtoken',res.refreshtoken)
+    this.userendpoints.user=res.user
+    alert(res.message)
+    this.router.navigateByUrl('/')
+  }
+
+  if(res.errormessage) alert(res.errormessage)
+})
+
+
 // this.loginusersub=this.user.loginuser(loginpayload).subscribe((res:any)=>{
 
 //   if(res.token!=undefined&&res.refreshtoken!=undefined){
@@ -220,5 +270,13 @@ createvendor(event:any){
   console.log('vendor account state',this.vendoraccount);
   
 
+}
+
+resetform(){
+  this.email=''
+  this.storename=''
+  this.username=''
+  this.password=''
+  this.reenterpassword=''
 }
 }

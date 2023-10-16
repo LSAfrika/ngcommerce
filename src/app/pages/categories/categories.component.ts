@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BrandsandcategoriesService } from 'src/app/services/brandsandcategories.service';
+import { BrandsandcategoriesService } from 'src/app/services/frontendservices/brandsandcategories.service';
 
 @Component({
   selector: 'app-categories',

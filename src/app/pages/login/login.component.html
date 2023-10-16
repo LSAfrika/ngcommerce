@@ -65,7 +65,7 @@
 
  <ng-container *ngIf="vendoraccount">
 
-  <input class="input" (keyup)="usernamevalidator($event)" placeholder="store name" [(ngModel)]="storename" type="text">
+  <input class="input" (keyup)="storenamevalidator($event)" placeholder="store name" [(ngModel)]="storename" type="text">
   <span class="w-full text-xs text-white font-semibold text-left" *ngIf="inavlidstorenamelength">{{inavlidstorenamelengthmessage}}</span>
 </ng-container>
 

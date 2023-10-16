@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShareduiModule } from './modules/sharedui/sharedui.module';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -11,7 +13,7 @@ import { ShareduiModule } from './modules/sharedui/sharedui.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,ShareduiModule
+    AppRoutingModule,ShareduiModule,HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

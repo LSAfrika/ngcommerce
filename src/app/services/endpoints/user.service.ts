@@ -7,21 +7,28 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-  private endpoints=inject(IndexRoutesService)
 
-  ROOT_USER_URL='http://localhost:3000/api/v1/user'
+
+  ROOT_USER_URL='http://localhost:3000/api/v1/user/'
   
   authuserid='1'
-  userdata={}
-  constructor() { }
+  userdata:any={}
+  user:User|undefined
+  constructor( private endpoints:IndexRoutesService) { }
 
   authuser():Observable<getuserhttpresponse>{
     return this.endpoints.GETSINGLE(this.ROOT_USER_URL,this.authuserid)
 
   }
-  createuser():Observable<registerhttpresponse>{
+  registeruser():Observable<registerhttpresponse>{
+    const registerurl=this.ROOT_USER_URL+'register'
 
-return this.endpoints.POST(this.ROOT_USER_URL,this.userdata)
+return this.endpoints.POST(registerurl,this.userdata)
+  }
+
+  loginuser():Observable<loginhttpresponse>{
+    const loginurl=this.ROOT_USER_URL+'login'
+    return this.endpoints.POST(loginurl,this.userdata)
   }
 
   updateuser():Observable<updateuserhttpresponse>{

@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class IndexRoutesService {
 
-  constructor() { } 
-  private http=inject(HttpClient)
+  constructor(private http:HttpClient) { } 
+  
 
 
 
