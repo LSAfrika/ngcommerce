@@ -1,7 +1,7 @@
 import { Component,inject } from '@angular/core';
 //import { inject } from '@angular/core/testing';
-import { BrandsandcategoriesService } from 'src/app/services/brandsandcategories.service';
-import { UiService } from 'src/app/services/ui.service';
+import { BrandsandcategoriesService } from 'src/app/services/frontendservices/brandsandcategories.service';
+import { UiService } from 'src/app/services/frontendservices/ui.service';
 
 @Component({
   selector: 'app-sidenav',

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { UiService } from 'src/app/services/ui.service';
+import { UiService } from 'src/app/services/frontendservices/ui.service';
 
 @Component({
   selector: 'app-navbar',

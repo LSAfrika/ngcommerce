@@ -2,7 +2,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { UiService } from 'src/app/services/ui.service';
+import { UiService } from 'src/app/services/frontendservices/ui.service';
 
 @Component({
   selector: 'app-login',

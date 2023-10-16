@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { UiService } from './services/ui.service';
+import { UiService } from './services/frontendservices/ui.service';
 
 @Component({
   selector: 'app-root',

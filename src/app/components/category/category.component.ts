@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { BrandsandcategoriesService } from 'src/app/services/brandsandcategories.service';
-import { UiService } from 'src/app/services/ui.service';
+import { BrandsandcategoriesService } from 'src/app/services/frontendservices/brandsandcategories.service';
+import { UiService } from 'src/app/services/frontendservices/ui.service';
 
 @Component({
   selector: 'app-category',
