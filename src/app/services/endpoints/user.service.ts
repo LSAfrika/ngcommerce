@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { IndexRoutesService } from './index.routes.service';
-
+import {User,getuserhttpresponse,loginhttpresponse,registerhttpresponse,updateuserhttpresponse} from '../../interfaces/user.interface'
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,20 +15,17 @@ export class UserService {
   userdata={}
   constructor() { }
 
-  authuser(){
+  authuser():Observable<getuserhttpresponse>{
     return this.endpoints.GETSINGLE(this.ROOT_USER_URL,this.authuserid)
 
   }
-  createuser(){
-    this.userdata={
-      name:'hi',
-      there:'there'
-    }
+  createuser():Observable<registerhttpresponse>{
+
 return this.endpoints.POST(this.ROOT_USER_URL,this.userdata)
   }
 
-  updateuser(){
-  return this.endpoints.PATCH(this.ROOT_USER_URL,this.authuserid,this.userdata)
+  updateuser():Observable<updateuserhttpresponse>{
+  return this.endpoints.PATCH(this.ROOT_USER_URL,this.authuserid,this.userdata) 
 
   }
 
