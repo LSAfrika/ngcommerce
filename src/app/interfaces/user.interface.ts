@@ -6,8 +6,8 @@ export interface User {
     storename?:string
     favoritestores?:[string]
     favoriteproducts?:[string]
-    createdAt:string
-    updatedAt:string
+    createdAt?:string
+    updatedAt?:string
 }
 
 export interface registerhttpresponse {
@@ -28,13 +28,13 @@ export interface loginhttpresponse {
 
 
 export interface getuserhttpresponse {
-   
+
     errormessage?:string
     user?:User
 }
 
 export interface updateuserhttpresponse {
-   
+
     updateuser:User
     errormessage?:string
    message?:string
