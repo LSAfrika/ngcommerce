@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
-import { datamodel } from '../interfaces/admindata.interface';
+import { datamodel } from '../../interfaces/admindata.interface';
 
 @Injectable({
   providedIn: 'root'

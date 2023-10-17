@@ -15,6 +15,7 @@ export class UiService {
   sidenav$=new BehaviorSubject<boolean>(false)
   cartpanel$=new BehaviorSubject<boolean>(false)
   public cartpaneldeleteoverlay$=new BehaviorSubject(false)
+  public togglemenu$=new BehaviorSubject(true)
 
 private roter=inject(Router)
 

@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Brands } from '../interfaces/brands';
-import { Categories } from '../interfaces/categories';
+import { Brands } from 'src/app/interfaces/brands';
+import { Categories } from 'src/app/interfaces/categories';
+
 
 @Injectable({
   providedIn: 'root'

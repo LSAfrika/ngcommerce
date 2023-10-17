@@ -1,5 +1,5 @@
 import { Component,inject } from '@angular/core';
-import { AdminService } from 'src/app/services/admin.service';
+import { AdminService } from 'src/app/services/frontendservices/admin.service';
 
 @Component({
   selector: 'app-adminpanel',

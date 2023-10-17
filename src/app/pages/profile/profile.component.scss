@@ -1,0 +1,91 @@
+
+.container{
+    @apply w-full bg-slate-100 min-h-screen  mx-auto
+}
+.profile{
+    @apply w-full min-h-screen flex 
+     flex-col justify-start items-center mx-auto
+px-2 md:max-w-[550px] lg:max-w-[800px] xl:max-w-[1000px]
+}
+
+.avatar{
+  @apply mt-[50px] w-[80px] h-[80px] rounded-full overflow-hidden bg-cover
+  bg-emerald-500 relative;
+  img{
+    @apply w-[100%] h-[100%] bg-center
+  }
+  .editicon{
+    @apply absolute z-20 w-[25px] h-[25px] bg-pink-600 bottom-0
+    right-0 rounded-full
+  }
+}
+.name{
+    @apply text-lg font-semibold 
+}
+
+.menu{
+    @apply w-full flex justify-center items-center flex-row
+     gap-[10px] min-h-[50px]
+    text-sm font-semibold;
+    button{
+        @apply flex-grow max-w-[150px]
+    }
+
+    .underlinebtn{
+        @apply  border-b-[3px] border-teal-500 text-teal-500
+        font-bold
+    }
+}
+
+.sectioncontainer{
+    @apply flex justify-start items-center flex-col
+    min-w-full gap-5
+    md:flex-row md:flex-wrap md:justify-center
+}
+
+.productviewcontainer{
+    @apply flex justify-start gap-4 items-center
+    min-h-[70px] my-2 p-2 bg-white w-full relative
+    drop-shadow-lg cursor-pointer
+    max-w-[400px]
+    md:max-w-[175px] md:min-h-fit md:flex-col
+    md:justify-start md:items-stretch
+    md:rounded-md md:p-0
+    
+    
+    ;
+
+  
+    .productavatar{
+      @apply w-10 h-10 rounded-lg bg-indigo-600
+      justify-center items-center bg-cover overflow-hidden
+      md:w-full md:h-[125px] md:rounded-t-md md:rounded-b-none
+    }
+    .description{
+      @apply flex flex-col justify-start items-start px-2
+      md:flex-row gap-[10px]
+      ;
+  
+  
+      .name{
+        @apply text-sm font-bold text-slate-900
+      }
+  
+      .category{
+        @apply text-sm font-light text-slate-900
+      }
+    }
+    .views{
+      @apply text-teal-500 text-base font-semibold ml-auto
+    }
+    .mostviewed{
+      @apply absolute bottom-[22px] md:bottom-[10px] right-3 w-[30px] h-[30px]
+      rounded-full
+      pb-1  text-white bg-teal-400 px-1
+      text-[10px] font-semibold
+    }
+  
+    .salesview{
+       @apply fixed top-0
+    }
+  }

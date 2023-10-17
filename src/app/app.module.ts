@@ -4,6 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShareduiModule } from './modules/sharedui/sharedui.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+// import { AuthInterceptor } from './guards/auth.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -11,9 +14,12 @@ import { ShareduiModule } from './modules/sharedui/sharedui.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,ShareduiModule
+    AppRoutingModule,ShareduiModule,HttpClientModule
   ],
-  providers: [],
+  providers: [
+    // {provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor,multi:true}
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

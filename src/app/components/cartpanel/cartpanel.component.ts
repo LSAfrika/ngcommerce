@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { CartService } from 'src/app/services/cart.service';
-import { UiService } from 'src/app/services/ui.service';
+import { CartService } from 'src/app/services/frontendservices/cart.service';
+import { UiService } from 'src/app/services/frontendservices/ui.service';
 
 @Component({
   selector: 'app-cartpanel',

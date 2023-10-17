@@ -1,0 +1,66 @@
+.logincomponent{
+  @apply  fixed top-0   z-50 w-full h-screen bg-teal-500 box-border p-2 flex flex-col  justify-start items-center pt-[20px] overflow-y-scroll
+}
+
+
+.logincontainer{
+  @apply flex justify-center flex-col items-center mt-[20px] gap-6   lg:max-w-[350px];
+  .input{
+    @apply bg-teal-700 pl-2 pb-1 border-b-2 border-white/40 text-white outline-none focus:border-white w-full max-w-[350px]
+  }
+  .input:nth-child(1){
+    @apply mt-auto
+  }
+  .loginbtnmail{@apply bg-white text-teal-600 min-w-fit rounded-sm pb-2 py-1 px-10 font-semibold lg:text-lg}
+}
+
+.registercontainer{
+
+    @apply flex justify-center flex-col items-center mt-[20px] gap-6   lg:max-w-[350px];
+    .input{
+      @apply bg-teal-700 pl-2 pb-1 border-b-2 border-white/40 text-white outline-none focus:border-white w-full max-w-[350px]
+    }
+    .loginbtnmail{@apply bg-white text-teal-600 min-w-fit rounded-sm pb-2 py-1 px-10 font-semibold lg:text-lg     }
+
+
+}
+
+.sociallogincontainer{
+  @apply relative  text-lg text-white min-w-[100px] flex justify-center items-center;
+  .or{
+    @apply bg-teal-500 px-2 w-fit relative z-10
+  }
+  .underline{
+    @apply absolute w-full h-[2px] bg-white top-[50%] z-0 ;
+  }
+}
+.loginbtn{
+
+  @apply bg-white px-2 pr-0 cursor-pointer border-white border-2 lg:text-lg font-bold lg:mt-5
+   text-teal-700  text-lg
+   min-w-fit rounded-md
+    shadow-black/50 shadow-sm flex
+    justify-center items-center
+    gap-4;
+
+    svg{
+      @apply fill-teal-700 w-[30px] h-[30px]
+    }
+}
+
+.register{
+  @apply mt-auto mb-1 text-sm text-white
+}
+.registerpulse{
+  animation: registerpulse  1s ease-in-out 0 0 infinite;
+}
+
+.vendor{
+  @apply flex justify-center gap-5 text-white font-semibold text-sm
+}
+
+@keyframes registerpulse{
+0%{opacity: 0;}
+50%{opacity: 1;}
+100%{opacity: 0;}
+}
