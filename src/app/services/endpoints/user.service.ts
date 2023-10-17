@@ -10,10 +10,11 @@ export class UserService {
 
 
   ROOT_USER_URL='http://localhost:3000/api/v1/user/'
-  
+
   authuserid='1'
   userdata:any={}
-  user:User|undefined
+  user:User|unknown
+  //={_id:'',createdAt:'',profileimg:'',updatedAt:'',username:'',vendor:false}
   constructor( private endpoints:IndexRoutesService) { }
 
   authuser():Observable<getuserhttpresponse>{
@@ -32,7 +33,7 @@ return this.endpoints.POST(registerurl,this.userdata)
   }
 
   updateuser():Observable<updateuserhttpresponse>{
-  return this.endpoints.PATCH(this.ROOT_USER_URL,this.authuserid,this.userdata) 
+  return this.endpoints.PATCH(this.ROOT_USER_URL,this.authuserid,this.userdata)
 
   }
 
