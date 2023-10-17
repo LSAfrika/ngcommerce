@@ -14,7 +14,7 @@ import { UserService } from 'src/app/services/endpoints/user.service';
 export class LoginComponent implements OnInit {
 
   login=false
-  register=true
+  register=false
   registering=false
   logingin=false
   passwordmissmatch=false
@@ -46,7 +46,7 @@ userendpoints=inject(UserService)
     // this.io.connected=false
 
     console.log('testing user log out:');
-  
+
 
     //  this.io.disconnectinstance()
   }
@@ -66,8 +66,12 @@ emailvalidator(event:any){
   console.log(this.emailRegex.test(this.email))
   if(this.emailRegex.test(this.email)==false){
     this.invalidemailmatch=true
+    // console.log('email invalid');
+
 
   }else{
+    // console.log('email valid');
+
     this.invalidemailmatch=false
 
   }
@@ -117,8 +121,8 @@ registeruser(){
 
   if( this.email.length==0||this.username.length==0||this.password.length==0||this.reenterpassword.length==0 ) return alert('fill all fields')
 if(this.vendoraccount && this.storename.length==0) return alert('fill all fields')
-  if(this.passwordmissmatch==true ||this.passwordlengthmatch==true 
-    ||this.invalidemailmatch==true ||this.inavlidusernamelength==true 
+  if(this.passwordmissmatch==true ||this.passwordlengthmatch==true
+    ||this.invalidemailmatch==true ||this.inavlidusernamelength==true
     || this.inavlidstorenamelength==true) return alert('form has errors')
  this.registering=true
  this.registertext='registering... '
@@ -134,7 +138,7 @@ let payload
   }
 
   console.log('vendor account',payload);
-  
+
 
  }
  if(!this.vendoraccount){
@@ -150,7 +154,7 @@ let payload
 
 
 
-  
+
  }
 
 this.userendpoints.userdata=payload
@@ -164,7 +168,7 @@ this.userendpoints.registeruser().pipe(takeUntil(this.destroy$)).subscribe(res=>
     this.userendpoints.user=res.user
 
     alert(res.message)
-   
+
     if(res.user.vendor==true) this.router.navigateByUrl('/admin')
     if(res.user.vendor==false)  this.router.navigateByUrl('/')
     this.resetform()
@@ -223,18 +227,29 @@ loginuser(){
     password:this.password
   }
 console.log('login payload: ',loginpayload);
-
+this.userendpoints.userdata=loginpayload
 this.userendpoints.loginuser().pipe(takeUntil(this.destroy$)).subscribe(res=>{
+
+  console.log('login resp:',res);
+
   if(res.message){
 
     localStorage.setItem('ecomtoken',res.token)
     localStorage.setItem('ecomrefreshtoken',res.refreshtoken)
     this.userendpoints.user=res.user
+this.userendpoints.userdata={}
+
     alert(res.message)
     this.router.navigateByUrl('/')
   }
 
   if(res.errormessage) alert(res.errormessage)
+},
+err=>{
+console.log(err.error.errormessage);
+alert(err.error.errormessage)
+this.resetform()
+
 })
 
 
@@ -268,7 +283,7 @@ this.userendpoints.loginuser().pipe(takeUntil(this.destroy$)).subscribe(res=>{
 createvendor(event:any){
   this.vendoraccount=!this.vendoraccount
   console.log('vendor account state',this.vendoraccount);
-  
+
 
 }
 
