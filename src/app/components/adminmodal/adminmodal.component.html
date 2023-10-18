@@ -16,6 +16,13 @@
       <input type="text" formControlName="productname" >
       <div class="erromsg" *ngIf="_productname?.dirty===true && _productname?.value === '' || _productname?.value === null">required*</div>
 
+      <label class="mb-1 ml-2 mr-auto text-sm font-semibold text-teal-500" for="">quantity</label>
+
+      <input
+      onpaste="return false" ondrop="return false" onkeypress="return event.charCode>=48&&event.charCode<=57"
+      type="number" formControlName="productquantity" >
+      <div class="erromsg" *ngIf="_productquantity?.dirty===true && _productquantity?.value === 0 || _productquantity?.value === null">required*</div>
+
       <label class="mb-1 ml-2 mr-auto text-sm font-semibold text-teal-500" for="">product price</label>
 
       <input

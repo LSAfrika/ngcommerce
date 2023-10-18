@@ -46,6 +46,7 @@ createproductform(){
   this.productform=this.formbulder.group({
     productname: ['', [Validators.required]],
     productprice: ['', [Validators.required]],
+    productquantity: [1, [Validators.required,Validators.min(1 )]],
     category: ['', [Validators.required]],
     brand: ['', [Validators.required]],
     spec: '',
@@ -129,6 +130,9 @@ get _productname(){
 }
 get _productprice(){
   return this.productform.get('productprice')
+}
+get _productquantity(){
+  return this.productform.get('productquantity')
 }
 
 
