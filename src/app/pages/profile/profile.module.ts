@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
+import { ShareduiModule } from 'src/app/modules/sharedui/sharedui.module';
 
 
 @NgModule({
@@ -11,7 +12,7 @@ import { ProfileComponent } from './profile.component';
   ],
   imports: [
     CommonModule,
-    ProfileRoutingModule
+    ProfileRoutingModule,ShareduiModule
   ]
 })
 export class ProfileModule { }
