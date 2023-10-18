@@ -14,6 +14,7 @@ export class UiService {
   categoriespanel=new BehaviorSubject<boolean>(false)
   sidenav$=new BehaviorSubject<boolean>(false)
   cartpanel$=new BehaviorSubject<boolean>(false)
+  navbar$=new BehaviorSubject<boolean>(!!localStorage.getItem('ecomtoken'))
   public cartpaneldeleteoverlay$=new BehaviorSubject(false)
   public togglemenu$=new BehaviorSubject(true)
 
@@ -29,9 +30,9 @@ private roter=inject(Router)
    this.currentroute= this.roter.url
 
    console.log('current route',this.currentroute);
-   
 
-    
+
+
   }
 openproductimage(){
   this.openimage.next(true)

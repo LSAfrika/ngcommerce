@@ -32,6 +32,7 @@ constructor(private router:Router,private usersvc:UserService){}
 
         delete  userbio.exp
         delete  userbio.iat
+        delete  userbio.iss
 
         console.log(userbio)
         this.usersvc.user=userbio as User

@@ -236,6 +236,7 @@ this.userendpoints.loginuser().pipe(takeUntil(this.destroy$)).subscribe(res=>{
 
     localStorage.setItem('ecomtoken',res.token)
     localStorage.setItem('ecomrefreshtoken',res.refreshtoken)
+    this.ui.navbar$.next(!!localStorage.getItem('ecomtoken'))
     this.userendpoints.user=res.user
 this.userendpoints.userdata={}
 

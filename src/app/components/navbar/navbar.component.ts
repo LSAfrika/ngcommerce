@@ -16,4 +16,12 @@ export class NavbarComponent {
     this.uiservice.cartpanel$.next(true)
   }
 
+  logout(){
+    localStorage.removeItem('ecomtoken')
+    localStorage.removeItem('ecomrefreshtoken')
+    this.uiservice.navbar$.next(!!localStorage.getItem('ecomtoken'))
+
+
+  }
+
 }
