@@ -13,8 +13,8 @@ export class UserService {
 
   authuserid='1'
   userdata:any={}
-  user:User|unknown
-  //={_id:'',createdAt:'',profileimg:'',updatedAt:'',username:'',vendor:false}
+  user:User
+  ={_id:'',createdAt:'',profileimg:'',updatedAt:'',username:'',vendor:false}
   constructor( private endpoints:IndexRoutesService) { }
 
   authuser():Observable<getuserhttpresponse>{
