@@ -241,7 +241,9 @@ this.userendpoints.loginuser().pipe(takeUntil(this.destroy$)).subscribe(res=>{
 this.userendpoints.userdata={}
 
     alert(res.message)
-    this.router.navigateByUrl('/')
+    if(this.ui.logintredirectroute !='')this.router.navigateByUrl(`${this.ui.logintredirectroute}`)
+    if(this.ui.logintredirectroute =='')this.router.navigateByUrl(`/`)
+
   }
 
   if(res.errormessage) alert(res.errormessage)

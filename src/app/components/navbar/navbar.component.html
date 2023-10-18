@@ -7,8 +7,11 @@
   <ng-container *ngIf="uiservice.navbar$.value==false">
 
     <div routerLink="/login" class="min-h-[40px] min-w-[75px] rounded-md
-    flex justify-center items-center cursor-pointer
-    bg-white text-teal-500 text-sm font-semibold"> <span>log in</span> </div>
+    flex justify-center items-center cursor-pointer gap-[5px] bg-teal-600 px-2
+    b text-white text-sm font-bold">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255 255 255)"><path d="m13 16 5-4-5-4v3H4v2h9z"></path><path d="M20 3h-9c-1.103 0-2 .897-2 2v4h2V5h9v14h-9v-4H9v4c0 1.103.897 2 2 2h9c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2z"></path></svg>
+
+    <span>log in</span> </div>
   </ng-container>
   <ng-container *ngIf="uiservice.navbar$.value==true">
 
@@ -19,8 +22,11 @@
 
       <svg [routerLink]="['/profile']" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(255 255 255)"><path d="M12 2C6.579 2 2 6.579 2 12s4.579 10 10 10 10-4.579 10-10S17.421 2 12 2zm0 5c1.727 0 3 1.272 3 3s-1.273 3-3 3c-1.726 0-3-1.272-3-3s1.274-3 3-3zm-5.106 9.772c.897-1.32 2.393-2.2 4.106-2.2h2c1.714 0 3.209.88 4.106 2.2C15.828 18.14 14.015 19 12 19s-3.828-.86-5.106-2.228z"></path></svg>
       <div (click)="logout()" class="min-h-[40px] min-w-[75px] rounded-md
-      flex justify-center items-center cursor-pointer
-      b text-white text-sm font-bold"> <span>log out</span> </div>
+      flex justify-center items-center cursor-pointer gap-[5px] bg-teal-600 px-2
+      b text-white text-sm font-bold">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255 255 255);"><path d="M16 13v-2H7V8l-5 4 5 4v-3z"></path><path d="M20 3h-9c-1.103 0-2 .897-2 2v4h2V5h9v14h-9v-4H9v4c0 1.103.897 2 2 2h9c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2z"></path></svg>
+
+      <span>log out</span> </div>
 
     </div>
   </ng-container>

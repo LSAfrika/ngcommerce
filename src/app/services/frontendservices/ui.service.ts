@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Route, Router } from '@angular/router';
 
 import { BehaviorSubject } from 'rxjs';
 
@@ -17,8 +17,9 @@ export class UiService {
   navbar$=new BehaviorSubject<boolean>(!!localStorage.getItem('ecomtoken'))
   public cartpaneldeleteoverlay$=new BehaviorSubject(false)
   public togglemenu$=new BehaviorSubject(true)
+  logintredirectroute=''
 
-private roter=inject(Router)
+private router=inject(Router)
 
   categoriesarray:string[]=[]
   brandsarray:string[]=[]
@@ -27,11 +28,11 @@ private roter=inject(Router)
 
 
   getroute(){
-   this.currentroute= this.roter.url
+   this.currentroute= this.router.url
 
    console.log('current route',this.currentroute);
 
-
+return this.currentroute
 
   }
 openproductimage(){

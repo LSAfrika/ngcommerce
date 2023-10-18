@@ -20,6 +20,7 @@ export class NavbarComponent {
     localStorage.removeItem('ecomtoken')
     localStorage.removeItem('ecomrefreshtoken')
     this.uiservice.navbar$.next(!!localStorage.getItem('ecomtoken'))
+    this.uiservice.logintredirectroute=''
 
 
   }
