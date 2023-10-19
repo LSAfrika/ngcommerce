@@ -65,7 +65,7 @@ div{
      }
    }
    ul li{
-    @apply w-full flex justify-start gap-5   my-2 items-center text-base font-semibold text-slate-900;
+    @apply w-full relative flex justify-start gap-5   my-2 items-center text-base font-semibold text-slate-900;
     span{
       @apply flex-1 text-center
     }

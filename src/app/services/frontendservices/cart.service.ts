@@ -27,6 +27,12 @@ export class CartService {
     this.uiservice.cartpanel$.next(false)
       }
 
+
+      removecartitem(i:number){
+        this.itemindex=i
+      this.uiservice.cartpaneldeleteoverlay$.next(true)
+
+      }
   reducequantity(i:number){
 
     if(this.activecart[i].productquantity==1){
@@ -73,19 +79,19 @@ export class CartService {
 
   totalprice(){
     this.totalamount=0
-    
+
        const calcarray= this.activecart.
        map(product=> {return{productprice:product.productprice,productquantity:product.productquantity}})
-    
-    
+
+
       calcarray.forEach(product=>{
-    
+
         this.totalamount=this.totalamount +(product.productprice*product.productquantity)
-    
+
       })
-   
-    
-    
+
+
+
       }
 
 
@@ -97,7 +103,7 @@ export class CartService {
       closemodalpanel(){
         this.uiservice.cartpaneldeleteoverlay$.next(false)
       }
-    
+
       checkoutprompt(){
         alert('intergrate stripe api for payment')
       }

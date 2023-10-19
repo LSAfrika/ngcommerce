@@ -66,7 +66,9 @@ constructor(){
 
   }
 
-
+  removeproductfromcart(i:number){
+this.cartservice.removecartitem(i)
+  }
   // removeproductfromcart(){
   //   this.cartservice.activecart.splice(this.itemindex,1)
   //   this.totalprice()
