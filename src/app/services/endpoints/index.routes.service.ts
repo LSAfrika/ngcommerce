@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class IndexRoutesService {
 
-  constructor(private http:HttpClient) { } 
-  
+  constructor(private http:HttpClient) { }
+
 
 
 
@@ -14,6 +14,7 @@ export class IndexRoutesService {
 
     return this.http.get<any>(`${url}`)
   }
+
 
   GETSINGLE(url:string,id:string){
     return this.http.get<any>(`${url}/${id}`)
