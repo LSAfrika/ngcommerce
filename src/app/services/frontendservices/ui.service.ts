@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { Route, Router } from '@angular/router';
 
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map, of } from 'rxjs';
+import { User } from 'src/app/interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,19 @@ export class UiService {
   sidenav$=new BehaviorSubject<boolean>(false)
   cartpanel$=new BehaviorSubject<boolean>(false)
   navbar$=new BehaviorSubject<boolean>(!!localStorage.getItem('ecomtoken'))
+  Vendor$=of(!!localStorage.getItem('ecomtoken')).
+  pipe(map(
+
+    (tokenavailable:boolean)=>{
+         if(tokenavailable==false) return false
+         const token=localStorage.getItem('ecomtoken')
+        const tokendata=token?.split('.')[1]||''
+         const user:User= JSON.parse(atob(tokendata))
+console.log('admin check json',user)
+         if(user.vendor==true) return true
+         return false;
+    }
+  ))
   public cartpaneldeleteoverlay$=new BehaviorSubject(false)
   public togglemenu$=new BehaviorSubject(true)
   logintredirectroute=''

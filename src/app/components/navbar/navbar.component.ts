@@ -13,7 +13,9 @@ export class NavbarComponent {
 
   ngOnInit(){
     this.uiservice.logintredirectroute=this.uiservice.getroute()
-   console.log(   this.uiservice.logintredirectroute)
+    console.log(   this.uiservice.logintredirectroute)
+    // console.log(   this.uiservice.logintredirectroute.split('/'))
+
   }
 
   opensidenav(){
@@ -33,7 +35,7 @@ export class NavbarComponent {
       this.router.navigateByUrl('/')
     }
 
-    if(this.uiservice.logintredirectroute =='/admin'){
+    if(this.uiservice.logintredirectroute.split('/')[1] =='admin'){
 
       this.uiservice.logintredirectroute=''
       this.router.navigateByUrl('/')

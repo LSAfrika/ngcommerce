@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'categories', loadChildren: () => import('./pages/categories/categories.module').then(m => m.CategoriesModule) },
   { path: 'brands', loadChildren: () => import('./pages/brands/brands.module').then(m => m.BrandsModule) },
   { path: 'store', loadChildren: () => import('./pages/store/store.module').then(m => m.StoreModule) },
-  { path: 'admin', loadChildren: () => import('./pages/adminpanel/adminpanel.module').then(m => m.AdminpanelModule),canActivate:[AdminGuard] },
+  { path: 'admin/:adminid', loadChildren: () => import('./pages/adminpanel/adminpanel.module').then(m => m.AdminpanelModule),canActivate:[AdminGuard] },
   { path: 'product/:productid', loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule) },
   { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),canActivate:[AuthGuard] },
   { path: 'cart', loadChildren: () => import('./pages/cart/cart.module').then(m => m.CartModule),canActivate:[AuthGuard] },

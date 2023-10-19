@@ -2,7 +2,9 @@
 .navbar{
   @apply fixed top-0 bg-teal-500 shadow-md shadow-black/20 z-50
 }
-
+.dashboard{
+  @apply min-w-[75px] min-h-[40px] bg-teal-600 rounded-md flex text-white font-bold text-xs justify-center items-center cursor-pointer
+}
 
 
 .burgermenu{

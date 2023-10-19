@@ -47,7 +47,7 @@ userendpoints=inject(UserService)
 
     console.log('testing user log out:');
 
-
+if(this.ui.navbar$.value==true)this.router.navigateByUrl('/')
     //  this.io.disconnectinstance()
   }
 
