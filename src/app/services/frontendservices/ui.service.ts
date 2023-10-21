@@ -44,7 +44,7 @@ private router=inject(Router)
   getroute(){
    this.currentroute= this.router.url
 
-   console.log('current route',this.currentroute);
+  //  console.log('current route',this.currentroute);
 
 return this.currentroute
 

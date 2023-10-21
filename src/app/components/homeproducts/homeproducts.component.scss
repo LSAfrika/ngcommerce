@@ -1,0 +1,44 @@
+
+.main{
+  @apply  w-full px-2 pt-5 min-h-[200px]
+  h-fit bg-slate-100 relative flex flex-col
+    justify-start items-center gap-2
+}
+
+
+.pagetitle{
+  @apply text-white bg-teal-500
+  mr-auto p-3 pr-7 rounded-md
+   rounded-r-full border-[4px]
+    border-white drop-shadow-lg font-bold mb-5
+}
+
+
+
+
+
+.scrollrect{
+  @apply flex-wrap flex flex-col
+  justify-start items-center
+   gap-5 w-full mb-5 sm:justify-center
+  sm:flex-row
+  lg:max-w-[800px]    lg:mx-auto
+
+  xl:max-w-[1100px]
+}
+
+
+
+
+
+
+
+
+.btnholder{
+  @apply w-full text-center min-h-[50px] mt-10;
+  button{
+    @apply min-w-[150px] min-h-[30px]
+    bg-teal-600 rounded-md px-2 text-white
+    font-semibold text-xl pb-1
+  }
+}

@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Product } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/frontendservices/product.service';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
 
@@ -15,6 +16,8 @@ export class ProductComponent {
   public productservice=inject(ProductService)
   public router=inject(Router)
 
+
+
   addproduct(){
     this.uiservice.logintredirectroute= this.uiservice.getroute()
     console.log('product route: ',this.uiservice.logintredirectroute);
@@ -24,4 +27,6 @@ export class ProductComponent {
     console.log('logic to update cart',this.productservice.productcount$.value);
 
   }
+
+
 }

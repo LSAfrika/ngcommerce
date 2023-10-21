@@ -15,12 +15,17 @@ export class HomeproductsComponent {
   // viewproducts$=this.productservice.getproducts()
   getproducts$:BehaviorSubject<Product[]>=new BehaviorSubject<Product[]>([])
   viewproducts$=this.getproducts$.asObservable()
+  viewproducts2$=this.productservice.viewproducts
 
 
 
 
   getnextproducts(){
-    this
+    this.productservice.fetchproducts()
+  }
+
+  producttrackby(index:number,product:Product){
+    return product._id
   }
 
 }
