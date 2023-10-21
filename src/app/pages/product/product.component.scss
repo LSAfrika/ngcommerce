@@ -121,7 +121,7 @@ span{
 
     .storename{
         @apply flex-grow max-w-[250px]
-        text-lg font-bold
+        text-sm font-bold
     }
     .visitstore{
 @apply w-full max-w-[150px] p-2 px-4 bg-slate-900 text-white
@@ -132,28 +132,32 @@ text-sm font-semibold rounded-full mb-1
 .similarads{
     @apply w-full  min-h-[200px]  flex flex-col justify-start items-center gap-2 pt-5 drop-shadow-lg;
     .storename{
-        @apply  max-w-[250px] mr-auto bg-teal-600 p-1 pr-5 rounded-r-full drop-shadow-lg shadow-black text-white
-        w-fit
-        text-lg font-bold
+        @apply  max-w-[350px] mr-auto bg-teal-600 p-1 pr-5 rounded-r-full drop-shadow-lg shadow-black text-white
+        w-fit py-[10px] align-middle
+        text-sm font-bold
     }
 
     .storeadvert{
-        @apply w-full min-h-[70px] flex justify-start items-center gap-2 bg-white px-2 py-1 cursor-pointer;
+        @apply w-full min-h-[70px] flex justify-start items-center gap-2 bg-white px-2 py-1 cursor-pointer
+        max-w-[400px]
+        sm:max-w-[550px]
+        ;
         .img{
           @apply h-fit w-fit  max-w-[65px] max-h-[65px] rounded-lg bg-cover overflow-hidden bg-red-400 flex justify-center items-center
            bg-center
         }
         .productdesc{
-            @apply flex-grow min-h-[inherit] flex flex-row justify-center items-start pl-5 relative ;
+            @apply flex-grow max-h-[inherit] flex flex-row justify-start items-start pl-5 relative;
             .title{
-                @apply text-teal-600 text-lg font-bold
+                @apply text-teal-600 text-lg font-bold text-left
             }
             .price{
                 @apply text-teal-600 text-sm font-semibold
             }
 
             .arrow{
-                @apply w-[40px] h-[40px] flex justify-center items-center rounded-full drop-shadow-lg  mr-2 ml-auto top-[50%] translate-y-[-50%] bg-white
+                @apply w-[40px] h-[40px] flex justify-center
+                items-center rounded-full drop-shadow-lg   top-[50%] translate-y-[-50%] bg-white absolute right-0
             }
         }
     }

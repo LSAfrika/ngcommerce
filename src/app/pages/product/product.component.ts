@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { ProductService } from 'src/app/services/frontendservices/product.service';
@@ -24,7 +24,11 @@ export class ProductComponent {
   viewproduct$!:Observable<Product>
   viewstoreproduct$!:Observable<Product[]>
 
+
+
   constructor(){
+
+
     this.productid= this.activeroute.snapshot.params['productid']
     this.storeid= this.activeroute.snapshot.params['storeid']
 this.viewproduct$=this.backendproductservice.viewproduct(this.productid)
@@ -39,6 +43,15 @@ this.viewstoreproduct$= this.backendproductservice.storeproducts(this.storeid)
     if(this.uiservice.navbar$.value==false)  {this.router.navigateByUrl('/login');return}
 
      console.log('logic to update cart',this.frontendproductservice.productcount$.value);
+
+  }
+
+  getproduct(productid:string,storeid:string){
+
+this.viewproduct$=this.backendproductservice.viewproduct(productid)
+this.viewstoreproduct$= this.backendproductservice.storeproducts(storeid)
+
+
 
   }
 
