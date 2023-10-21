@@ -16,8 +16,8 @@ export class IndexRoutesService {
   }
 
 
-  GETSINGLE(url:string,id:string){
-    return this.http.get<any>(`${url}/${id}`)
+  GETSINGLE(url:string){
+    return this.http.get<any>(`${url}`)
 
   }
 

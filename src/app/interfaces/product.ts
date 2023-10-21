@@ -1,9 +1,14 @@
+import { Store } from "./store.interface"
+
 export interface Product {
     productname:string
     productprice:string
     _id:string
     productimage:string
     productimages:[string]
+    productspecification:[string]
+    productdescription:string
+    store:Store
     category:string
 }
 
@@ -13,3 +18,5 @@ export interface producttocart{
   productprice:number
   productquantity:number
 }
+
+

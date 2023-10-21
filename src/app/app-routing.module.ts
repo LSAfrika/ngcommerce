@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'brands', loadChildren: () => import('./pages/brands/brands.module').then(m => m.BrandsModule) },
   { path: 'store', loadChildren: () => import('./pages/store/store.module').then(m => m.StoreModule) },
   { path: 'admin/:adminid', loadChildren: () => import('./pages/adminpanel/adminpanel.module').then(m => m.AdminpanelModule),canActivate:[AdminGuard] },
-  { path: 'product/:productid', loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule) },
+  { path: 'product/:productid/:storeid', loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule) },
   { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),canActivate:[AuthGuard] },
   { path: 'cart', loadChildren: () => import('./pages/cart/cart.module').then(m => m.CartModule),canActivate:[AuthGuard] },
   { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule),canActivate:[LoginGuard] },

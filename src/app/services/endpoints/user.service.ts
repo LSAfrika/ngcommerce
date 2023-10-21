@@ -18,7 +18,8 @@ export class UserService {
   constructor( private endpoints:IndexRoutesService) { }
 
   authuser():Observable<getuserhttpresponse>{
-    return this.endpoints.GETSINGLE(this.ROOT_USER_URL,this.authuserid)
+    const userurl= this.ROOT_USER_URL+`${this.authuserid}`
+    return this.endpoints.GETSINGLE(userurl)
 
   }
   registeruser():Observable<registerhttpresponse>{

@@ -1,5 +1,7 @@
 <app-navbar></app-navbar>
-<div class="container">
+<ng-container *ngIf="viewproduct$|async as product">
+  <div class="container">
+  <!-- <pre> {{product|json}}</pre> -->
     <div class="main">
 
         <div class="mainimage">
@@ -9,26 +11,26 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="m21 15.344-2.121 2.121-3.172-3.172-1.414 1.414 3.172 3.172L15.344 21H21zM3 8.656l2.121-2.121 3.172 3.172 1.414-1.414-3.172-3.172L8.656 3H3zM21 3h-5.656l2.121 2.121-3.172 3.172 1.414 1.414 3.172-3.172L21 8.656zM3 21h5.656l-2.121-2.121 3.172-3.172-1.414-1.414-3.172 3.172L3 15.344z"></path></svg>
 
             </div>
-            <div class="leftarrow">
+            <div (click)="imagebackward(product.productimages.length)" class="leftarrow">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path></svg>
             </div>
-            <div class="rightarrow">
+            <div (click)="imageforward(product.productimages.length)" class="rightarrow">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
 
             </div>
+            <img src="http://localhost:3000/{{product.productimages[backendproductservice.currentimage]}}" alt="" srcset="">
         </div>
         <!-- <div class="gallery"></div> -->
         <div class="item">
-            <div class="name">Hp spectre</div>
+            <div class="name">{{product.productname}}</div>
 
-            <div class="price">Ksh 47,000</div>
+            <div class="price">{{product.productprice}}</div>
         </div>
-        <div class="specification">
+        <div  class="specification">
 
           <ul>
-            <li><span class=" bullet"></span> intel core i5</li>
-            <li><span class=" bullet"></span>16Gb ram</li>
-            <li><span class=" bullet"></span>256gb ssd</li>
+            <li *ngFor="let spec of product.productspecification"><span class=" bullet"></span> {{spec}}</li>
+
 
           </ul>
     <!-- <div>- </div>
@@ -37,15 +39,15 @@
     </div>
     <div class="description">
         <div class="descriptiontitle">description</div>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, consectetur!
+    {{product.productdescription}}
     </div>
 
     <div class="addtocart">
 
       <div class="quantity">
-        <button (click)="productservice.decrementproduct()" class="btncart">
-          <div>-</div></button> <span>{{productservice.productcount$.value}}</span>
-        <button (click)="productservice.incrementproduct()" class="btncart">
+        <button (click)="frontendproductservice.decrementproduct()" class="btncart">
+          <div>-</div></button> <span>{{frontendproductservice.productcount$.value}}</span>
+        <button (click)="frontendproductservice.incrementproduct()" class="btncart">
           <div>+</div>
         </button>
       </div>
@@ -54,51 +56,64 @@
     </div>
         <div class="store">
             <div class="logo"></div>
-    <div class="storename">Samsung official store</div>
-    <button routerLink="/store" [queryParams]="{ storeid:'samsung'}" class="visitstore">Visit store</button>
+    <div class="storename">{{product.store.storename}}</div>
+    <button routerLink="/store" [queryParams]="{ storeid:product.store._id}" class="visitstore">Visit store</button>
 
         </div>
     </div>
     <div class="rightsidepanel">
         <div class="similarads">
 
-            <div class="storename">More From Samsung store</div>
+            <div class="storename">More From {{product.store.storename}}</div>
 
-            <div *ngFor="let item of [].constructor(5);let i=index" [routerLink]="['/product',i]"   class="storeadvert">
-                <div class="img"></div>
-                <div class="productdesc">
-                    <div class="title">galaxy s10</div>
-                    <div class="price">Ksh 23,000</div>
-                    <div class="arrow">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
-                    </div>
-                </div>
-            </div>
+            <ng-container *ngIf="viewstoreproduct$|async as storeproducts">
+
+              <div>
+                <!-- <pre>{{storeproducts|json}}</pre> -->
+              </div>
+              <div *ngFor="let storeproduct of storeproducts;let i=index" [routerLink]="['/product',storeproduct._id]"   class="storeadvert">
+                  <div class="img">
+                    <img src="http://localhost:3000/{{storeproduct.productimages[0]}}" alt="" srcset="">
+                  </div>
+                  <div class="productdesc">
+                      <div class="title">{{storeproduct.productname}}</div>
+                      <div class="price">{{storeproduct.productprice}}</div>
+                      <div class="arrow">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
+                      </div>
+                  </div>
+              </div>
+
+            </ng-container>
         <div class="bottomseperator ">bottom seperator</div>
         </div>
 
     </div>
 
 </div>
-<app-footer></app-footer>
-
 
 <ng-container *ngIf="uiservice.openimage.value==true">
 
-    <div class="fullimage "  >
-    <div (click)="uiservice.closeproductimage()" class="collapseimage">
+  <div class="fullimage "  >
+  <div (click)="uiservice.closeproductimage()" class="collapseimage">
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M10 4H8v4H4v2h6zM8 20h2v-6H4v2h4zm12-6h-6v6h2v-4h4zm0-6h-4V4h-2v6h6z"></path></svg>
-    </div>
-    <div class="image">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M10 4H8v4H4v2h6zM8 20h2v-6H4v2h4zm12-6h-6v6h2v-4h4zm0-6h-4V4h-2v6h6z"></path></svg>
+  </div>
+  <div class="image">
 
-        <div class="leftarrow">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path></svg>
-        </div>
-        <div class="rightarrow">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
+      <div class="leftarrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path></svg>
+      </div>
+      <div class="rightarrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
 
-        </div>
-    </div>
-    </div>
+      </div>
+  </div>
+  </div>
 </ng-container>
+</ng-container>
+
+<app-footer></app-footer>
+
+
+

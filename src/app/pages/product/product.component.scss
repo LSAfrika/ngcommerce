@@ -140,10 +140,11 @@ text-sm font-semibold rounded-full mb-1
     .storeadvert{
         @apply w-full min-h-[70px] flex justify-start items-center gap-2 bg-white px-2 py-1 cursor-pointer;
         .img{
-          @apply  w-[65px] h-[65px] rounded-lg bg-cover overflow-hidden bg-red-400
+          @apply h-fit w-fit  max-w-[65px] max-h-[65px] rounded-lg bg-cover overflow-hidden bg-red-400 flex justify-center items-center
+           bg-center
         }
         .productdesc{
-            @apply flex-grow min-h-[inherit] flex flex-col justify-center items-start pl-5 relative ;
+            @apply flex-grow min-h-[inherit] flex flex-row justify-center items-start pl-5 relative ;
             .title{
                 @apply text-teal-600 text-lg font-bold
             }

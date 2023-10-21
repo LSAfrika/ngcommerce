@@ -8,10 +8,14 @@ import { IndexRoutesService } from './index.routes.service';
 })
 export class ProductsService {
   ROOT_PRODUCTS_URL='http://localhost:3000/api/v1/products/'
-  FETCH_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproducts?pagination='
-  private endpoints=inject(IndexRoutesService)
+  ROOT_STORES_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproductsstore/'
 
-  productid='1'
+  FETCH_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproducts?pagination='
+  private productendpoints=inject(IndexRoutesService)
+
+  currentimage=0
+
+  productid=''
   productdata={}
   pagination$=new BehaviorSubject(0)
   products$=new BehaviorSubject<Product[]>([])
@@ -19,24 +23,24 @@ export class ProductsService {
  readonly paginationObs$=this.pagination$.asObservable()
   createproduct(){
 
-    return this.endpoints.POST(this.ROOT_PRODUCTS_URL,this.productdata)
+    return this.productendpoints.POST(this.ROOT_PRODUCTS_URL,this.productdata)
       }
 
       updateproduct(){
 
 
-      return this.endpoints.PATCH(this.ROOT_PRODUCTS_URL,this.productid,this.productdata)
+      return this.productendpoints.PATCH(this.ROOT_PRODUCTS_URL,this.productid,this.productdata)
 
       }
 
       deleteproduct(){
-        return this.endpoints.DELETE(this.ROOT_PRODUCTS_URL,this.productid)
+        return this.productendpoints.DELETE(this.ROOT_PRODUCTS_URL,this.productid)
 
       }
 
       deactivateproduct(){
         const deactivateroute=this.ROOT_PRODUCTS_URL+this.productid
-        return this.endpoints.POST(deactivateroute,{})
+        return this.productendpoints.POST(deactivateroute,{})
 
       }
 
@@ -47,6 +51,23 @@ export class ProductsService {
 
       }
 
+      viewproduct(productid:string):Observable<Product>{
+
+        //this.viewproducts$=
+         const producturl= this.ROOT_PRODUCTS_URL+`getsingleproduct/${productid}`
+        return this.productendpoints.GETSINGLE(producturl).pipe(map((res:Product)=>{ return res}))
+
+      }
+
+
+      storeproducts(id:string):Observable<Product[]>{
+
+        const storeproducturl=this.ROOT_STORES_PRODUCTS_URL+`${id}?pagination=0`
+
+        return this.productendpoints.GETALL(storeproducturl)
+
+      }
+
     get  viewproducts():Observable<Product[]>{
 
         //this.viewproducts$=
@@ -54,7 +75,7 @@ export class ProductsService {
 
           const url=this.FETCH_PRODUCTS_URL+`${res}`
 
-         return this.endpoints.GETALL(url)
+         return this.productendpoints.GETALL(url)
         }),map((products:Product[])=>{
           this.products$.next([...this.products$.value,...products])
           return this.products$.value
@@ -64,8 +85,13 @@ export class ProductsService {
 
       }
 
+
+
+
+
+
       resetpagination(){
-        this.pagination$.next(-1)
+        this.pagination$.next(0)
       }
 
 
