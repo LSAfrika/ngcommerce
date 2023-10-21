@@ -176,7 +176,7 @@ text-sm font-semibold rounded-full mb-1
          cursor-pointer
     }
     .image{
-        @apply  w-full min-h-[50vh] bg-blue-500 max-w-[500px] bg-contain ;
+        @apply  w-full min-h-fit bg-blue-500 md:max-w-[600px] lg:max-w-[800px]   bg-contain ;
         .leftarrow{
             @apply absolute w-[40px] h-[40px] rounded-full bg-white/40
             flex justify-center items-center left-2 top-[50%]

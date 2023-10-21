@@ -10,7 +10,7 @@ import { User } from 'src/app/interfaces/user.interface';
 export class UiService {
 
   currentroute=''
-  openimage=new BehaviorSubject<boolean>(false)
+  openimage=new BehaviorSubject<boolean>(true)
   brandspanel=new BehaviorSubject<boolean>(false)
   categoriespanel=new BehaviorSubject<boolean>(false)
   sidenav$=new BehaviorSubject<boolean>(false)
