@@ -19,6 +19,7 @@ export class ProductsService {
   productdata={}
   pagination$=new BehaviorSubject(0)
   products$=new BehaviorSubject<Product[]>([])
+  vendorproducts$=new BehaviorSubject<Product[]>([])
   viewproducts$!:Observable<any>
  readonly paginationObs$=this.pagination$.asObservable()
   createproduct(){
@@ -50,6 +51,13 @@ export class ProductsService {
          this.pagination$.next(this.pagination$.value+1)
 
       }
+
+      fetchvendorproducts(){
+
+
+        this.pagination$.next(this.pagination$.value+1)
+
+     }
 
       viewproduct(productid:string):Observable<Product>{
 
@@ -86,7 +94,22 @@ export class ProductsService {
       }
 
 
+      get  vendorviewproducts():Observable<Product[]>{
 
+        //this.viewproducts$=
+        return    this.paginationObs$.pipe(switchMap(res=>{
+
+          const url=this.FETCH_PRODUCTS_URL+`${res}`
+
+         return this.productendpoints.GETALL(url)
+        }),map((products:Product[])=>{
+          this.products$.next([...this.products$.value,...products])
+          return this.products$.value
+        })
+
+        )
+
+      }
 
 
 

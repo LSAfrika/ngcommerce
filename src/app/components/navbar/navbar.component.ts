@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/endpoints/user.service';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { UiService } from 'src/app/services/frontendservices/ui.service';
 })
 export class NavbarComponent {
   public uiservice=inject(UiService)
+  public userservice=inject(UserService)
   public router=inject(Router)
 
   ngOnInit(){

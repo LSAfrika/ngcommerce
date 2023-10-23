@@ -150,7 +150,7 @@ text-sm font-semibold rounded-full mb-1
            bg-center
         }
         .productdesc{
-            @apply flex-grow max-h-[inherit] flex flex-row justify-start items-start pl-5 relative;
+            @apply flex-grow max-h-[inherit] flex flex-col justify-start items-start pl-5 relative;
             .title{
                 @apply text-teal-600 text-lg font-bold text-left
             }
@@ -179,7 +179,7 @@ text-sm font-semibold rounded-full mb-1
          cursor-pointer
     }
     .image{
-        @apply  w-full min-h-fit bg-blue-500 md:max-w-[600px] lg:max-w-[800px]   bg-contain ;
+        @apply  w-full min-h-fit  md:max-w-[600px] lg:max-w-[800px] flex justify-center items-center  bg-contain ;
         .leftarrow{
             @apply absolute w-[40px] h-[40px] rounded-full bg-white/40
             flex justify-center items-center left-2 top-[50%]
