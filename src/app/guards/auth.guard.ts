@@ -20,6 +20,9 @@ constructor(private router:Router,private usersvc:UserService){}
 
 
        return this.userstate.pipe(map((res)=>{
+
+        console.log('user log state: ',res);
+        
         if(res==true) {
 
     const tokenavailable=localStorage.getItem('ecomtoken')
