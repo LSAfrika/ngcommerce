@@ -11,17 +11,21 @@ export class ProductsService {
   ROOT_STORES_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproductsstore/'
 
   FETCH_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproducts?pagination='
+
   private productendpoints=inject(IndexRoutesService)
 
   currentimage=0
 
   productid=''
+  storeid=''
   productdata={}
   pagination$=new BehaviorSubject(0)
   products$=new BehaviorSubject<Product[]>([])
   vendorproducts$=new BehaviorSubject<Product[]>([])
   viewproducts$!:Observable<any>
  readonly paginationObs$=this.pagination$.asObservable()
+  storepagination$=new BehaviorSubject(0);
+  storepaginationObs$=this.storepagination$.asObservable();
   createproduct(){
 
     return this.productendpoints.POST(this.ROOT_PRODUCTS_URL,this.productdata)
@@ -94,12 +98,12 @@ export class ProductsService {
       }
 
 
-      get  vendorviewproducts():Observable<Product[]>{
+      get  vendorproducts():Observable<Product[]>{
 
         //this.viewproducts$=
-        return    this.paginationObs$.pipe(switchMap(res=>{
+        return    this.storepaginationObs$.pipe(switchMap(res=>{
 
-          const url=this.FETCH_PRODUCTS_URL+`${res}`
+          const url=this.ROOT_STORES_PRODUCTS_URL+`${this.storeid}?pagination=${res}`
 
          return this.productendpoints.GETALL(url)
         }),map((products:Product[])=>{
@@ -116,6 +120,8 @@ export class ProductsService {
       resetpagination(){
         this.pagination$.next(0)
       }
-
+      resetstorepagination(){
+        this.storepagination$.next(0)
+      }
 
 }

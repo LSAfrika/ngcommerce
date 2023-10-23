@@ -21,6 +21,6 @@ export class ProductComponent {
 }
 ngOnInit(){
 
-   console.log('current product: ',this.product)
+  //  console.log('current product: ',this.product)
  }
 }
