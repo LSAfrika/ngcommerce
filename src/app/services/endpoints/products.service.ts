@@ -9,6 +9,7 @@ import { IndexRoutesService } from './index.routes.service';
 export class ProductsService {
   ROOT_PRODUCTS_URL='http://localhost:3000/api/v1/products/'
   ROOT_STORES_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproductsstore/'
+  ROOT_ADMIN_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproductsstoreadmin'
 
   FETCH_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproducts?pagination='
 
@@ -17,10 +18,13 @@ export class ProductsService {
   currentimage=0
 
   productid=''
+  adminid=''
   storeid=''
   productdata={}
   pagination$=new BehaviorSubject(0)
   products$=new BehaviorSubject<Product[]>([])
+  // vendorproducts$=new BehaviorSubject<Product[]>([])
+  adminproducts$=new BehaviorSubject<Product[]>([])
   vendorproducts$=new BehaviorSubject<Product[]>([])
   viewproducts$!:Observable<any>
  readonly paginationObs$=this.pagination$.asObservable()
@@ -107,14 +111,30 @@ export class ProductsService {
 
          return this.productendpoints.GETALL(url)
         }),map((products:Product[])=>{
-          this.products$.next([...this.products$.value,...products])
-          return this.products$.value
+          this.vendorproducts$.next([...this.vendorproducts$.value,...products])
+          return this.vendorproducts$.value
         })
 
         )
 
       }
 
+      get  adminproducts():Observable<Product[]>{
+
+        //this.viewproducts$=
+        return    this.storepaginationObs$.pipe(switchMap(res=>{
+
+          const url=this.ROOT_ADMIN_PRODUCTS_URL+`?pagination=${res}`
+
+         return this.productendpoints.GETALL(url)
+        }),map((products:Product[])=>{
+          this.adminproducts$.next([...this.adminproducts$.value,...products])
+          return this.adminproducts$.value
+        })
+
+        )
+
+      }
 
 
       resetpagination(){

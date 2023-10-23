@@ -1,4 +1,6 @@
 import { Component,inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { AdminService } from 'src/app/services/frontendservices/admin.service';
 
 @Component({
@@ -9,6 +11,14 @@ import { AdminService } from 'src/app/services/frontendservices/admin.service';
 export class AdminpanelComponent {
 
   public adminservice=inject(AdminService)
+  public productsservice=inject(ProductsService)
+  private activeroute=inject(ActivatedRoute)
+
+adminproducts$
+  constructor(){
+ this.productsservice.adminid=  this.activeroute.snapshot.params['adminid']||''
+this.adminproducts$=this.productsservice.adminproducts
+  }
 
   openmodal(index:number){
 this.adminservice.switchmodal$.next(index)

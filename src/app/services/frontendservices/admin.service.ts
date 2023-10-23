@@ -8,7 +8,7 @@ import { datamodel } from '../../interfaces/admindata.interface';
 })
 export class AdminService {
 
-
+id=''
   viewmodal$=new BehaviorSubject(false)
   switchmodal$=new BehaviorSubject(0)
 
