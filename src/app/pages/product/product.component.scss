@@ -17,10 +17,13 @@ md:max-w-[550px]
 lg:max-w-[400px]
 }
 .mainimage{
-    @apply bg-cover w-full min-h-[250px]  rounded-lg bg-slate-800    relative
+    @apply bg-cover w-full min-h-[250px]  rounded-lg bg-slate-800/0  flex justify-center items-center   relative
     sm:min-h-[350px]
 
     ;
+    .img{
+        @apply min-h-[inherit]
+    }
     .expandimage{
         @apply absolute w-[40px] h-[40px] rounded-md bg-white/20
         flex justify-center items-center left-2 top-4
