@@ -3,6 +3,7 @@ import { Route, Router } from '@angular/router';
 
 import { BehaviorSubject, map, of } from 'rxjs';
 import { User } from 'src/app/interfaces/user.interface';
+import { UserService } from '../endpoints/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { User } from 'src/app/interfaces/user.interface';
 export class UiService {
 
   currentroute=''
+  private userservice=inject(UserService)
   openimage=new BehaviorSubject<boolean>(false)
   brandspanel=new BehaviorSubject<boolean>(false)
   categoriespanel=new BehaviorSubject<boolean>(false)
@@ -24,6 +26,7 @@ export class UiService {
          const token=localStorage.getItem('ecomtoken')
         const tokendata=token?.split('.')[1]||''
          const user:User= JSON.parse(atob(tokendata))
+         this.userservice.user=user
 console.log('admin check json',user)
          if(user.vendor==true) return true
          return false;

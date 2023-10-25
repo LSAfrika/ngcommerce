@@ -1,5 +1,5 @@
 import { Injectable,inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +18,13 @@ export class IndexRoutesService {
 
   GETSINGLE(url:string){
     return this.http.get<any>(`${url}`)
+
+  }
+
+  REFRESHUSER(url:string){
+    const token=localStorage.getItem('ecomtoken')
+    const refreshtoken=localStorage.getItem('ecomrefreshtoken')
+    return this.http.post<any>(`${url}`,{},{ headers: new HttpHeaders().set('Authorization', `Bearer ${token}`).set('refreshtoken',`bearer ${refreshtoken}`) })
 
   }
 

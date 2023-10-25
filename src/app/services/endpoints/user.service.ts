@@ -11,6 +11,8 @@ export class UserService {
 
   ROOT_USER_URL='http://localhost:3000/api/v1/user/'
 
+   REFRESH_URL='http://localhost:3000/api/v1/user/refresh'
+
   authuserid='1'
   userdata:any={}
   user:User
@@ -40,6 +42,11 @@ return this.endpoints.POST(registerurl,this.userdata)
 
   deleteuseraccount(){
     return this.endpoints.DELETE(this.ROOT_USER_URL,this.authuserid)
+
+  }
+
+  refreshtoken(){
+    return this.endpoints.REFRESHUSER(this.REFRESH_URL)
 
   }
 }
