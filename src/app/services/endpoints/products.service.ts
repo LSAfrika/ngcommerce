@@ -23,7 +23,7 @@ export class ProductsService {
   productdata={}
   pagination$=new BehaviorSubject(0)
   products$=new BehaviorSubject<Product[]>([])
-  // vendorproducts$=new BehaviorSubject<Product[]>([])
+  // adminproducts$=new BehaviorSubject<Product[]>([])
   adminproducts$=new BehaviorSubject<Product[]>([])
   vendorproducts$=new BehaviorSubject<Product[]>([])
   viewproducts$!:Observable<any>
@@ -93,6 +93,12 @@ export class ProductsService {
 
          return this.productendpoints.GETALL(url)
         }),map((products:Product[])=>{
+
+          const incomingproduct=products[products.length-1]
+          const currentproducts= this.products$.value[this.products$.value.length-1]
+
+           if(currentproducts !=undefined &&incomingproduct._id==currentproducts._id)return this.products$.value
+
           this.products$.next([...this.products$.value,...products])
           return this.products$.value
         })
@@ -111,6 +117,12 @@ export class ProductsService {
 
          return this.productendpoints.GETALL(url)
         }),map((products:Product[])=>{
+
+
+          const incomingproducts=products[products.length-1]
+          const currentproducts= this.vendorproducts$.value[this.vendorproducts$.value.length-1]
+
+           if(currentproducts !=undefined &&incomingproducts._id==currentproducts._id)return this.vendorproducts$.value
           this.vendorproducts$.next([...this.vendorproducts$.value,...products])
           return this.vendorproducts$.value
         })
@@ -128,6 +140,12 @@ export class ProductsService {
 
          return this.productendpoints.GETALL(url)
         }),map((products:Product[])=>{
+
+          const incomingproducts=products[products.length-1]
+          const currentproducts= this.adminproducts$.value[this.adminproducts$.value.length-1]
+
+           if(currentproducts !=undefined &&incomingproducts._id==currentproducts._id)return this.adminproducts$.value
+
           this.adminproducts$.next([...this.adminproducts$.value,...products])
           return this.adminproducts$.value
         })

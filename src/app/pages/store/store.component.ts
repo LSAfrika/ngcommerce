@@ -25,7 +25,7 @@ constructor(){
  this.storeproducts$=this.productservice.vendorproducts
 console.log(this.storeservice.storeid,'\n',this.productservice.storeid);
 
-} 
+}
 
 ngOnInit(){
 
@@ -34,8 +34,8 @@ ngOnInit(){
 
 ngOnDestroy(){
 this.productservice.resetstorepagination()
-this.storeproducts$=of([])
-this.productservice.products$.next([])
+// this.storeproducts$=of([])
+// this.productservice.products$.next([])
 console.log('current array value:',this.productservice.products$.value);
 
 
