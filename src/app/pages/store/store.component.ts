@@ -46,7 +46,7 @@ fetchmorestoreproducts(){
 this.productservice.storepagination$.next(this.productservice.storepagination$.value+1)
 }
 
-producttrackby(index:number,product:Product){
+productngForTrackBy(index:number,product:Product){
   return product._id
 }
 }

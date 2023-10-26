@@ -24,7 +24,7 @@ export class HomeproductsComponent {
     this.productservice.fetchproducts()
   }
 
-  producttrackby(index:number,product:Product){
+  productngForTrackBy(index:number,product:Product){
     return product._id
   }
 

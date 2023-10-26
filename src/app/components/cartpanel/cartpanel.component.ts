@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Product } from 'src/app/interfaces/product';
 import { CartService } from 'src/app/services/frontendservices/cart.service';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
 
@@ -99,4 +100,9 @@ this.cartservice.removecartitem(i)
 
 
 //   }
+
+
+cartproducttrack(index:number,product:Product){
+  return product._id
+}
 }
