@@ -28,21 +28,30 @@ export class NavbarComponent {
   }
 
   logout(){
-    localStorage.removeItem('ecomtoken')
-    localStorage.removeItem('ecomrefreshtoken')
-    this.uiservice.navbar$.next(!!localStorage.getItem('ecomtoken'))
-    if(this.uiservice.logintredirectroute =='/profile'){
 
+
+    this.userservice.logout().subscribe(()=>{
+
+      localStorage.removeItem('ecomtoken')
+
+      this.uiservice.navbar$.next(!!localStorage.getItem('ecomtoken'))
+      if(this.uiservice.logintredirectroute =='/profile'){
+
+        this.uiservice.logintredirectroute=''
+        this.router.navigateByUrl('/')
+      }
+
+      if(this.uiservice.logintredirectroute.split('/')[1] =='admin'){
+
+        this.uiservice.logintredirectroute=''
+        this.router.navigateByUrl('/')
+      }
       this.uiservice.logintredirectroute=''
-      this.router.navigateByUrl('/')
-    }
+    },(err)=>{
+      console.log('log out error',err);
+      alert(err.error.errormessage)
 
-    if(this.uiservice.logintredirectroute.split('/')[1] =='admin'){
-
-      this.uiservice.logintredirectroute=''
-      this.router.navigateByUrl('/')
-    }
-    this.uiservice.logintredirectroute=''
+    })
 
 
   }

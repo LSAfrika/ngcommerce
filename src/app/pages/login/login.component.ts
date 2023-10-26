@@ -164,7 +164,7 @@ this.userendpoints.registeruser().pipe(takeUntil(this.destroy$)).subscribe(res=>
   if(res.message){
 
     localStorage.setItem('ecomtoken',res.token)
-    localStorage.setItem('ecomrefreshtoken',res.refreshtoken)
+    // localStorage.setItem('ecomrefreshtoken',res.refreshtoken)
     this.userendpoints.user=res.user
 
     alert(res.message)
@@ -232,25 +232,29 @@ this.userendpoints.loginuser().pipe(takeUntil(this.destroy$)).subscribe(res=>{
 
   console.log('login resp:',res);
 
-  if(res.message){
+
 
     localStorage.setItem('ecomtoken',res.token)
-    localStorage.setItem('ecomrefreshtoken',res.refreshtoken)
+    // localStorage.setItem('ecomrefreshtoken',res.refreshtoken)
     this.ui.navbar$.next(!!localStorage.getItem('ecomtoken'))
     this.userendpoints.user=res.user
 this.userendpoints.userdata={}
+this.logintext='log in'
 
     alert(res.message)
     if(this.ui.logintredirectroute !='')this.router.navigateByUrl(`${this.ui.logintredirectroute}`)
     if(this.ui.logintredirectroute =='')this.router.navigateByUrl(`/`)
 
-  }
 
-  if(res.errormessage) alert(res.errormessage)
+
+  // if(res.errormessage) alert(res.errormessage)
 },
 err=>{
 console.log(err.error.errormessage);
+this.logintext='log in'
+
 alert(err.error.errormessage)
+
 this.resetform()
 
 })

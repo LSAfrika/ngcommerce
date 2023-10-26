@@ -32,7 +32,7 @@ return this.endpoints.POST(registerurl,this.userdata)
 
   loginuser():Observable<loginhttpresponse>{
     const loginurl=this.ROOT_USER_URL+'login'
-    return this.endpoints.POST(loginurl,this.userdata)
+    return this.endpoints.POST(loginurl,this.userdata, )
   }
 
   updateuser():Observable<updateuserhttpresponse>{
@@ -48,5 +48,10 @@ return this.endpoints.POST(registerurl,this.userdata)
   refreshtoken(){
     return this.endpoints.REFRESHUSER(this.REFRESH_URL)
 
+  }
+
+  logout(){
+    const logouturl='http://localhost:3000/api/v1/user/logout'
+    return this.endpoints.POST(logouturl,{})
   }
 }
