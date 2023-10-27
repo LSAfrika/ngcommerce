@@ -1,6 +1,7 @@
 import { Injectable,inject } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { producttocart } from '../../interfaces/product';
+import { BehaviorSubject, map, Observable } from 'rxjs';
+import { Cart } from 'src/app/interfaces/cart';
+import { Product, producttocart } from '../../interfaces/product';
 import { IndexRoutesService } from '../endpoints/index.routes.service';
 import { UiService } from './ui.service';
 
@@ -20,7 +21,7 @@ export class CartService {
 // {productid:'3',productname:'hisense 43"',productquantity:1,productprice:20000},
 //   ]
 
-activecart$=new BehaviorSubject<producttocart[]>([])
+activecart$!: BehaviorSubject<Cart>
 
   totalamount=0
   itemindex=0
@@ -31,6 +32,10 @@ activecart$=new BehaviorSubject<producttocart[]>([])
     this.uiservice.cartpanel$.next(false)
       }
 
+
+     get fetchcart$():Observable<Cart>{
+      return this.indexendpoints.GETALL(this.ROOT_CART_URL).pipe(map((cart:Cart)=>{ return cart}))
+      }
 
       removecartitem(i:number){
         this.itemindex=i

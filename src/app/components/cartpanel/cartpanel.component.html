@@ -6,14 +6,18 @@
   <div>My Cart</div>
 </div>
 
-<ng-container *ngIf="cartservice.activecart$.value.length==0" >
+<!-- *ngIf="cartservice.activecart$.value.length==0" -->
+<ng-container *ngIf="componentcart$|async as cart" >
+  <!-- {{cart.products|json}} -->
+<ng-container *ngIf="cart.products.length==0" >
   <div class="cartempty">
 <div class="noproducts">No products in cart</div>
 <button (click)="cartservice.closecartpanel()" class="backshopping">continue shopping</button>
   </div>
 </ng-container>
+<!-- *ngIf="cartservice.activecart$.value.length>0" -->
+<ng-container *ngIf="cart.products.length>0" >
 
-<ng-container *ngIf="cartservice.activecart$.value.length>0" >
   <div class="cartfull">
 <ul>
   <li class="cartheading" >
@@ -21,16 +25,16 @@
     <span>Quantity</span>
     <span> price</span>
   </li>
-  <li *ngFor="let product of cartservice.activecart$.value;ngForngForTrackBy:cartproducttrack;let i =index;">
-    <span class="productname">{{product.productname}}</span>
+   <li *ngFor="let display of cart.products;ngForTrackBy:cartproducttrack;let i =index;">
+    <span class="productname">{{display.product.productname}}</span>
     <span class="quantity">
 <div (click)="reducequantity(i)" class="btn">-</div>
-<div>{{product.productquantity}}</div>
+<div>{{display.quantity}}</div>
 <div (click)="increasequantity(i)" class="btn">+</div>
 
     </span>
-    <span>{{product.productprice *product.productquantity}}</span>
-    <!-- <div (click)="removeproductfromcart(i)" class="absolute w-5 h-5 bg-teal-500 right-0 top-[50%] translate-y-[-50%] cursor-pointer"></div> -->
+    <span>{{display.sumtotal}}</span>
+     <div (click)="removeproductfromcart(i)" class="absolute w-5 h-5 bg-teal-500 right-0 top-[50%] translate-y-[-50%] cursor-pointer"></div>
     <svg _ngcontent-ujc-c12=""  (click)="removeproductfromcart(i)"
     class="absolute w-5 h-5  bg-teal-500 right-0 top-[50%] translate-y-[-50%] cursor-pointer"
     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="close"
@@ -41,7 +45,7 @@
 
   <div class="total">
     <div>cart total</div>
-    <div>{{cartservice.totalamount}}</div>
+    <div>{{cart.totalprice}}</div>
   </div>
   <button (click)="cartservice.checkoutprompt()" class="checkoutcart">
     <div>check out cart</div>
@@ -50,7 +54,7 @@
   </div>
 </ng-container>
 
-
+</ng-container>
 <ng-container *ngIf="uiservice.cartpaneldeleteoverlay$.value==true" >
   <div class="overlay">
     <div class="deletemodal">

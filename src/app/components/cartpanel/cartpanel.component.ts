@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { CartService } from 'src/app/services/frontendservices/cart.service';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
@@ -13,9 +14,24 @@ export class CartpanelComponent {
   public uiservice=inject(UiService)
   itemindex=0
   totalamount=0
-
+destroy$=new Subject<void>()
+componentcart$=this.cartservice.fetchcart$
 constructor(){
   this.cartservice.totalprice()
+
+  // this.cartservice.fetchcart$.pipe(takeUntil(this.destroy$)).subscribe(res=>{
+  //   const length=this.cartservice.activecart$.value.products.length
+  //   // if(this.cartservice.activecart$.value!=undefined&&this.cartservice.activecart$.value.products[length-1]._id==res.products[res.products.length-1]._id){
+  //   //   console.log('cart value is similar')
+  //   // }
+
+  //   this.cartservice.activecart$.next(res)
+  //   console.log(res)
+  // })
+}
+
+ngOnDestroy(){
+  this.destroy$.next()
 }
 
 
