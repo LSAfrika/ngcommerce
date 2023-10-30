@@ -8,18 +8,12 @@ import { UiService } from './ui.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CartService {
+export class FrontEndCartService {
 
   private uiservice=inject(UiService)
   private indexendpoints=inject(IndexRoutesService)
   ROOT_CART_URL='http://localhost:3000/api/v1/cart/getcart'
-//   activecart:producttocart[]=[
 
-// {productid:'0',productname:'huawei 10',productquantity:3,productprice:16000},
-// {productid:'1',productname:'samsung s 10',productquantity:3,productprice:21000},
-// {productid:'2',productname:'xperia xz4',productquantity:3,productprice:32400},
-// {productid:'3',productname:'hisense 43"',productquantity:1,productprice:20000},
-//   ]
 
 activecart$!: BehaviorSubject<Cart>
 

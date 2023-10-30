@@ -10,6 +10,7 @@ import {  SidenavComponent } from '../../components/sidenav/sidenav.component';
 import { CategoryComponent } from '../../components/category/category.component';
 import { ProductComponent } from '../../components/product/product.component';
 import { CartpanelComponent } from '../../components/cartpanel/cartpanel.component';
+import { GlobalmodalComponent } from '../../components/globalmodal/globalmodal.component';
 
 
 
@@ -23,7 +24,8 @@ import { CartpanelComponent } from '../../components/cartpanel/cartpanel.compone
     SidenavComponent,
     CategoryComponent,
     ProductComponent,
-    CartpanelComponent
+    CartpanelComponent,
+    GlobalmodalComponent
   ],
   imports: [
     CommonModule,RouterModule

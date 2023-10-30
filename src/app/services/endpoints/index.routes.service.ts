@@ -40,6 +40,12 @@ export class IndexRoutesService {
 
   }
 
+  CARTPATCH(url:string,data:{}){
+
+    return this.http.patch<any>(`${url}`,data,{ withCredentials: true })
+
+  }
+
   DELETE(url:string,id:string){
     return this.http.delete<any>(`${url}/${id}`,{ withCredentials: true })
 
