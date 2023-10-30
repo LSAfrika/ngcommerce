@@ -8,12 +8,12 @@
 
 <ng-container *ngIf="viewproducts2$|async as products" >
 
-  <app-product  *ngFor="let _product of products; ngForTrackBy:productngForTrackBy;let i=index"[product]="_product" ></app-product>
+  <app-product  *ngFor="let _product of products; TrackBy:productngForTrackBy;let i=index"[product]="_product" ></app-product>
 
       </ng-container>
 
       <div class="btnholder ">
-        <button class="" (click)="getnextproducts()">more</button>
+        <button [disabled]="productservice.fetchmorebtnstate" class="" (click)="getnextproducts()">more</button>
       </div>
     </div>
 </div>
