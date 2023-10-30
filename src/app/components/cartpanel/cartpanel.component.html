@@ -25,7 +25,7 @@
     <span>Quantity</span>
     <span> price</span>
   </li>
-   <li *ngFor="let display of cart.products;ngForTrackBy:cartproducttrack;let i =index;">
+   <li *ngFor="let display of cart.products;trackBy:cartproducttrack;let i =index;">
     <span class="productname">{{display.product.productname}}</span>
     <span class="quantity">
 <div (click)="reducequantity(i)" class="btn">-</div>

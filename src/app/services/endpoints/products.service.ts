@@ -101,8 +101,8 @@ console.log(products);
           }
           const incomingproduct=products[products.length-1]
           const currentproducts= this.products$.value[this.products$.value.length-1]
-console.log('current product',currentproducts);
-console.log('current incomingproduct',incomingproduct);
+          console.log('current product',currentproducts);
+          console.log('current incomingproduct',incomingproduct);
 
            if(currentproducts !=undefined &&incomingproduct._id==currentproducts._id)return this.products$.value
 
