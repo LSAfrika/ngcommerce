@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, map, Observable, Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, delay, map, Observable, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { CartService } from 'src/app/services/endpoints/cart.service';
 import { FrontEndCartService } from 'src/app/services/frontendservices/cart.service';
@@ -52,17 +52,33 @@ this.viewstoreproduct$= this.backendproductservice.storeproducts(this.storeid)
     if(this.uiservice.navbar$.value==false)  {this.router.navigateByUrl('/login');return}
 
     const cartproducts=[
-   {product:   {_id:this.productid,
+   {product:   {
+    //_id:'653f6f67e8abac8fe84482bz',
+    //653f6f67e8abac8fe84482bd
+    _id:this.productid,
        quantity:this.frontendproductservice.productcount$.value
       }}
     ]
     
     this.backendcartservice.cartdata={cartproducts}
     console.log('cart data:',this.backendcartservice.cartdata);
+    this.uiservice.globalmodalmessage='updating cart'
+    this.uiservice.globalmodal$.next(true)
      this.backendcartservice.updatecart().pipe(switchMap(()=>{
       return this.frontendcartservice.fetchcart$
-     }),tap(res=>{console.log('cart updated:',res)}),takeUntil(this.destroy$)).subscribe()
+     }),tap(res=>{console.log('cart updated:',res);this.resetmodal() }),takeUntil(this.destroy$)).subscribe()
 
+  }
+
+  resetmodal(){
+    this.uiservice.globalmodalmessage=' cart updated'
+    this.uiservice.modalspinner$.next(false)
+
+    setTimeout(() => {
+      this.uiservice.globalmodal$.next(false)
+    this.uiservice.modalspinner$.next(true)
+
+    }, 3000);
   }
 
   getproduct(productid:string,storeid:string){

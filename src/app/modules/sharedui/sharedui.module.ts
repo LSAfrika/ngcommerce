@@ -39,7 +39,8 @@ import { GlobalmodalComponent } from '../../components/globalmodal/globalmodal.c
     SidenavComponent,
     CategoryComponent,
     ProductComponent,
-    CartpanelComponent
+    CartpanelComponent,
+    GlobalmodalComponent
   ]
 })
 export class ShareduiModule { }

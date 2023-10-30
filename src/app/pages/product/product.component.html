@@ -119,6 +119,10 @@
 </ng-container>
 </ng-container>
 
+<app-globalmodal *ngIf="uiservice.globalmodal$.value==true"
+ [modalmessage]="uiservice.globalmodalmessage"
+ [spinnerstate]="uiservice.modalspinner$.value"
+ ></app-globalmodal>
 <app-footer></app-footer>
 
 

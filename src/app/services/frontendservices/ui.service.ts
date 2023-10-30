@@ -10,6 +10,9 @@ import { UserService } from '../endpoints/user.service';
 })
 export class UiService {
 
+  globalmodal$=new BehaviorSubject<boolean>(false)
+  modalspinner$=new BehaviorSubject<boolean>(true)
+  globalmodalmessage=''
   currentroute=''
   private userservice=inject(UserService)
   openimage=new BehaviorSubject<boolean>(false)
