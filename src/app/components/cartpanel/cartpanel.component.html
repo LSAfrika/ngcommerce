@@ -8,7 +8,7 @@
 
 <!-- *ngIf="cartservice.activecart$.value.length==0" -->
 <ng-container *ngIf="componentcart$|async as cart" >
-  <!-- {{cart.products|json}} -->
+   <!-- {{cart|json}} -->
 <ng-container *ngIf="cart.products.length==0" >
   <div class="cartempty">
 <div class="noproducts">No products in cart</div>
@@ -34,11 +34,11 @@
 
     </span>
     <span>{{display.sumtotal}}</span>
-     <div (click)="removeproductfromcart(i)" class="absolute w-5 h-5 bg-teal-500 right-0 top-[50%] translate-y-[-50%] cursor-pointer"></div>
-    <svg _ngcontent-ujc-c12=""  (click)="removeproductfromcart(i)"
-    class="absolute w-5 h-5  bg-teal-500 right-0 top-[50%] translate-y-[-50%] cursor-pointer"
+     <!-- <div (click)="removeproductfromcart(i)" class="absolute w-5 h-5  right-0 top-[50%] translate-y-[-50%] cursor-pointer"></div> -->
+    <svg _ngcontent-ujc-c12=""  (click)="confirmcartoverlay(display.product._id)"
+    class=""
     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="close"
-    style="fill: rgba(20 184 166);rotate: 45deg;"><path _ngcontent-ujc-c12="" d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
+    style="rotate: 45deg;"><path _ngcontent-ujc-c12="" d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
 
 
   </li>
@@ -60,8 +60,8 @@
     <div class="deletemodal">
 <span>Delete item from cart?</span>
 <div class="btncontainer">
-  <button class="btnn" (click)="cartservice.removeproductfromcart()">yes</button>
-  <button class="btnn" (click)="cartservice.closemodalpanel()">no</button>
+  <button class="btnn" (click)="deletecartproduct()">yes</button>
+  <button class="btnn" (click)="cancelprompt()">no</button>
 </div>
 
     </div>
@@ -70,3 +70,7 @@
 </div>
 
 </div>
+
+<app-globalmodal *ngIf="uiservice.globalmodalcart$.value==true" [modalmessage]="modalmessage"
+[spinnerstate]="uiservice.modalspinner$.value"
+></app-globalmodal>

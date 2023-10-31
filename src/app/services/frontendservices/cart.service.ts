@@ -12,7 +12,7 @@ export class FrontEndCartService {
 
   private uiservice=inject(UiService)
   private indexendpoints=inject(IndexRoutesService)
-  ROOT_CART_URL='http://localhost:3000/api/v1/cart/getcart'
+  ROOT_CART_URL='http://localhost:3000/api/v1/cart/'
 
 
 activecart$!: BehaviorSubject<Cart>
@@ -28,12 +28,13 @@ activecart$!: BehaviorSubject<Cart>
 
 
      get fetchcart$():Observable<Cart>{
-      return this.indexendpoints.GETALL(this.ROOT_CART_URL).pipe(map((cart:Cart)=>{ return cart}))
+      const getcart=this.ROOT_CART_URL+'getcart'
+      return this.indexendpoints.GETALL(getcart).pipe(map((cart:Cart)=>{ return cart}))
       }
 
-      removecartitem(i:number){
-        this.itemindex=i
-      this.uiservice.cartpaneldeleteoverlay$.next(true)
+      removecartitem(product:string){
+        const deleteproductfromcarturl=this.ROOT_CART_URL+'deleteproduct'
+      return this.indexendpoints.CARTDELETEPRODUCT(deleteproductfromcarturl,product )
 
       }
   reducequantity(i:number){

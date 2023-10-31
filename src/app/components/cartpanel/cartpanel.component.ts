@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { of, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { FrontEndCartService } from 'src/app/services/frontendservices/cart.service';
 import { CartService } from 'src/app/services/endpoints/cart.service';
@@ -18,18 +18,12 @@ export class CartpanelComponent {
   totalamount=0
 destroy$=new Subject<void>()
 componentcart$=this.cartservice.fetchcart$
+
+modalmessage=' placeholder'
+productid=''
 constructor(){
   this.cartservice.totalprice()
 
-  // this.cartservice.fetchcart$.pipe(takeUntil(this.destroy$)).subscribe(res=>{
-  //   const length=this.cartservice.activecart$.value.products.length
-  //   // if(this.cartservice.activecart$.value!=undefined&&this.cartservice.activecart$.value.products[length-1]._id==res.products[res.products.length-1]._id){
-  //   //   console.log('cart value is similar')
-  //   // }
-
-  //   this.cartservice.activecart$.next(res)
-  //   console.log(res)
-  // })
 }
 
 ngOnDestroy(){
@@ -47,10 +41,43 @@ ngOnDestroy(){
     this.cartservice.increasequantity(i)
   }
 
-  removeproductfromcart(i:number){
-this.cartservice.removecartitem(i)
+  confirmcartoverlay(productid:string){
+
+    console.log('product to delete:',productid);
+    this.productid=productid
+this.uiservice.cartpaneldeleteoverlay$.next(true)
   }
- 
+
+  deletecartproduct(){
+
+    this.modalmessage='deleting product'
+    this.uiservice.globalmodalcart$.next(true)
+    // console.log('cart bool:',this.uiservice.globalmodalcart$.value);
+
+    this.uiservice.cartpaneldeleteoverlay$.next(false)
+this.cartservice.removecartitem(this.productid).pipe(
+  switchMap(()=>{return this.cartservice.fetchcart$}),
+  tap((cart)=>{
+
+    this.componentcart$=of(cart)
+    this.modalmessage=' product deleted successfully'
+    this.uiservice.modalspinner$.next(false)
+    setTimeout(() => {
+      this.uiservice.globalmodalcart$.next(false)
+      this.modalmessage=' deleting product'
+      this.uiservice.modalspinner$.next(true)
+    }, 3000);
+
+
+  }),
+  takeUntil(this.destroy$))
+  .subscribe()
+
+  }
+
+  cancelprompt(){
+    this.cartservice.closemodalpanel()
+  }
 
 
 cartproducttrack(index:number,product:any){

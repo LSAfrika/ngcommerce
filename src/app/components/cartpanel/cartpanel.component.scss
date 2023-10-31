@@ -101,6 +101,10 @@ div{
 
 }
 
+
+.close{
+  @apply absolute w-5 h-5  bg-teal-500 right-0 top-[50%] translate-y-[-50%] cursor-pointer rounded-full fill-white
+}
 @keyframes opencart {
 
   0%{@apply -right-[100%]}
