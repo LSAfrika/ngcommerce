@@ -2,7 +2,7 @@
   <svg (click)="opensidenav()" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" class="burgermenu" style="fill: rgba(255 255 255)"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path></svg>
 
   <div class="flex-1">
-    <a [routerLink]="['/']"class="btn btn-ghost normal-case text-xl text-white">NG commerce</a>
+    <a [routerLink]="['/']"class="text-xl text-white normal-case btn btn-ghost">NG commerce</a>
   </div>
   <ng-container *ngIf="uiservice.navbar$.value==false">
 
@@ -22,7 +22,16 @@
 <span>Dashboard</span>
 <!-- <span>{{this.userservice.user._id}}</span> -->
       </div>
-      <svg (click)="opencart()" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(255 255 255)"><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="17.5" cy="19.5" r="1.5"></circle><path d="M21 7H7.334L6.18 4.23A1.995 1.995 0 0 0 4.333 3H2v2h2.334l4.743 11.385c.155.372.52.615.923.615h8c.417 0 .79-.259.937-.648l3-8A1.003 1.003 0 0 0 21 7zm-4 6h-2v2h-2v-2h-2v-2h2V9h2v2h2v2z"></path></svg>
+
+      <div class="cartholder">
+        <ng-container *ngIf="cartcount$|async as cartcount">
+
+          <div *ngIf="cartcount>0" class="cartcounter">
+            <span>{{cartcount}}</span>
+          </div>
+        </ng-container>
+        <svg (click)="opencart()" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(255 255 255)"><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="17.5" cy="19.5" r="1.5"></circle><path d="M21 7H7.334L6.18 4.23A1.995 1.995 0 0 0 4.333 3H2v2h2.334l4.743 11.385c.155.372.52.615.923.615h8c.417 0 .79-.259.937-.648l3-8A1.003 1.003 0 0 0 21 7zm-4 6h-2v2h-2v-2h-2v-2h2V9h2v2h2v2z"></path></svg>
+      </div>
 
       <svg [routerLink]="['/profile']" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(255 255 255)"><path d="M12 2C6.579 2 2 6.579 2 12s4.579 10 10 10 10-4.579 10-10S17.421 2 12 2zm0 5c1.727 0 3 1.272 3 3s-1.273 3-3 3c-1.726 0-3-1.272-3-3s1.274-3 3-3zm-5.106 9.772c.897-1.32 2.393-2.2 4.106-2.2h2c1.714 0 3.209.88 4.106 2.2C15.828 18.14 14.015 19 12 19s-3.828-.86-5.106-2.228z"></path></svg>
 
@@ -33,3 +42,7 @@
     </div>
   </ng-container>
   </div>
+
+  <ng-container *ngIf="cartcount$|async as cartcount">
+    {{cartcount|json}}
+  </ng-container>

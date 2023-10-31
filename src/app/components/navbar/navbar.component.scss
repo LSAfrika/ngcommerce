@@ -10,3 +10,10 @@
 .burgermenu{
   @apply hidden lg:flex cursor-pointer mt-1
 }
+.cartholder{
+  @apply w-[40px] h-[40px]  flex justify-center items-center relative
+}
+
+.cartcounter{
+  @apply w-5 h-5 absolute top-0 right-0 flex justify-center items-center bg-slate-200 rounded-full  text-teal-500 drop-shadow-lg text-xs font-extrabold
+}

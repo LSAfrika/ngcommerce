@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { map, Observable } from 'rxjs';
 import { UserService } from 'src/app/services/endpoints/user.service';
+import { FrontEndCartService } from 'src/app/services/frontendservices/cart.service';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
 
 @Component({
@@ -11,8 +13,9 @@ import { UiService } from 'src/app/services/frontendservices/ui.service';
 export class NavbarComponent {
   public uiservice=inject(UiService)
   public userservice=inject(UserService)
+  public cartservice=inject(FrontEndCartService)
   public router=inject(Router)
-
+  public cartcount$:Observable<number>=this.cartservice.fetchcart$.pipe(map((cart)=>{ return cart.products.length}))
   ngOnInit(){
     this.uiservice.logintredirectroute=this.uiservice.getroute()
     console.log(   this.uiservice.logintredirectroute)
