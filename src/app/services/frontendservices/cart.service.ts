@@ -1,6 +1,6 @@
 import { Injectable,inject } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { Cart } from 'src/app/interfaces/cart';
+import { Cart, cartupdatetransporter } from 'src/app/interfaces/cart';
 import { Product, producttocart } from '../../interfaces/product';
 import { IndexRoutesService } from '../endpoints/index.routes.service';
 import { UiService } from './ui.service';
@@ -37,71 +37,17 @@ activecart$!: BehaviorSubject<Cart>
       return this.indexendpoints.CARTDELETEPRODUCT(deleteproductfromcarturl,product )
 
       }
-  reducequantity(i:number){
-
-  //   if(this.activecart[i].productquantity==1){
-
-  //     this.itemindex=i
-  //     this.uiservice.cartpaneldeleteoverlay$.next(true)
-  //     this.totalprice()
-
-  //     return
-  //   }
 
 
-  //   this.activecart[i]={
-  //     productname:this.activecart[i].productname,
-  //     productid:this.activecart[i].productid,
-  //     productquantity:this.activecart[i].productquantity-1,
-  //     productprice:this.activecart[i].productprice
-
-  //   }
-
-
-  //  this.totalprice()
-
-
-
-  }
-
-  increasequantity(i:number){
-
-    // this.activecart[i]={
-    //   productname:this.activecart[i].productname,
-    //   productid:this.activecart[i].productid,
-    //   productquantity:this.activecart[i].productquantity+1,
-    //   productprice:this.activecart[i].productprice
-
-    // }
-
-    // this.totalprice()
-
-   // console.log('product increased',this.cartservice.activecart[i]);
-
-  }
-
-
-  totalprice(){
-    this.totalamount=0
-
-      //  const calcarray= this.activecart.
-      //  map(product=> {return{productprice:product.productprice,productquantity:product.productquantity}})
-
-
-      // calcarray.forEach(product=>{
-
-      //   this.totalamount=this.totalamount +(product.productprice*product.productquantity)
-
-      // })
-
-
-
+      updatecart(updatedata:cartupdatetransporter){
+        const cartupdateurl= this.ROOT_CART_URL+'updatecart'
+        return this.indexendpoints.CARTPATCH(cartupdateurl,updatedata)
       }
 
 
       removeproductfromcart(){
         // this.activecart.splice(this.itemindex,1)
-        this.totalprice()
+        // this.totalprice()
         this.closemodalpanel()
       }
       closemodalpanel(){

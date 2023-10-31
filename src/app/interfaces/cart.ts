@@ -18,3 +18,14 @@ export interface cartproduct{
   _id: string
 
 }
+
+export interface cartupdatetransporter{
+  cartproducts:[
+    {
+      product:{
+        _id:string,
+        quantity:number
+      }
+    }
+  ]
+}

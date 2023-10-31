@@ -28,9 +28,9 @@
    <li *ngFor="let display of cart.products;trackBy:cartproducttrack;let i =index;">
     <span class="productname">{{display.product.productname}}</span>
     <span class="quantity">
-<div (click)="reducequantity(i)" class="btn">-</div>
+<div (click)="reducequantity(display.quantity,display.product._id)" class="btn">-</div>
 <div>{{display.quantity}}</div>
-<div (click)="increasequantity(i)" class="btn">+</div>
+<div (click)="increasequantity(display.quantity,display.product._id)" class="btn">+</div>
 
     </span>
     <span>{{display.sumtotal}}</span>

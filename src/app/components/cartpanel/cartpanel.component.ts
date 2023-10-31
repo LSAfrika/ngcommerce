@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { of, Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { of, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { FrontEndCartService } from 'src/app/services/frontendservices/cart.service';
 import { CartService } from 'src/app/services/endpoints/cart.service';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
+import { Cart, cartupdatetransporter } from 'src/app/interfaces/cart';
 
 @Component({
   selector: 'app-cartpanel',
@@ -16,13 +17,15 @@ export class CartpanelComponent {
   public uiservice=inject(UiService)
   itemindex=0
   totalamount=0
+  increaseproduct=0
+  decreaseproduct=0
 destroy$=new Subject<void>()
 componentcart$=this.cartservice.fetchcart$
 
 modalmessage=' placeholder'
 productid=''
 constructor(){
-  this.cartservice.totalprice()
+  // this.cartservice.totalprice()
 
 }
 
@@ -32,13 +35,72 @@ ngOnDestroy(){
 
 
 
-  reducequantity(i:number){
+  reducequantity(i:number,productid:string){
+    this.decreaseproduct++
+    let newquantity=i-this.decreaseproduct
+    if(newquantity<1) {newquantity=1; return }
 
-    this.cartservice.reducequantity(i)
+    const cartproducts:cartupdatetransporter=
+   { cartproducts:[
+      {product:   {
+
+       _id:productid,
+          quantity:newquantity
+         }}
+       ]}
+
+    console.log({cartproducts});
+
+    //this.cartservice.reducequantity(i)
+    this.cartupdate(cartproducts)
 
   }
-  increasequantity(i:number){
-    this.cartservice.increasequantity(i)
+  increasequantity(i:number,productid:string){
+this.increaseproduct++
+
+const newquantity=i+this.increaseproduct
+console.log({newquantity,productid});
+
+
+const cartproducts:cartupdatetransporter=
+{ cartproducts:[
+   {product:   {
+
+    _id:productid,
+       quantity:newquantity
+      }}
+    ]}
+
+console.log({cartproducts});
+
+this.cartupdate(cartproducts)
+
+   // this.cartservice.increasequantity(i)
+  }
+
+
+  cartupdate(cartproducts:cartupdatetransporter){
+
+    this.modalmessage='updating cart'
+    this.uiservice.globalmodalcart$.next(true)
+    this.cartservice.updatecart(cartproducts).pipe(
+      tap((res:Cart)=>{this.componentcart$=of(res);
+        this.modalmessage='cart updated'
+
+        this.uiservice.modalspinner$.next(false)
+
+        setTimeout(() => {
+          this.uiservice.globalmodalcart$.next(false)
+          this.increaseproduct=this.decreaseproduct=0
+          this.modalmessage='placeholder'
+          this.uiservice.modalspinner$.next(true)
+        }, 2000);
+
+      })
+      ,takeUntil(this.destroy$))
+      .subscribe()
+
+
   }
 
   confirmcartoverlay(productid:string){

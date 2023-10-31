@@ -59,14 +59,16 @@ this.viewstoreproduct$= this.backendproductservice.storeproducts(this.storeid)
        quantity:this.frontendproductservice.productcount$.value
       }}
     ]
-    
+
     this.backendcartservice.cartdata={cartproducts}
     console.log('cart data:',this.backendcartservice.cartdata);
     this.uiservice.globalmodalmessage='updating cart'
     this.uiservice.globalmodal$.next(true)
      this.backendcartservice.updatecart().pipe(switchMap(()=>{
       return this.frontendcartservice.fetchcart$
-     }),tap(res=>{console.log('cart updated:',res);this.resetmodal() }),takeUntil(this.destroy$)).subscribe()
+     }),tap(res=>{console.log('cart updated:',res);
+
+     this.frontendproductservice.productcount$.next(1);this.resetmodal() }),takeUntil(this.destroy$)).subscribe()
 
   }
 
