@@ -51,11 +51,17 @@ this.viewstoreproduct$= this.backendproductservice.storeproducts(this.storeid)
 
     if(this.uiservice.navbar$.value==false)  {this.router.navigateByUrl('/login');return}
 
+    const productid=this.router.url.split('/')[2]
+    console.log('current router url',this.router.url.split('/')[2]);
+
+
+
+
     const cartproducts=[
    {product:   {
     //_id:'653f6f67e8abac8fe84482bz',
     //653f6f67e8abac8fe84482bd
-    _id:this.productid,
+    _id:productid,
        quantity:this.frontendproductservice.productcount$.value
       }}
     ]
