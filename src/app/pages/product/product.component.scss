@@ -117,7 +117,11 @@ span{
 
     ;
     .logo{
-        @apply w-[50px] h-[50px] bg-purple-400 rounded-full
+        @apply w-[50px] h-[50px] bg-slate-200 rounded-full bg-cover bg-center overflow-hidden flex
+        justify-center items-center;
+        img{
+          @apply w-[100%] h-[100%]
+        }
 
 
     }

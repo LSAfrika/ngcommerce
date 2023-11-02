@@ -56,7 +56,9 @@
 
     </div>
         <div class="store">
-            <div class="logo"></div>
+            <div class="logo">
+              <img src="http://localhost:3000/{{product.store.storeimage}}" alt="">
+            </div>
     <div class="storename">{{product.store.storename}}</div>
     <button routerLink="/store" [queryParams]="{ storeid:product.store._id}" class="visitstore">Visit store</button>
 
@@ -121,27 +123,28 @@
 </ng-container>
 
 
-<div class="skeleton">
-  <div class="pulseanimation"></div>
-  <div class="mobileskeleton">
-    <div class="productimage"></div>
-    <div class="productimage imagearray">
-      <div *ngFor="let item of [].constructor(3)" class="skeletonproduct imgsize"></div>
-    </div>
 
-    <div  class="productimage otherproducts">
-
-      <div *ngFor="let item of [].constructor(4)" class="skeletonproduct"></div>
-    </div>
-  </div>
-<div class="sidepanel">
-
-</div>
-
-
-</div>
 
 <ng-template #loading >
+  <div class="skeleton">
+    <div class="pulseanimation"></div>
+    <div class="mobileskeleton">
+      <div class="productimage"></div>
+      <div class="productimage imagearray">
+        <div *ngFor="let item of [].constructor(3)" class="skeletonproduct imgsize"></div>
+      </div>
+
+      <div  class="productimage otherproducts">
+
+        <div *ngFor="let item of [].constructor(4)" class="skeletonproduct"></div>
+      </div>
+    </div>
+  <div class="sidepanel">
+
+  </div>
+
+
+  </div>
 </ng-template>
 <app-globalmodal *ngIf="uiservice.globalmodal$.value==true"
  [modalmessage]="uiservice.globalmodalmessage"
