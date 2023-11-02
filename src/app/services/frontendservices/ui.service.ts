@@ -31,7 +31,7 @@ export class UiService {
         const tokendata=token?.split('.')[1]||''
          const user:User= JSON.parse(atob(tokendata))
          this.userservice.user=user
-console.log('admin check json',user)
+// console.log('admin check json',user)
          if(user.vendor==true) return true
          return false;
     }

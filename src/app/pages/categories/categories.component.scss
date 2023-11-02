@@ -2,5 +2,30 @@
   @apply w-full mt-[70px]
 }
 .container{
-  // @apply
+   @apply min-h-[80vh]
+}
+
+.categoryloading{
+  @apply min-h-[90vh] w-full flex justify-center items-center text-teal-500;
+  span{
+    @apply text-sm font-bold
+    sm:text-base md:text-lg
+    lg:text-xl;
+    animation: pulse 2s ease-in-out  infinite
+  }
+}
+
+.more{
+  @apply w-full min-h-[100px] flex justify-center items-center mt-auto;
+  button{
+    @apply min-w-[100px] font-semibold text-sm text-white bg-teal-500 p-2 rounded-full drop-shadow-lg px-[10px]
+  }
+}
+
+
+@keyframes pulse {
+  0%{@apply opacity-100}
+  50%{@apply opacity-0}
+  100%{@apply opacity-100}
+
 }

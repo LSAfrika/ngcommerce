@@ -2,7 +2,23 @@
 <div class="separator"></div>
 <app-category></app-category>
 
-<div class="globalproductscontainer">
-<app-product *ngFor="let item of [].constructor(10)"></app-product>
+<ng-container *ngIf="categoryproduct$|async as categoryproduct;else loading" >
+<!-- {{categoryproduct|json}} -->
+  <div class="container globalproductscontainer">
+  <app-product *ngFor="let product of categoryproduct "[product]="product" ></app-product>
 
-</div>
+
+  <div *ngIf="productservice.noproducts==false" class="more ">
+
+    <button (click)="fetchnext()">  more </button>
+  </div>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <div class="categoryloading">
+    <span>loading products ...</span>
+  </div>
+</ng-template>
+
+<app-footer></app-footer>

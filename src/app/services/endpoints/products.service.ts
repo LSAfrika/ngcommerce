@@ -1,4 +1,5 @@
 import { Injectable, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, map, Observable, of, switchMap } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { IndexRoutesService } from './index.routes.service';
@@ -12,17 +13,23 @@ export class ProductsService {
   ROOT_ADMIN_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproductsstoreadmin'
 
   FETCH_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproducts?pagination='
+  category='all'
+  FETCH_CATEGORY_PRODUCTS_URL=`http://localhost:3000/api/v1/products/getallproductscategory?`
 
   private productendpoints=inject(IndexRoutesService)
+  private activeroute=inject(ActivatedRoute)
 
   currentimage=0
 fetchmorebtnstate=false
+
+noproducts=false
   productid=''
   adminid=''
   storeid=''
   productdata={}
   pagination$=new BehaviorSubject(0)
   products$=new BehaviorSubject<Product[]>([])
+  categoryproducts$=new BehaviorSubject<Product[]>([])
   // adminproducts$=new BehaviorSubject<Product[]>([])
   adminproducts$=new BehaviorSubject<Product[]>([])
   vendorproducts$=new BehaviorSubject<Product[]>([])
@@ -30,6 +37,25 @@ fetchmorebtnstate=false
  readonly paginationObs$=this.pagination$.asObservable()
   storepagination$=new BehaviorSubject(0);
   storepaginationObs$=this.storepagination$.asObservable();
+
+  categorypagination$=new BehaviorSubject(0);
+  categorypaginationObs$=this.categorypagination$.asObservable();
+
+  constructor(){
+    this.category= this.activeroute.snapshot.queryParamMap.get('category')||'all'
+    console.log('current category',this.category);
+    console.log('current category',this.FETCH_CATEGORY_PRODUCTS_URL);
+
+  }
+
+
+  ngOnInit(){
+console.log(this.FETCH_CATEGORY_PRODUCTS_URL)
+  }
+
+  get categoriesurl(){
+    return this.FETCH_CATEGORY_PRODUCTS_URL
+  }
   createproduct(){
 
     return this.productendpoints.POST(this.ROOT_PRODUCTS_URL,this.productdata)
@@ -59,6 +85,12 @@ fetchmorebtnstate=false
          this.pagination$.next(this.pagination$.value+1)
 
       }
+      fetchcategoryproducts(){
+
+
+        this.categorypagination$.next(this.categorypagination$.value+1)
+
+     }
 
       fetchvendorproducts(){
 
@@ -115,6 +147,46 @@ console.log(products);
       }
 
 
+      get  viewcategoryproducts():Observable<Product[]>{
+
+        //this.viewproducts$=
+
+        return    this.categorypaginationObs$.pipe(switchMap(res=>{
+          let categoryurl=this.FETCH_CATEGORY_PRODUCTS_URL+`categoryid=${this.category}&pagination=${res}`
+
+          // const url=this.FETCH_PRODUCTS_URL+`${res}`
+
+         return this.productendpoints.GETALL(categoryurl)
+        }),map((products:Product[])=>{
+console.log(products);
+          if(products.length==0){
+
+            console.log('no more ',this.category,'to show');
+
+            this.fetchmorebtnstate=true
+            return this.categoryproducts$.value
+
+          }
+
+          if(this.categoryproducts$.value.length==0){
+              this.categoryproducts$.next(products)
+             return this.categoryproducts$.value
+            }
+          const incomingproduct=products[products.length-1]
+          const currentproducts= this.categoryproducts$.value[this.categoryproducts$.value.length-1]
+          console.log('current product',currentproducts);
+          console.log('current incomingproduct',incomingproduct);
+
+           if(currentproducts !=undefined &&incomingproduct._id==currentproducts._id)return this.categoryproducts$.value
+
+          this.categoryproducts$.next([...this.categoryproducts$.value,...products])
+          return this.categoryproducts$.value
+        })
+
+        )
+
+      }
+
       get  vendorproducts():Observable<Product[]>{
 
         //this.viewproducts$=
@@ -169,4 +241,7 @@ console.log(products);
         this.storepagination$.next(0)
       }
 
+      resetscategorypagination(){
+        this.categorypagination$.next(0)
+      }
 }
