@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
-<ng-container *ngIf="viewproduct$|async as product">
+
+<ng-container *ngIf="viewproduct$|async as product ;else loading">
   <div class="container">
   <!-- <pre> {{product|json}}</pre> -->
     <div class="main">
@@ -119,6 +120,29 @@
 </ng-container>
 </ng-container>
 
+
+<div class="skeleton">
+  <div class="pulseanimation"></div>
+  <div class="mobileskeleton">
+    <div class="productimage"></div>
+    <div class="productimage imagearray">
+      <div *ngFor="let item of [].constructor(3)" class="skeletonproduct imgsize"></div>
+    </div>
+
+    <div  class="productimage otherproducts">
+
+      <div *ngFor="let item of [].constructor(4)" class="skeletonproduct"></div>
+    </div>
+  </div>
+<div class="sidepanel">
+
+</div>
+
+
+</div>
+
+<ng-template #loading >
+</ng-template>
 <app-globalmodal *ngIf="uiservice.globalmodal$.value==true"
  [modalmessage]="uiservice.globalmodalmessage"
  [spinnerstate]="uiservice.modalspinner$.value"
