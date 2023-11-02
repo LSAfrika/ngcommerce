@@ -28,13 +28,15 @@ export class BrandsandcategoriesService {
 category='categories'
 
   categories:Categories[]=[
-    {category:'All Categories',icon:'../../../assets/categories/allcat.svg'},
+    // {category:'All Categories',icon:'../../../assets/categories/allcat.svg'},
     {category:'Phones',icon:'../../../assets/categories/mobile.svg'},
     {category:'Laptops',icon:'../../../assets/categories/laptop.svg'},
     {category:'Desktops',icon:'../../../assets/categories/computer.svg'},
     {category:'Tvs',icon:'../../../assets/categories/tv.svg'},
-    {category:'HomeTheaters',icon:'../../../assets/categories/hometheater.svg'},
+    {category:'Home theaters',icon:'../../../assets/categories/hometheater.svg'},
     {category:'Tablets',icon:'../../../assets/categories/tablet.svg'},
+    {category:'Game consoles',icon:'../../../assets/categories/console.svg'},
+    {category:'Head sets',icon:'../../../assets/categories/headsets.svg'},
 
 
   ]

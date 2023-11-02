@@ -20,7 +20,7 @@ export class UiService {
   brandspanel=new BehaviorSubject<boolean>(false)
   categoriespanel=new BehaviorSubject<boolean>(false)
   sidenav$=new BehaviorSubject<boolean>(false)
-  cartpanel$=new BehaviorSubject<boolean>(true)
+  cartpanel$=new BehaviorSubject<boolean>(false)
   navbar$=new BehaviorSubject<boolean>(!!localStorage.getItem('ecomtoken'))
   Vendor$=of(!!localStorage.getItem('ecomtoken')).
   pipe(map(
