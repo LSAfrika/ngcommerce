@@ -3,8 +3,8 @@
 <app-category></app-category>
 
 <ng-container *ngIf="categoryproduct$|async as categoryproduct;else loading" >
-<!-- {{categoryproduct|json}} -->
-  <div class="container globalproductscontainer">
+
+  <div *ngIf="categoryproduct.length>0;else noproducts" class="container globalproductscontainer">
   <app-product *ngFor="let product of categoryproduct "[product]="product" ></app-product>
 
 
@@ -13,6 +13,13 @@
     <button (click)="fetchnext()">  more </button>
   </div>
   </div>
+<ng-template #noproducts>
+  <div class="container globalproductscontainer">
+
+    <span  class="text-lg font-semibold">No products found</span>
+  </div>
+</ng-template>
+
 </ng-container>
 
 <ng-template #loading>
