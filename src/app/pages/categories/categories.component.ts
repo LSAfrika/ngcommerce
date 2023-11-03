@@ -17,11 +17,12 @@ categoryservice=inject(BrandsandcategoriesService)
 brand=''
 category:string|null=null
 
-categoryproduct$=this.productservice.viewcategoryproducts
-ngOnInit(){
+categoryproduct$
+constructor(){
    this.category=this.categoryservice.currentcategory= this.activeroute.snapshot.queryParamMap.get('category')||''
-//  console.log( 'retrived category: ',this.category)
+  console.log( 'retrived category: ',this.categoryservice.currentcategory)
 // console.log(this.productservice.categoriesurl)
+this.categoryproduct$=this.productservice.viewcategoryproducts
 
 // this.productservice.viewcategoryproducts.subscribe(console.log)
 

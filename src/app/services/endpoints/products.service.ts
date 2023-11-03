@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, map, Observable, of, switchMap } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
+import { BrandsandcategoriesService } from '../frontendservices/brandsandcategories.service';
 import { IndexRoutesService } from './index.routes.service';
 
 @Injectable({
@@ -18,6 +19,7 @@ export class ProductsService {
 
   private productendpoints=inject(IndexRoutesService)
   private activeroute=inject(ActivatedRoute)
+  private categoryservice=inject(BrandsandcategoriesService)
 
   currentimage=0
 fetchmorebtnstate=false
@@ -152,7 +154,10 @@ console.log(products);
         //this.viewproducts$=
 
         return    this.categorypaginationObs$.pipe(switchMap(res=>{
-          let categoryurl=this.FETCH_CATEGORY_PRODUCTS_URL+`categoryid=${this.category}&pagination=${res}`
+
+          console.log('category from category service: ',this.categoryservice.currentcategory);
+
+          let categoryurl=this.FETCH_CATEGORY_PRODUCTS_URL+`categoryid=${this.categoryservice.currentcategory}&pagination=${res}`
 
           // const url=this.FETCH_PRODUCTS_URL+`${res}`
 

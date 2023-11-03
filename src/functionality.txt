@@ -2,3 +2,5 @@
 add add to cart functionality ==>done
 
 add check for behaviour subject to avoid unecessary network calls bsubh=jects in products service
+
+categories params not being fetched whennavigating from home hence nothing is loaded
