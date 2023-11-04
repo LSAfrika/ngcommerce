@@ -42,3 +42,11 @@
     font-semibold text-xl pb-1
   }
 }
+
+.prodloading{
+  @apply w-full  flex justify-center items-center text-base text-teal-600 font-semibold gap-5 min-h-[50vh]
+
+}
+.loading{
+  @apply w-[50px] h-[50px] flex-col  flex justify-center items-center text-base text-teal-600 font-semibold
+}

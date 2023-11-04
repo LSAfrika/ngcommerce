@@ -4,12 +4,18 @@
 <!-- <div *ngIf="viewproducts$|async as products" ><pre>{{products|json}}</pre></div> -->
 <!-- <div *ngIf="viewproducts2$|async as products" ><pre>{{products|json}}</pre></div> -->
 
-<ng-container *ngIf="viewproducts2$|async as products" >
+<ng-container *ngIf="viewproducts2$|async as products else loading" >
 
   <app-product  *ngFor="let _product of products; TrackBy:productngForTrackBy;let i=index"[product]="_product" ></app-product>
 
       </ng-container>
+<ng-template #loading>
 
+  <div class="prodloading">
+    <div class="loading"></div>
+    <span>loading products</span>
+  </div>
+</ng-template>
       <div class="btnholder ">
         <button [disabled]="productservice.fetchmorebtnstate" class="" (click)="getnextproducts()">more</button>
       </div>

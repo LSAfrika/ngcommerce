@@ -7,6 +7,8 @@
      bg-white rounded-sm
       flex flex-col justify-start items-center
      md:max-w-[220px]
+     xl:max-w-[250px]
+     xl:h-[280px]
     }
 .cardimage{
     @apply  w-full text-white
@@ -18,7 +20,7 @@
 
 }
 .productdetails{
-    @apply relative flex flex-col items-start justify-start w-full pl-2 mt-auto bg-slate-100  h-fit
+    @apply relative flex flex-col items-start justify-start w-full pl-2 mt-auto bg-slate-100  h-fit lg:my-auto
 }
 
 .productname{
@@ -26,11 +28,11 @@
 }
 
 .productcategory{
-    @apply text-xs font-semibold cursor-pointer text-slate-950 hover:bg-red-500
+    @apply text-xs font-bold cursor-pointer text-teal-500 lg:text-sm
 }
 
 .productprice{
-    @apply my-1 text-sm font-normal text-slate-700
+    @apply my-1 text-sm font-semibold text-slate-900
 }
 
 .notfavorited{
