@@ -1,3 +1,5 @@
 <app-sidenav *ngIf="uiservice.sidenav$.value==true"></app-sidenav>
 <app-cartpanel *ngIf="uiservice.cartpanel$.value==true"></app-cartpanel>
+<app-filter *ngIf="uiservice.openfilter==true"></app-filter>
+
 <router-outlet></router-outlet>

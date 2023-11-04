@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { BehaviorSubject, catchError, debounceTime, EMPTY, map, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/endpoints/products.service';
+import { UiService } from 'src/app/services/frontendservices/ui.service';
 
 @Component({
   selector: 'app-hero',
@@ -15,6 +16,7 @@ export class HeroComponent {
   searchform!:FormGroup
   private formbuilder=inject(FormBuilder)
   private productservice=inject(ProductsService)
+  public uiservice=inject(UiService)
   destroy$=new Subject<void>()
 
 constructor(){
@@ -50,6 +52,10 @@ console.log('search field',this.productservice.searchinput);
 
 ngOnDestroy(){
   this.destroy$.next()
+}
+
+openfilter(){
+  this.uiservice.openfilter=true
 }
 
 }

@@ -1,0 +1,30 @@
+.filter{
+  @apply w-full min-h-screen fixed flex justify-center items-center bg-black/30 z-[200]
+}
+
+.filtermodal{
+  @apply w-full max-w-[300px] sm:max-w-[450px] min-h-fit px-2 bg-white rounded-md flex flex-col justify-start items-center pt-[50px] relative
+}
+.title{
+  @apply w-full text-center mb-2;
+  span{
+    @apply bg-teal-500 text-white font-semibold py-1 rounded-sm   px-[40px]
+  }
+}
+.filterholder{
+@apply min-h-[100px] w-full  flex flex-col justify-start items-center gap-[10px] text-lg font-semibold text-teal-500
+}
+.sortype{
+  @apply flex w-full justify-start items-center max-w-[150px];
+  input{
+    @apply ml-auto
+  }
+}
+.close{
+  @apply absolute top-1 right-1 rotate-[45deg] cursor-pointer
+}
+
+button{
+  @apply min-w-[150px] bg-teal-500 rounded-full drop-shadow-md text-white text-sm font-semibold mb-5
+  min-h-[40px]
+}

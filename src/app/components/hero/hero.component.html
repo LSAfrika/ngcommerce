@@ -2,11 +2,13 @@
     <div class="searchcontainer">
       <!-- <img src="/images/stock/photo-1635805737707-575885ab0820.jpg" class="max-w-sm rounded-lg shadow-2xl" /> -->
       <div>
-        <div [formGroup]="searchform" class="w-full form-control ">
+        <div [formGroup]="searchform" class="form">
 
           <input formcon formControlName="search" type="text" placeholder="what you looking for?" class="search" />
 
+          <svg (click)="openfilter()" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" style="fill: rgba(255 255 255);"><path d="M7 11h10v2H7zM4 7h16v2H4zm6 8h4v2h-4z"></path></svg>
         </div>
       </div>
     </div>
   </div>
+

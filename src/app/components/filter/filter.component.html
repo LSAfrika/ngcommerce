@@ -1,0 +1,37 @@
+<div class="filter">
+<div class="filtermodal ">
+  <svg (click)="closefilter()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="close" style="fill: rgba(20 184 166);"><path _ngcontent-gul-c14="" d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
+  <p class="title"><span>filter by Date</span></p>
+
+  <div class="filterholder">
+
+    <div class="sortype">
+      <span>newest postings</span>
+      <input [checked]="date==1" (click)="selectdatefilter(1)" type="checkbox" name="" id="">
+    </div>
+
+    <div class="sortype">
+      <span>oldest postings</span>
+      <input [checked]="date==2" (click)="selectdatefilter(2)" type="checkbox" name="" id="">
+    </div>
+  </div>
+  <p class="title"><span>filter by price</span></p>
+
+
+  <div class="filterholder">
+
+    <div class="sortype">
+      <span>higest price first</span>
+      <input [checked]="price==1" (click)="selectpricefilter(1)" type="checkbox" name="" id="">
+    </div>
+    <div class="sortype">
+      <span>lowest price first</span>
+      <input [checked]="price==2" (click)="selectpricefilter(2)" type="checkbox" name="" id="">
+    </div>
+
+
+  </div>
+
+  <button>filter</button>
+</div>
+</div>
