@@ -52,3 +52,12 @@
 app-adminmodal{
   @apply w-full min-h-screen fixed top-0 bg-black/20 flex justify-center items-center flex-col z-[120]
 }
+
+.btnholder{
+  @apply w-full text-center max-h-[50px] block my-[20px]
+}
+
+button{
+  @apply w-[150px] p-2 px-[10px] bg-teal-500 text-white text-sm font-semibold mt-auto mx-auto mb-[50px]
+  rounded-full
+}

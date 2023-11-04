@@ -42,14 +42,14 @@ this.router.navigateByUrl(`/product/${this.product._id}/store/${this.product.sto
 
 
 mouseenter(){
-  console.log('mouse enetered');
+  // console.log('mouse enetered');
   this.disablenavigation=true
 
 
 }
 
 mouseleave(){
-  console.log('mouse left');
+  // console.log('mouse left');
   this.disablenavigation=false
 
 

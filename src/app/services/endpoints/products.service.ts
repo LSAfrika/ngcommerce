@@ -241,6 +241,11 @@ console.log(products);
          return this.productendpoints.GETALL(url)
         }),map((products:Product[])=>{
 
+          if(products.length==0){
+            this.fetchmorebtnstate=true
+            return this.adminproducts$.value
+
+          }
           const incomingproducts=products[products.length-1]
           const currentproducts= this.adminproducts$.value[this.adminproducts$.value.length-1]
 
@@ -266,12 +271,18 @@ console.log(products);
 
       resetpagination(){
         this.pagination$.next(0)
+        this.fetchmorebtnstate=false
+
       }
       resetstorepagination(){
         this.storepagination$.next(0)
+        this.fetchmorebtnstate=false
+
       }
 
       resetscategorypagination(){
         this.categorypagination$.next(0)
+        this.fetchmorebtnstate=false
+
       }
 }

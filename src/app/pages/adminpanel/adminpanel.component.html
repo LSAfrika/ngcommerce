@@ -41,6 +41,12 @@
 <ng-container *ngIf="adminproducts$|async as products;else loading">
 <!-- <pre>{{products|json}}</pre>  -->
 <app-product *ngFor="let product  of products" [product]="product" [admin]="true"></app-product>
+
+<div class="btnholder">
+
+
+        <button [disabled]="productsservice.fetchmorebtnstate" (click)="fetchmoreproducts()">load more</button>
+</div>
 </ng-container>
  <ng-template #loading>
 

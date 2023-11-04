@@ -22,6 +22,10 @@ adminproducts$
 this.adminproducts$=this.productsservice.adminproducts
   }
 
+
+  ngOnDestroy(){
+    this.productsservice.resetstorepagination()
+  }
   openmodal(index:number){
 this.adminservice.switchmodal$.next(index)
 
@@ -43,5 +47,9 @@ console.log('current index',this.adminservice.switchmodal$.value);
     this.productsservice.adminproducts$=new BehaviorSubject<Product[]>([])
     this.adminproducts$=this.productsservice.adminproducts
 
+  }
+
+  fetchmoreproducts(){
+    this.productsservice.storepagination$.next(this.productsservice.storepagination$.value+1)
   }
 }
