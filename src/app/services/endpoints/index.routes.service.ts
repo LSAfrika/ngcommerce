@@ -29,7 +29,11 @@ export class IndexRoutesService {
 
   }
 
-  POST(url:string,data:{}){
+  POST(url:string,data:any){
+    return this.http.post<any>(`${url}`,data,{ withCredentials: true })
+
+  }
+  POSTPRODUCT(url:string,data:FormData){
     return this.http.post<any>(`${url}`,data,{ withCredentials: true })
 
   }

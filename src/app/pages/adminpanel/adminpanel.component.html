@@ -54,5 +54,6 @@
 <app-adminmodal
  *ngIf="adminservice.viewmodal$.value==true"
  (closemodalemit)="closemodal($event)"
+ (creatednewproductemitter)="refetchproducts($event)"
   [openmodal]="adminservice.switchmodal$.value">
 </app-adminmodal>

@@ -1,5 +1,7 @@
 import { Component,inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { AdminService } from 'src/app/services/frontendservices/admin.service';
 
@@ -35,5 +37,11 @@ console.log('current index',this.adminservice.switchmodal$.value);
   closemodal(event:boolean){
     // console.log(event)
     this.adminservice.viewmodal$.next(event)
+  }
+
+  refetchproducts(event:boolean){
+    this.productsservice.adminproducts$=new BehaviorSubject<Product[]>([])
+    this.adminproducts$=this.productsservice.adminproducts
+
   }
 }

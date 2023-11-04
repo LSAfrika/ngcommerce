@@ -20,7 +20,7 @@ export class ProductsService {
   private productendpoints=inject(IndexRoutesService)
   private activeroute=inject(ActivatedRoute)
   private categoryservice=inject(BrandsandcategoriesService)
-
+productformdata:FormData=new FormData()
   currentimage=0
   datafilter=1
 fetchmorebtnstate=false
@@ -253,6 +253,15 @@ console.log(products);
         )
 
       }
+
+
+      postproduct(){
+
+        const posturl=this.ROOT_PRODUCTS_URL+'createproduct'
+        return this.productendpoints.POST(posturl,this.productformdata)
+      }
+
+
 
 
       resetpagination(){

@@ -1,5 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { AdminService } from 'src/app/services/frontendservices/admin.service';
 
 @Component({
@@ -10,10 +12,13 @@ import { AdminService } from 'src/app/services/frontendservices/admin.service';
 export class AdminmodalComponent {
 
   @Input()openmodal!:number
+  @Output()creatednewproductemitter:EventEmitter<boolean>=new EventEmitter<boolean>()
   @Output()closemodalemit:EventEmitter<boolean>=new EventEmitter()
 public adminservice=inject(AdminService)
+public productservice=inject(ProductsService)
   productform!:FormGroup;
 productformdata=new FormData()
+destroy$=new Subject<void>()
 constructor(private formbulder:FormBuilder) {
   this.createproductform()
   console.log('open modal digit',this.openmodal);
@@ -26,6 +31,10 @@ constructor(private formbulder:FormBuilder) {
   ngOnInit(){
     console.log('open modal digit ng on init',this.openmodal);
 
+  }
+  ngOnDestroy(){
+    this.destroy$.next()
+    this.destroy$.complete()
   }
 
 closemodal(){
@@ -58,20 +67,31 @@ createproductform(){
 
 appenddatatoform(){
 
-  this.productformdata=new FormData()
+  this.productservice.productformdata=new FormData()
  const datastring= JSON.stringify( this.productform.value)
 //  console.log(datastring);
 
- this.productformdata.append('productdata',datastring)
+ this.productservice.productformdata.append('productdata',datastring)
 
  this.adminservice.productimages.forEach(img=>[
-  this.productformdata.append('image',img)
+  this.productservice.productformdata.append('product',img)
  ])
 
- console.log('all images \n',this.productformdata.getAll('image'))
- console.log('product info \n',this.productformdata.get('productdata'))
+ console.log('all images \n',this.productservice.productformdata.getAll('image'))
+ console.log('product info \n',this.productservice.productformdata.get('productdata'))
+
+
+ this.productservice.postproduct().pipe(
+tap(()=> {alert('product created successfully'),this.newproductcreatedevent();this.closemodal();this.createproductform()} ),takeUntil(this.destroy$)
+
+ ).subscribe(console.log)
 }
 
+
+
+newproductcreatedevent(){
+  this.creatednewproductemitter.emit(true)
+}
 
 deleteimage(i:number){
 
