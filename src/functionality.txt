@@ -6,3 +6,7 @@ add check for behaviour subject to avoid unecessary network calls bsubh=jects in
 categories params not being fetched whennavigating from home hence nothing is loaded ==>  done
 
   add filter panel to and search input to categories page
+
+
+!!!!URGENT!!!!
+  repair category popup panel on stor page to fetch products of store and not move to categories page URGENT!!!!!
