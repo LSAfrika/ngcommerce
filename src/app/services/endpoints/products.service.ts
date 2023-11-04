@@ -23,7 +23,7 @@ export class ProductsService {
 
   currentimage=0
 fetchmorebtnstate=false
-
+searchinput=''
 noproducts=false
   productid=''
   adminid=''
@@ -119,6 +119,41 @@ console.log(this.FETCH_CATEGORY_PRODUCTS_URL)
       }
 
     get  viewproducts():Observable<Product[]>{
+
+        //this.viewproducts$=
+        return    this.paginationObs$.pipe(switchMap(res=>{
+
+          let url=''
+          if(this.searchinput == '')url=this.FETCH_PRODUCTS_URL+`${res}`
+          if(this.searchinput != '')url=this.FETCH_PRODUCTS_URL+`${res}&search=${this.searchinput}`
+          console.log('current prodcut url',url);
+
+
+         return this.productendpoints.GETALL(url)
+        }),map((products:Product[])=>{
+console.log(products);
+          if(products.length==0){
+            this.fetchmorebtnstate=true
+            return this.products$.value
+
+          }
+          const incomingproduct=products[products.length-1]
+          const currentproducts= this.products$.value[this.products$.value.length-1]
+          console.log('current product',currentproducts);
+          console.log('current incomingproduct',incomingproduct);
+
+           if(currentproducts !=undefined &&incomingproduct._id==currentproducts._id)return this.products$.value
+
+          this.products$.next([...this.products$.value,...products])
+          return this.products$.value
+        })
+
+        )
+
+      }
+
+
+      get  viewproductssearch():Observable<Product[]>{
 
         //this.viewproducts$=
         return    this.paginationObs$.pipe(switchMap(res=>{

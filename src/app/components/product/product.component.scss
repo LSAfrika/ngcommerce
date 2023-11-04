@@ -46,7 +46,7 @@
 }
 
 .title{
-    @apply text-sm font-bold text-teal-700
+    @apply text-sm font-bold text-teal-700 max-w-[125px] truncate
 }
 .qty{
     @apply text-sm font-semibold text-slate-900

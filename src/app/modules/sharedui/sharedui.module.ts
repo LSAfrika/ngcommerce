@@ -11,6 +11,7 @@ import { CategoryComponent } from '../../components/category/category.component'
 import { ProductComponent } from '../../components/product/product.component';
 import { CartpanelComponent } from '../../components/cartpanel/cartpanel.component';
 import { GlobalmodalComponent } from '../../components/globalmodal/globalmodal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -28,7 +29,7 @@ import { GlobalmodalComponent } from '../../components/globalmodal/globalmodal.c
     GlobalmodalComponent
   ],
   imports: [
-    CommonModule,RouterModule
+    CommonModule,RouterModule,ReactiveFormsModule
   ],
   exports:[
     NavbarComponent,

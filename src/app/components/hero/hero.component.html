@@ -1,10 +1,10 @@
 <div class="hero min-h-[30vh] bg-teal-500 mt-[40px] ">
-    <div class="flex-col justify-start mt-16 mb-auto bg-green-500 hero-content lg:flex-row-reverse">
+    <div class="searchcontainer">
       <!-- <img src="/images/stock/photo-1635805737707-575885ab0820.jpg" class="max-w-sm rounded-lg shadow-2xl" /> -->
       <div>
-        <div class="w-full form-control ">
+        <div [formGroup]="searchform" class="w-full form-control ">
 
-          <input type="text" placeholder="what you looking for?" class="input  w-full min-w-[300px] rounded-full  max-w-[400px]" />
+          <input formcon formControlName="search" type="text" placeholder="what you looking for?" class="search" />
 
         </div>
       </div>

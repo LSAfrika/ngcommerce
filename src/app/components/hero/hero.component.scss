@@ -1,0 +1,10 @@
+
+
+.searchcontainer{
+  @apply flex-col justify-start mt-16 mb-auto drop-shadow-lg hero-content lg:flex-row-reverse
+}
+
+.search{
+  @apply input  w-full min-w-[300px] rounded-md  max-w-[400px]
+  sm:min-w-[400px]
+}

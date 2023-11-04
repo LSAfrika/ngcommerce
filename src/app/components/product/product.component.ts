@@ -1,4 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
 
@@ -10,7 +11,11 @@ import { UiService } from 'src/app/services/frontendservices/ui.service';
 export class ProductComponent {
 
   public uiservice=inject(UiService)
+  public router=inject(Router)
  @Input() product!:Product
+ @Input()admin:boolean=false
+
+ disablenavigation=false
 
 
 
@@ -21,6 +26,32 @@ export class ProductComponent {
 }
 ngOnInit(){
 
-  //  console.log('current product: ',this.product)
+   console.log('admin product: ',this.admin)
  }
+
+ ngOnDestroy(){
+  this.disablenavigation=false
+ }
+
+ navigate()
+{
+if(this.disablenavigation==true) return
+
+this.router.navigateByUrl(`/product/${this.product._id}/store/${this.product.store._id}`)
+}
+
+
+mouseenter(){
+  console.log('mouse enetered');
+  this.disablenavigation=true
+
+
+}
+
+mouseleave(){
+  console.log('mouse left');
+  this.disablenavigation=false
+
+
+}
 }

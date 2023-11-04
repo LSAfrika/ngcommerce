@@ -5,31 +5,33 @@
 
   md:max-w-[750px]   md:mx-auto  px-2 pt-5 min-h-[200px]
 
-  xl:max-w-[1000px]
+  xl:max-w-[1170px]
   h-fit bg-slate-100 relative flex flex-row justify-center items-start gap-2 my-3 flex-wrap
   mx-auto
 }
 
 .categorytitle{
-  @apply font-bold text-teal-600  w-full block
+  @apply font-bold text-teal-500 block lg:text-lg w-full
 }
 
 .categorycard{
   @apply
 
    mb-4 w-full max-w-[150px]
-    p-2 cursor-pointer h-[125px] rounded-lg
+    p-2 cursor-pointer h-[100px] rounded-lg
      bg-white  text-teal-500 flex-grow flex flex-col
+
+     sm:max-h-[125px]
      md:max-w-[175px] justify-center items-center gap-2
-     xl:max-w-[200px] xl:min-h-[200px]
+     xl:max-w-[125px] xl:min-h-[150px]
 }
 
 .svgicon{
   @apply flex items-center justify-center min-w-[fit] min-h-[fit] overflow-hidden
 }
 .icons{
-  @apply min-w-[75px] min-h-[75px]
+  @apply min-w-[50px] min-h-[50px]
 }
 .lable{
-  @apply text-lg font-bold text-teal-600
+  @apply text-lg font-bold text-teal-600 w-full overflow-hidden xl:max-w-[100px] truncate text-center
 }

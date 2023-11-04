@@ -8,6 +8,7 @@ export interface Product {
     productimages:[string]
     productspecification:[string]
     productdescription:string
+    productquantity:number
     store:Store
     category:string
 }
