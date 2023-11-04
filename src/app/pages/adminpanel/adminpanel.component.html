@@ -38,10 +38,17 @@
     <div class="myproductstitle">
         <div >   Products</div>
     </div>
-<ng-container *ngIf="adminproducts$|async as products">
+<ng-container *ngIf="adminproducts$|async as products;else loading">
 <!-- <pre>{{products|json}}</pre>  -->
 <app-product *ngFor="let product  of products" [product]="product" [admin]="true"></app-product>
 </ng-container>
+ <ng-template #loading>
+
+  <div  class="prodloading">
+    <div class="loading"></div>
+    <span>loading your products</span>
+  </div>
+ </ng-template>
 </div>
 <app-footer></app-footer>
 <app-adminmodal
