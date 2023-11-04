@@ -33,7 +33,7 @@ category='categories'
     {category:'Laptops',icon:'../../../assets/categories/laptop.svg'},
     {category:'Desktops',icon:'../../../assets/categories/computer.svg'},
     {category:'Tvs',icon:'../../../assets/categories/tv.svg'},
-    {category:'Home theaters',icon:'../../../assets/categories/hometheater.svg'},
+    {category:'Home theatres',icon:'../../../assets/categories/hometheater.svg'},
     {category:'Tablets',icon:'../../../assets/categories/tablet.svg'},
     {category:'Game consoles',icon:'../../../assets/categories/console.svg'},
     {category:'Head sets',icon:'../../../assets/categories/headsets.svg'},

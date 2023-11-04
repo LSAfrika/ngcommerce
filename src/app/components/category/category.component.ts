@@ -48,6 +48,12 @@ this.uiservice.closeallpanels()
 
   setcategory(category:string){
 
+
+    if(category==this.brandcategoryservice.currentcategory){
+      this.uiservice.closeallpanels()
+
+      return
+    }
     this.brandcategoryservice.currentcategory=category
     this.endpointsprodcutservice.category=category
     this.endpointsprodcutservice.categoryproducts$=new BehaviorSubject<Product[]>([])
