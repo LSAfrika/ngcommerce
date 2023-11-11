@@ -23,6 +23,8 @@ export class UiService {
   sidenav$=new BehaviorSubject<boolean>(false)
   cartpanel$=new BehaviorSubject<boolean>(false)
   navbar$=new BehaviorSubject<boolean>(!!localStorage.getItem('ecomtoken'))
+
+  productphotoupdate$=new BehaviorSubject(false)
   Vendor$=
 
   of(!!localStorage.getItem('ecomtoken')).

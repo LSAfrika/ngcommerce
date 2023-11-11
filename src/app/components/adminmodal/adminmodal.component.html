@@ -95,8 +95,9 @@
 
 
   <button *ngIf="productservice.producttoedit==undefined" class="mt-5" (click)="file.click()">select images</button>
-  <button class="btnmt" [ngClass]="{btninactive:productform.invalid==true}" [disabled]="productform.invalid" *ngIf="productservice.producttoedit!=undefined"  (click)="updateproduct()">update product</button>
-{{productform.invalid}}
+  <button class="btnmt" [ngClass]="{btninactive:productform.invalid==true}"
+  [disabled]="productform.invalid" *ngIf="productservice.producttoedit!=undefined"  (click)="appendupdatedatatoform()">update product</button>
+
       <ng-container *ngIf="adminservice.productimages.length!=0">
       <div class="imageselectsection">
 
@@ -226,3 +227,6 @@
     </div>
   </div>
 </ng-container>
+
+
+

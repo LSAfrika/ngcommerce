@@ -1,9 +1,10 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { delay, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { AdminService } from 'src/app/services/frontendservices/admin.service';
+import { UiService } from 'src/app/services/frontendservices/ui.service';
 
 @Component({
   selector: 'app-adminmodal',
@@ -15,7 +16,10 @@ export class AdminmodalComponent {
   @Input()openmodal!:number
   @Output()creatednewproductemitter:EventEmitter<boolean>=new EventEmitter<boolean>()
   @Output()closemodalemit:EventEmitter<boolean>=new EventEmitter()
+
+  modalmessage=''
 public adminservice=inject(AdminService)
+public uiservice=inject(UiService)
 public productservice=inject(ProductsService)
   productform!:FormGroup;
 productformdata=new FormData()
@@ -95,6 +99,7 @@ createeditproductform(product:Product){
 
 
 appenddatatoform(){
+  this.productservice.productmodalmessage='creating product ...'
 
   this.productservice.productformdata=new FormData()
  const datastring= JSON.stringify( this.productform.value)
@@ -116,10 +121,46 @@ tap(()=> {alert('product created successfully'),this.newproductcreatedevent();th
  ).subscribe(console.log)
 }
 
-updateproduct(){
-  console.log(this.productform.getRawValue());
+appendupdatedatatoform(){
+
+  this.productservice.productformdata=new FormData()
+ const datastring= JSON.stringify( this.productform.value)
+//  console.log(datastring);
+
+ this.productservice.productformdata.append('productdata',datastring)
+
+this.productservice.productmodalmessage='updating product ...'
+
+
+ console.log('product info \n',this.productservice.productformdata.get('productdata'))
+this.productservice.updateproduct$.next(true)
+ this.productservice.patchproduct().pipe( delay(5000),
+  tap(()=>{
+ this.completedupdatingproduct()
+  }),
+  takeUntil(this.destroy$)
+  ).
+  subscribe(console.log)
+//  this.productservice.postproduct().pipe(
+// tap(()=> {alert('product updated successfully'),this.newproductcreatedevent();this.closemodal();this.createproductform()} ),takeUntil(this.destroy$)
+
+//  ).subscribe(console.log)
+}
+
+completedupdatingproduct(){
+
+  this.productservice.modalspinner$.next(false)
+  this.productservice.productmodalmessage='updated successfully'
+setTimeout(() => {
+this.productservice.modalspinner$.next(true)
+this.productservice.productmodalmessage=''
+this.productservice.updateproduct$.next(false)
+this.uiservice.productphotoupdate$.next(true)
+
+}, 2000);
 
 }
+
 
 
 newproductcreatedevent(){

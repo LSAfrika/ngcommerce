@@ -63,3 +63,6 @@
  (creatednewproductemitter)="refetchproducts($event)"
   [openmodal]="adminservice.switchmodal$.value">
 </app-adminmodal>
+
+<app-globalmodal *ngIf="productsservice.updateproduct$.value==true" [modalmessage]="productsservice.productmodalmessage"
+[spinnerstate]="productsservice.modalspinner$.value"></app-globalmodal>

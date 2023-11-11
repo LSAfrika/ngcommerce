@@ -1,6 +1,8 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Injectable, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, EMPTY, map, Observable, of, switchMap } from 'rxjs';
+import {  tap} from "rxjs/operators";
 import { Product } from 'src/app/interfaces/product';
 import { BrandsandcategoriesService } from '../frontendservices/brandsandcategories.service';
 import { IndexRoutesService } from './index.routes.service';
@@ -31,6 +33,7 @@ noproducts=false
   productid=''
   adminid=''
   storeid=''
+  productmodalmessage=''
   productdata={}
   pagination$=new BehaviorSubject(0)
   products$=new BehaviorSubject<Product[]>([])
@@ -46,7 +49,8 @@ noproducts=false
   categorypagination$=new BehaviorSubject(0);
   categorypaginationObs$=this.categorypagination$.asObservable();
   productspecs:string[]=[]
-
+  updateproduct$=new BehaviorSubject(false)
+  modalspinner$=new BehaviorSubject(true)
   constructor(){
     this.category= this.activeroute.snapshot.queryParamMap.get('category')||'all'
     // console.log('current category',this.category);
@@ -70,7 +74,7 @@ console.log(this.FETCH_CATEGORY_PRODUCTS_URL)
       updateproduct(){
 
 
-      return this.productendpoints.PATCH(this.ROOT_PRODUCTS_URL,this.productid,this.productdata)
+      return this.productendpoints.PATCH(this.ROOT_PRODUCTS_URL,this.productdata)
 
       }
 
@@ -269,7 +273,14 @@ console.log(products);
 
 
 
+patchproduct(){
+  const updateurl=this.ROOT_PRODUCTS_URL+'updateproduct/'+this.producttoedit?._id
 
+  console.log('update url',updateurl);
+
+ return   this.productendpoints.PATCH(updateurl,this.productformdata)
+
+}
       resetpagination(){
         this.pagination$.next(0)
         this.fetchmorebtnstate=false

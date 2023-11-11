@@ -36,7 +36,9 @@ return this.endpoints.POST(registerurl,this.userdata)
   }
 
   updateuser():Observable<updateuserhttpresponse>{
-  return this.endpoints.PATCH(this.ROOT_USER_URL,this.authuserid,this.userdata)
+
+    const userupdateurl=this.ROOT_USER_URL+this.authuserid
+  return this.endpoints.PATCH(userupdateurl,this.userdata)
 
   }
 

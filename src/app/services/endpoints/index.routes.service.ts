@@ -38,9 +38,9 @@ export class IndexRoutesService {
 
   }
 
-  PATCH(url:string,id:string,data:{}){
+  PATCH(url:string,data:any){
 
-    return this.http.post<any>(`${url}/${id}`,data,{ withCredentials: true })
+    return this.http.patch<any>(`${url}`,data,{ withCredentials: true })
 
   }
 
