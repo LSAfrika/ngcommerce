@@ -26,7 +26,7 @@ productformdata=new FormData()
 destroy$=new Subject<void>()
 constructor(private formbulder:FormBuilder) {
    console.log('product received',this.productservice.producttoedit);
-
+this.openmodal=5
 
 }
 
@@ -153,6 +153,7 @@ completedupdatingproduct(){
   this.productservice.productmodalmessage='updated successfully'
 setTimeout(() => {
 this.productservice.modalspinner$.next(true)
+this.openmodal=5
 this.productservice.productmodalmessage=''
 this.productservice.updateproduct$.next(false)
 this.uiservice.productphotoupdate$.next(true)

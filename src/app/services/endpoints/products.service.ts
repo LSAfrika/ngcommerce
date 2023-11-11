@@ -51,6 +51,7 @@ noproducts=false
   productspecs:string[]=[]
   updateproduct$=new BehaviorSubject(false)
   modalspinner$=new BehaviorSubject(true)
+  updateproductphotos$=new BehaviorSubject(true)
   constructor(){
     this.category= this.activeroute.snapshot.queryParamMap.get('category')||'all'
     // console.log('current category',this.category);
