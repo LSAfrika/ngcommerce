@@ -11,6 +11,7 @@ export interface Product {
     productquantity:number
     store:Store
     category:string
+    brand:string
 }
 
 export interface producttocart{

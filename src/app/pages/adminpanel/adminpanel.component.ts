@@ -52,4 +52,11 @@ console.log('current index',this.adminservice.switchmodal$.value);
   fetchmoreproducts(){
     this.productsservice.storepagination$.next(this.productsservice.storepagination$.value+1)
   }
+
+  producttoedit(event:Product){
+    console.log('edit product',event);
+this.productsservice.producttoedit=event
+  this.adminservice.viewmodal$.next(true)
+
+  }
 }

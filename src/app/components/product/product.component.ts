@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
@@ -14,6 +14,7 @@ export class ProductComponent {
   public router=inject(Router)
  @Input() product!:Product
  @Input()admin:boolean=false
+ @Output()producttoemit:EventEmitter<Product>=new EventEmitter<Product>()
 
  disablenavigation=false
 
@@ -53,5 +54,9 @@ mouseleave(){
   this.disablenavigation=false
 
 
+}
+
+producttoedit(){
+  this.producttoemit.emit(this.product)
 }
 }

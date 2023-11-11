@@ -40,7 +40,7 @@
     </div>
 <ng-container *ngIf="adminproducts$|async as products;else loading">
 <!-- <pre>{{products|json}}</pre>  -->
-<app-product *ngFor="let product  of products" [product]="product" [admin]="true"></app-product>
+<app-product *ngFor="let product  of products" [product]="product" [admin]="true" (producttoemit)="producttoedit($event)"></app-product>
 
 <div class="btnholder">
 

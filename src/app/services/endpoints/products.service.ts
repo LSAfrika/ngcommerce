@@ -42,9 +42,10 @@ noproducts=false
  readonly paginationObs$=this.pagination$.asObservable()
   storepagination$=new BehaviorSubject(0);
   storepaginationObs$=this.storepagination$.asObservable();
-
+  producttoedit:Product|undefined
   categorypagination$=new BehaviorSubject(0);
   categorypaginationObs$=this.categorypagination$.asObservable();
+  productspecs:string[]=[]
 
   constructor(){
     this.category= this.activeroute.snapshot.queryParamMap.get('category')||'all'

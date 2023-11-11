@@ -15,7 +15,7 @@ id=''
   categories=['Phones','Laptops','Desktops','Tvs','Home theatres','monitors','Head sets']
   brands= ['Samsung','Hp','Dell','Lenovo','Acer','Sony','Apple','Xiaomi','Tecno','Infinix','Hotpoint','Oppo','Huawei','Awei','Oraimo','Lg','Hisense','Synix','Nokia']
   productimages:File[]=[]
-  productspecs:string[]=[]
+
   productspec=''
 
   admindata:datamodel[]=[

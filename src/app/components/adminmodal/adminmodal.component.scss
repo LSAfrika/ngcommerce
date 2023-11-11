@@ -129,4 +129,11 @@ input[type=number] {
   .btninactive{
     @apply cursor-not-allowed bg-red-700
   }
+
+  .btnmt{
+    @apply mt-5
+  }
+
 }
+
+

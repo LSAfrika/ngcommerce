@@ -1,6 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { AdminService } from 'src/app/services/frontendservices/admin.service';
 
@@ -20,16 +21,21 @@ public productservice=inject(ProductsService)
 productformdata=new FormData()
 destroy$=new Subject<void>()
 constructor(private formbulder:FormBuilder) {
-  this.createproductform()
-  console.log('open modal digit',this.openmodal);
+   console.log('product received',this.productservice.producttoedit);
 
-
-  // this.productform.valueChanges.subscribe(console.log)
 
 }
 
   ngOnInit(){
+  //this.createproductform()
+
+  if(this.productservice.producttoedit!=undefined)this.createeditproductform(this.productservice.producttoedit)
+  if(this.productservice.producttoedit==undefined)this.createproductform()
+
     console.log('open modal digit ng on init',this.openmodal);
+
+    console.log('product to edit',this.productservice.producttoedit);
+
 
   }
   ngOnDestroy(){
@@ -38,13 +44,16 @@ constructor(private formbulder:FormBuilder) {
   }
 
 closemodal(){
+  this.productservice.producttoedit=undefined
   this.closemodalemit.emit(false)
 }
 closemodalandresetform(){
+  console.log('close modal trriggered');
+
   this.createproductform()
 
   this.adminservice.productimages=[]
-  this.adminservice.productspecs=[]
+  this.productservice.productspecs=[]
   this.closemodal()
 }
 
@@ -62,6 +71,26 @@ createproductform(){
     productspecifications:[[],[Validators.required]],
     productdescription: ['', [Validators.required]],
   })
+}
+
+createeditproductform(product:Product){
+
+  // console.log(product);
+  this.productservice.productspecs=product.productspecification
+
+  this.productform=this.formbulder.group({
+    productname: [product.productname, [Validators.required]],
+    productprice: [product.productprice, [Validators.required]],
+    productquantity: [product.productquantity, [Validators.required,Validators.min(1)]],
+    category: [product.category, [Validators.required]],
+    brand: [product.brand, [Validators.required]],
+    spec: '',
+    productspecifications:[product.productspecification,[Validators.required,Validators.minLength(1)]],
+    productdescription: [product.productdescription, [Validators.required]],
+  })
+
+  console.log(this.productform);
+
 }
 
 
@@ -87,6 +116,10 @@ tap(()=> {alert('product created successfully'),this.newproductcreatedevent();th
  ).subscribe(console.log)
 }
 
+updateproduct(){
+  console.log(this.productform.getRawValue());
+
+}
 
 
 newproductcreatedevent(){
@@ -132,16 +165,16 @@ for (let index = 0; index < images.length; index++) {
 }
 
 addspecs(){
-  this.adminservice.productspecs.push(this._spec?.value)
+  this.productservice.productspecs.push(this._spec?.value)
 
   this._spec?.setValue('')
 
-  this._productspecifications?.setValue(this.adminservice.productspecs)
+  this._productspecifications?.setValue(this.productservice.productspecs)
 }
 
 deletespec(i:number){
-  this.adminservice.productspecs.splice(i,1)
-  this._productspecifications?.setValue(this.adminservice.productspecs)
+  this.productservice.productspecs.splice(i,1)
+  this._productspecifications?.setValue(this.productservice.productspecs)
 
 }
 

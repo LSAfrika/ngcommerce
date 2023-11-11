@@ -78,8 +78,9 @@
       class="btnspec" (click)="addspecs()">add </button>
 
       </div>
-      <ng-container *ngIf="adminservice.productspecs.length>0">
-        <div class="holder" *ngFor="let spec of adminservice.productspecs;let i=index">
+      <ng-container *ngIf="productservice.productspecs.length>0">
+
+        <div class="holder" *ngFor="let spec of productservice.productspecs;let i=index">
 
           <span>{{spec}}</span>
           <svg (click)="deletespec(i)" class="cursor-pointer" fill="none" stroke="rgb(20, 184, 166 )" width="25" height="25" viewBox="0 0 24 24"
@@ -92,8 +93,10 @@
 
       </ng-container>
 
-  <button class="mt-5" (click)="file.click()">select images</button>
 
+  <button *ngIf="productservice.producttoedit==undefined" class="mt-5" (click)="file.click()">select images</button>
+  <button class="btnmt" [ngClass]="{btninactive:productform.invalid==true}" [disabled]="productform.invalid" *ngIf="productservice.producttoedit!=undefined"  (click)="updateproduct()">update product</button>
+{{productform.invalid}}
       <ng-container *ngIf="adminservice.productimages.length!=0">
       <div class="imageselectsection">
 
