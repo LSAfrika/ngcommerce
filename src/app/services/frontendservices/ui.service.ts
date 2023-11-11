@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Route, Router } from '@angular/router';
 
-import { BehaviorSubject, map, of } from 'rxjs';
+import { BehaviorSubject, map, of, Subject } from 'rxjs';
 import { User } from 'src/app/interfaces/user.interface';
 import { UserService } from '../endpoints/user.service';
 
@@ -23,7 +23,9 @@ export class UiService {
   sidenav$=new BehaviorSubject<boolean>(false)
   cartpanel$=new BehaviorSubject<boolean>(false)
   navbar$=new BehaviorSubject<boolean>(!!localStorage.getItem('ecomtoken'))
-  Vendor$=of(!!localStorage.getItem('ecomtoken')).
+  Vendor$=
+
+  of(!!localStorage.getItem('ecomtoken')).
   pipe(map(
 
     (tokenavailable:boolean)=>{

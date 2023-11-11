@@ -34,7 +34,7 @@ constructor(private router:Router,private usersvc:UserService){}
         delete  userbio.iat
         delete  userbio.iss
 
-        console.log(userbio)
+        // console.log(userbio)
         this.usersvc.user=userbio as User
 
 if(this.usersvc.user.vendor==false){  this.router.navigate(['/']); return false}

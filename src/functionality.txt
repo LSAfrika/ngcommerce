@@ -8,5 +8,8 @@ categories params not being fetched whennavigating from home hence nothing is lo
   add filter panel to and search input to categories page
 
 
+  cart panel section to feture completed orders
+
+
 !!!!URGENT!!!!
   repair category popup panel on stor page to fetch products of store and not move to categories page URGENT!!!!!

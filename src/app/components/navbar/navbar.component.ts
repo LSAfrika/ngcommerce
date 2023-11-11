@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
+import { User } from 'src/app/interfaces/user.interface';
 import { UserService } from 'src/app/services/endpoints/user.service';
 import { FrontEndCartService } from 'src/app/services/frontendservices/cart.service';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
@@ -16,10 +17,26 @@ export class NavbarComponent {
   public cartservice=inject(FrontEndCartService)
   public router=inject(Router)
   public cartcount$:Observable<number>=this.cartservice.fetchcart$.pipe(map((cart)=>{ return cart.products.length}))
+ public isVendor$=
+
+ of(!!localStorage.getItem('ecomtoken')).
+ pipe(map(
+
+   (tokenavailable:boolean)=>{
+        if(tokenavailable==false) return false
+        const token=localStorage.getItem('ecomtoken')
+       const tokendata=token?.split('.')[1]||''
+        const user:User= JSON.parse(atob(tokendata))
+        this.userservice.user=user
+// console.log('admin check json',user)
+        if(user.vendor==true) return true
+        return false;
+   }
+ ))
   ngOnInit(){
     this.uiservice.logintredirectroute=this.uiservice.getroute()
     console.log(   this.uiservice.logintredirectroute)
-    // console.log(   this.uiservice.logintredirectroute.split('/'))
+   console.log(  'nav being created' )
 
   }
 
