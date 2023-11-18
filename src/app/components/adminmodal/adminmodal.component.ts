@@ -134,7 +134,8 @@ this.productservice.productmodalmessage='updating product ...'
 
  console.log('product info \n',this.productservice.productformdata.get('productdata'))
 this.productservice.updateproduct$.next(true)
- this.productservice.patchproduct().pipe( delay(5000),
+ this.productservice.patchproduct().pipe(
+  //delay(5000),
   tap(()=>{
  this.completedupdatingproduct()
   }),

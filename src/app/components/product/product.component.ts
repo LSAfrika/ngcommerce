@@ -57,6 +57,8 @@ mouseleave(){
 }
 
 producttoedit(){
+  console.log('product edit: ',this.product);
+
   this.producttoemit.emit(this.product)
 }
 }

@@ -229,8 +229,26 @@
 </ng-container>
 
 <ng-container *ngIf="openmodal==5">
+<!-- {{productservice.producttoedit|json}} -->
+<!-- [style]="{ 'background-image': 'url(' + link + ')' }" -->
 
-  <div class="main mainphotos"> hello</div>
+<!-- [style]="{ 'background-image': 'url(http://localhost:3000/' + photo + ')' }" -->
+  <div class=" mainphotos">
+<div class="productphoto" *ngFor="let photo of productservice.producttoedit?.productimages"
+ >
+  <img src="http://localhost:3000/{{photo}}" alt="">
+
+
+  <button class="deletephoto">delete photo</button>
+</div>
+
+
+<div class="btnholder">
+  <button>update photos</button>
+  <button class="cancelbtn" (click)="closemodal()">cancel</button>
+</div>
+
+  </div>
 
 </ng-container>
 

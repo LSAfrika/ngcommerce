@@ -11,7 +11,36 @@
 }
 
 .mainphotos{
-  @apply relative top-0 z-[200] bg-red-400
+  @apply relative top-0 z-[200] bg-white flex px-5 flex-wrap justify-center items-start  gap-x-[10px] sm:flex-row w-full pt-[10px]
+  gap-y-[5px]
+  sm:max-w-[550px] md:rounded-md md:max-h-[90vh] md:min-h-[300px] md:max-w-[700px]
+  ;
+
+  .productphoto{
+    @apply max-w-[150px] max-h-[150px] w-full h-full   bg-white items-center justify-center flex overflow-hidden bg-center bg-cover relative
+
+    md:max-h-[200px] md:max-w-[200px] md:min-h-[200px] md:min-w-[200px]
+    ;
+    img{
+
+      @apply max-w-[150px] max-h-[150px] w-full h-full md:max-h-[200px] md:max-w-[200px] md:min-h-[200px] md:min-w-[200px]
+
+    }
+    .deletephoto{
+      @apply absolute bottom-0 w-full text-center bg-black/50 p-2 text-xs text-white font-extrabold
+    }
+  }
+
+
+  .btnholder{
+    @apply w-full flex justify-center items-center  min-h-[50px] mt-auto gap-5 ;
+    button{
+      @apply min-w-[75px] bg-teal-600 rounded-sm text-white font-semibold drop-shadow-md py-1 px-4 text-sm border-2 border-teal-600
+    }
+    .cancelbtn{
+      @apply text-teal-500 bg-white drop-shadow-lg
+    }
+  }
 }
 
 .nav{
