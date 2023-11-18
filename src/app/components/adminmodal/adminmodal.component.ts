@@ -247,6 +247,13 @@ console.log('splice counter',splicecounter);
 //  console.log('array from files:',files)
 }
 
+deletephotofromphotoupdatearray(index:number){
+
+  this.photos.splice(index,1)
+  console.log(this.photos);
+
+}
+
 get _productname(){
   return this.productform.get('productname')
 }
