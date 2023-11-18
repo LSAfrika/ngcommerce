@@ -11,7 +11,7 @@
 }
 
 .mainphotos{
-  @apply relative top-0 z-[200] bg-white flex px-5 flex-wrap justify-center items-start  gap-x-[10px] sm:flex-row w-full pt-[10px]
+  @apply relative top-0 z-[200] bg-white flex px-5 flex-wrap justify-center items-start  gap-x-[10px] sm:flex-row w-full pt-[10px] overflow-y-scroll
   gap-y-[5px]
   sm:max-w-[550px] md:rounded-md md:max-h-[90vh] md:min-h-[300px] md:max-w-[700px]
   ;
@@ -32,9 +32,13 @@
   }
 
   .photostoupload{
-    @apply w-full text-teal-600 min-h-[30px] flex flex-col sm:max-w-[450px] my-5;
+    @apply w-full text-teal-600 min-h-[30px] flex flex-col  my-5 justify-start items-center;
     .uploadphoto{
-      @apply flex justify-between items-center my-[10px]
+      @apply flex justify-between items-center my-[10px] max-w-[450px] w-[70%]
+    }
+
+    .photouploadbtn{
+      @apply min-w-[150px] bg-teal-600 font-bold text-sm text-white mt-auto min-h-[30px] rounded-sm
     }
   }
 

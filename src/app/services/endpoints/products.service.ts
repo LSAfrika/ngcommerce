@@ -11,7 +11,7 @@ import { IndexRoutesService } from './index.routes.service';
   providedIn: 'root'
 })
 export class ProductsService {
-  ROOT_PRODUCTS_URL='http://localhost:3000/api/v1/products/'
+  PRODUCTS_URL='http://localhost:3000/api/v1/products/'
   ROOT_STORES_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproductsstore/'
   ROOT_ADMIN_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproductsstoreadmin'
   DELETE_PRODUCTIMAGE_URL='http://localhost:3000/api/v1/products/deleteproductimage/'
@@ -69,25 +69,25 @@ console.log(this.FETCH_CATEGORY_PRODUCTS_URL)
   }
   createproduct(){
 
-    return this.productendpoints.POST(this.ROOT_PRODUCTS_URL,this.productdata)
+    return this.productendpoints.POST(this.PRODUCTS_URL,this.productdata)
       }
 
       updateproduct(){
 
 
-      return this.productendpoints.PATCH(this.ROOT_PRODUCTS_URL,this.productdata)
+      return this.productendpoints.PATCH(this.PRODUCTS_URL,this.productdata)
 
       }
 
       deleteproduct(){
 
-        const producturl=`${this.ROOT_PRODUCTS_URL}${this.productid}`
+        const producturl=`${this.PRODUCTS_URL}${this.productid}`
         return this.productendpoints.DELETE(producturl)
 
       }
 
       deactivateproduct(){
-        const deactivateroute=this.ROOT_PRODUCTS_URL+this.productid
+        const deactivateroute=this.PRODUCTS_URL+this.productid
         return this.productendpoints.POST(deactivateroute,{})
 
       }
@@ -115,7 +115,7 @@ console.log(this.FETCH_CATEGORY_PRODUCTS_URL)
       viewproduct(productid:string):Observable<Product>{
 
         //this.viewproducts$=
-         const producturl= this.ROOT_PRODUCTS_URL+`getsingleproduct/${productid}`
+         const producturl= this.PRODUCTS_URL+`getsingleproduct/${productid}`
         return this.productendpoints.GETSINGLE(producturl).pipe(map((res:Product)=>{ return res}))
 
       }
@@ -133,6 +133,13 @@ console.log(this.FETCH_CATEGORY_PRODUCTS_URL)
         const url=this.DELETE_PRODUCTIMAGE_URL+`${id}?index=${index}`
 
         return this.productendpoints.DELETE(url)
+      }
+
+      updateproductphotos(id:string,photos:FormData){
+        const photoupdateurl=this.PRODUCTS_URL+`updateproductphotos/${id}`
+        return this.productendpoints.POST(photoupdateurl,photos)
+
+
       }
 
     get  viewproducts():Observable<Product[]>{
@@ -276,14 +283,14 @@ console.log(products);
 
       postproduct(){
 
-        const posturl=this.ROOT_PRODUCTS_URL+'createproduct'
+        const posturl=this.PRODUCTS_URL+'createproduct'
         return this.productendpoints.POST(posturl,this.productformdata)
       }
 
 
 
 patchproduct(){
-  const updateurl=this.ROOT_PRODUCTS_URL+'updateproduct/'+this.producttoedit?._id
+  const updateurl=this.PRODUCTS_URL+'updateproduct/'+this.producttoedit?._id
 
   console.log('update url',updateurl);
 

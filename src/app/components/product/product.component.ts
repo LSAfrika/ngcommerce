@@ -14,7 +14,7 @@ export class ProductComponent {
   public router=inject(Router)
  @Input() product!:Product
  @Input()admin:boolean=false
- @Output()producttoemit:EventEmitter<Product>=new EventEmitter<Product>()
+ @Output()producttoemit:EventEmitter<{product:Product,modal:number}>=new EventEmitter<{product:Product,modal:number}>()
 
  disablenavigation=false
 
@@ -59,6 +59,6 @@ mouseleave(){
 producttoedit(){
   console.log('product edit: ',this.product);
 
-  this.producttoemit.emit(this.product)
+  this.producttoemit.emit({product:this.product,modal:0})
 }
 }

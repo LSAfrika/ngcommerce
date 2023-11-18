@@ -53,9 +53,10 @@ console.log('current index',this.adminservice.switchmodal$.value);
     this.productsservice.storepagination$.next(this.productsservice.storepagination$.value+1)
   }
 
-  producttoedit(event:Product){
+  producttoedit(event:{product:Product,modal:number}){
     console.log('edit product',event);
-this.productsservice.producttoedit=event
+this.productsservice.producttoedit=event.product
+this.adminservice.switchmodal$.next(event.modal)
   this.adminservice.viewmodal$.next(true)
 
   }

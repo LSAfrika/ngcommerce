@@ -1,6 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { delay, Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { catchError, delay, of, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { AdminService } from 'src/app/services/frontendservices/admin.service';
@@ -262,7 +263,9 @@ this.productservice.updateproduct$.next(true)
 this.productservice.productmodalmessage='deleteing photo ...'
 
 
-  this.productservice.deleteproductimage(id,index).pipe(delay(5000),takeUntil(this.destroy$)).subscribe((res)=>{
+  this.productservice.deleteproductimage(id,index).pipe(
+   // delay(500),
+    takeUntil(this.destroy$)).subscribe((res)=>{
 
     this.completedimagedeletion(res,index)
 
@@ -287,7 +290,61 @@ this.productservice.modalspinner$.next(true)
 
 
 
-}, 3000);
+}, 2000);
+
+}
+
+uploadupdatephotos(){
+  const filedata=new FormData()
+  this.photos.forEach(photo=>filedata.append('product',photo))
+  const productid= this.productservice.producttoedit!._id
+  console.log('photos form data: ',filedata)
+
+this.productservice.productmodalmessage='uploading photo(s) ...'
+this.productservice.updateproduct$.next(true)
+
+  this.productservice.updateproductphotos(productid,filedata)
+  .pipe(
+    catchError((err:any)=>{ return of(err as HttpErrorResponse)}),
+    tap((res:any)=>{
+      console.log(res);
+
+ this.completedphotoupdate(res)
+
+    }),
+    takeUntil(this.destroy$)
+    )
+  .subscribe()
+}
+
+completedphotoupdate(res:any,){
+
+  console.log(res.message);
+
+ if(res.message==="images update successfully") {
+  this.productservice.producttoedit!.productimages=res.savedproduct.productimages
+  this.photos=[]
+
+  this.productservice.productmodalmessage=res.message
+}
+
+this.productservice.modalspinner$.next(false)
+
+if(res.exceptionmessage ){
+  this.productservice.productmodalmessage=res.exceptionmessage
+  this.photos=[]
+
+}
+setTimeout(() => {
+  this.productservice.productmodalmessage=''
+  this.productservice.updateproduct$.next(false)
+  this.adminservice.viewmodal$.next(false)
+  this.productservice.modalspinner$.next(true)
+
+
+
+
+  }, 3000);
 
 }
 get _productname(){
