@@ -75,7 +75,7 @@
   max-w-[400px];
 
   .avatar{
-    @apply w-10 h-10 rounded-lg bg-indigo-600 justify-center items-center bg-cover overflow-hidden
+    @apply w-10 h-10 rounded-lg bg-slate-200 drop-shadow-md justify-center items-center bg-cover overflow-hidden
   }
   .description{
     @apply flex flex-col justify-start items-start;

@@ -6,7 +6,9 @@
     <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(13 148 136);"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
     <div  class="cardtitle">Create product</div>
   </div>
-    <div (click)="openmodal(i+1)" class="card" [ngClass]="{mxauto: i==adminservice.admindata.length-1}"
+
+  <ng-container *ngIf="admindashboardsatistics$|async as dashboardstats else loading">
+    <div (click)="openmodal(i+1)" class="card"
      *ngFor="let card of adminservice.admindata; let i=index">
 
     <ng-container *ngIf="i==0">
@@ -30,14 +32,32 @@
     </ng-container>
 
         <div class="cardtitle">{{card.datatitle}} </div>
-        <div class="cardquantity">
+        <div *ngIf="card.datatitle=='Total views'" class="cardquantity">
           <span *ngIf="i==3">$</span>
-          {{card.dataquantity}}</div>
+          {{dashboardstats.totalviews}}</div>
+        <div *ngIf="card.datatitle=='Stock balance'" class="cardquantity">
+          <span *ngIf="i==3">$</span>
+          {{dashboardstats.stockbalance}}</div>
+        <div *ngIf="card.datatitle=='Sold products'" class="cardquantity">
+          <span *ngIf="i==3">$</span>
+          {{dashboardstats.soldproducts}}</div>
+        <div *ngIf="card.datatitle=='Total sales'" class="cardquantity">
+          <span *ngIf="i==3">$</span>
+          {{dashboardstats.totalsales}}</div>
+    </div>
+    <div class="myproductstitle">
+        <div >{{dashboardstats.productcount}}   Products</div>
     </div>
 
-    <div class="myproductstitle">
-        <div >   Products</div>
-    </div>
+    <app-adminmodal
+*ngIf="adminservice.viewmodal$.value==true"
+ (closemodalemit)="closemodal($event)"
+ (creatednewproductemitter)="refetchproducts($event)"
+  [openmodal]="adminservice.switchmodal$.value"
+  [dashboardstats]="dashboardstats"
+  >
+</app-adminmodal>
+  </ng-container>
 <ng-container *ngIf="adminproducts$|async as products;else loading">
 <!-- <pre>{{products|json}}</pre>  -->
 <app-product *ngFor="let product  of products" [product]="product" [admin]="true" (producttoemit)="producttoedit($event)"></app-product>
@@ -57,12 +77,9 @@
  </ng-template>
 </div>
 <app-footer></app-footer>
-<app-adminmodal
-*ngIf="adminservice.viewmodal$.value==true"
- (closemodalemit)="closemodal($event)"
- (creatednewproductemitter)="refetchproducts($event)"
-  [openmodal]="adminservice.switchmodal$.value">
-</app-adminmodal>
 
+<!-- <ng-container *ngIf="admindashboardsatistics$|async as product">
+  {{product|json}}
+</ng-container> -->
 <app-globalmodal *ngIf="productsservice.updateproduct$.value==true" [modalmessage]="productsservice.productmodalmessage"
 [spinnerstate]="productsservice.modalspinner$.value"></app-globalmodal>

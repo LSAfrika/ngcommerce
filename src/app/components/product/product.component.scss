@@ -20,7 +20,8 @@
 
 }
 .productdetails{
-    @apply relative flex flex-col items-start justify-start w-full pl-2 mt-auto bg-slate-100  h-fit lg:my-auto
+    @apply relative flex flex-col items-start justify-start w-full pl-2 mt-auto
+     bg-slate-100  h-fit lg:my-auto border-t-2 border-black/30
 }
 
 .productname{
@@ -33,6 +34,9 @@
 
 .productprice{
     @apply my-1 text-sm font-semibold text-slate-900
+}
+.views{
+  @apply absolute z-10 bottom-1 right-1 text-teal-600 font-bold text-sm
 }
 
 .notfavorited{

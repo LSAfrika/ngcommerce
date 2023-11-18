@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { catchError, delay, of, Subject, switchMap, takeUntil, tap } from 'rxjs';
-import { Product } from 'src/app/interfaces/product';
+import { Dashboard, Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { AdminService } from 'src/app/services/frontendservices/admin.service';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
@@ -15,12 +15,14 @@ import { UiService } from 'src/app/services/frontendservices/ui.service';
 export class AdminmodalComponent {
 
   @Input()openmodal!:number
+  @Input()dashboardstats!:Dashboard
   @Output()creatednewproductemitter:EventEmitter<boolean>=new EventEmitter<boolean>()
   @Output()closemodalemit:EventEmitter<boolean>=new EventEmitter()
 
   modalmessage=''
-public adminservice=inject(AdminService)
-public uiservice=inject(UiService)
+  public adminservice=inject(AdminService)
+  public uiservice=inject(UiService)
+  admindashboardsatistics$=this.adminservice.getdashboard()
 public productservice=inject(ProductsService)
   productform!:FormGroup;
 productformdata=new FormData()
@@ -41,6 +43,7 @@ this.openmodal=5
   if(this.productservice.producttoedit==undefined)this.createproductform()
 
     console.log('open modal digit ng on init',this.openmodal);
+    console.log('dashboard stats: ',this.dashboardstats);
 
     console.log('product to edit',this.productservice.producttoedit);
 

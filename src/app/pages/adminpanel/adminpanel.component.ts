@@ -1,6 +1,6 @@
 import { Component,inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map, switchMap } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { AdminService } from 'src/app/services/frontendservices/admin.service';
@@ -17,9 +17,14 @@ export class AdminpanelComponent {
   private activeroute=inject(ActivatedRoute)
 
 adminproducts$
+
+admindashboardsatistics$=this.adminservice.getdashboard()
+
   constructor(){
  this.productsservice.adminid=  this.activeroute.snapshot.params['adminid']||''
 this.adminproducts$=this.productsservice.adminproducts
+
+
   }
 
 

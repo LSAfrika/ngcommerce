@@ -1,6 +1,6 @@
 ======WORKS======
 add add to cart functionality ==>done
-
+Dashboard basic functionality DONE
 add check for behaviour subject to avoid unecessary network calls bsubh=jects in products service
 
 categories params not being fetched whennavigating from home hence nothing is loaded ==>  done
@@ -10,6 +10,6 @@ categories params not being fetched whennavigating from home hence nothing is lo
 
   cart panel section to feture completed orders
 
-
+nav bar cart count updater
 !!!!URGENT!!!!
   repair category popup panel on stor page to fetch products of store and not move to categories page URGENT!!!!!

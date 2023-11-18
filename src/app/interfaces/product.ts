@@ -12,6 +12,7 @@ export interface Product {
     store:Store
     category:string
     brand:string
+    viewcount?:number
 }
 
 export interface producttocart{
@@ -20,5 +21,27 @@ export interface producttocart{
   productprice:number
   productquantity:number
 }
+
+export interface Dashboard{
+  productcount:number
+stockbalance:number
+  totalviews: number,
+  totalsales: number,
+  soldproducts: number
+  products:[dashboardproduct]
+}
+
+interface dashboardproduct{
+      productquantity: number,
+      productname:string
+      _id:string,
+      productprice: number,
+      productdeactivated: boolean,
+      productimages: [string],
+      viewcount: number,
+      category:string
+      totalsold:number
+}
+
 
 
