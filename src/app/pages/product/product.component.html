@@ -79,7 +79,10 @@
               *ngFor="let storeproduct of storeproducts;let i=index"
               (click)="getproduct(storeproduct._id,storeproduct.store._id)"
               [routerLink]="['/product',storeproduct._id,'store',storeproduct.store._id]"
-              class="storeadvert">
+              class="storeadvert"
+              [ngClass]="{morethanfive:i>5}"
+              >
+
                   <div class="img">
                     <img src="http://localhost:3000/{{storeproduct.productimages[0]}}" alt="" srcset="">
                   </div>
