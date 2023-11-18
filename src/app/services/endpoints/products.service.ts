@@ -14,7 +14,7 @@ export class ProductsService {
   ROOT_PRODUCTS_URL='http://localhost:3000/api/v1/products/'
   ROOT_STORES_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproductsstore/'
   ROOT_ADMIN_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproductsstoreadmin'
-
+  DELETE_PRODUCTIMAGE_URL='http://localhost:3000/api/v1/products/deleteproductimage/'
   FETCH_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproducts?pagination='
   category='all'
   FETCH_CATEGORY_PRODUCTS_URL=`http://localhost:3000/api/v1/products/getallproductscategory?`
@@ -80,7 +80,9 @@ console.log(this.FETCH_CATEGORY_PRODUCTS_URL)
       }
 
       deleteproduct(){
-        return this.productendpoints.DELETE(this.ROOT_PRODUCTS_URL,this.productid)
+
+        const producturl=`${this.ROOT_PRODUCTS_URL}${this.productid}`
+        return this.productendpoints.DELETE(producturl)
 
       }
 
@@ -125,6 +127,12 @@ console.log(this.FETCH_CATEGORY_PRODUCTS_URL)
 
         return this.productendpoints.GETALL(storeproducturl)
 
+      }
+
+      deleteproductimage(id:string,index:number){
+        const url=this.DELETE_PRODUCTIMAGE_URL+`${id}?index=${index}`
+
+        return this.productendpoints.DELETE(url)
       }
 
     get  viewproducts():Observable<Product[]>{

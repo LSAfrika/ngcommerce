@@ -97,6 +97,8 @@
   <button *ngIf="productservice.producttoedit==undefined" class="mt-5" (click)="file.click()">select images</button>
   <button class="btnmt" [ngClass]="{btninactive:productform.invalid==true}"
   [disabled]="productform.invalid" *ngIf="productservice.producttoedit!=undefined"  (click)="appendupdatedatatoform()">update product</button>
+  <button class="btnmt" [ngClass]="{btninactive:productform.invalid==true}"
+  [disabled]="productform.invalid" *ngIf="productservice.producttoedit!=undefined"  (click)="updateproductphotosonly()">update product images</button>
 
       <ng-container *ngIf="adminservice.productimages.length!=0">
       <div class="imageselectsection">
@@ -234,12 +236,12 @@
 
 <!-- [style]="{ 'background-image': 'url(http://localhost:3000/' + photo + ')' }" -->
   <div class=" mainphotos">
-<div class="productphoto" *ngFor="let photo of productservice.producttoedit?.productimages"
+<div class="productphoto" *ngFor="let photo of productservice.producttoedit?.productimages;let i=index"
  >
   <img src="http://localhost:3000/{{photo}}" alt="">
 
 
-  <button class="deletephoto">delete photo</button>
+  <button (click)="deleteproductphotofromDB(productservice.producttoedit!._id,i)" class="deletephoto">delete photo</button>
 </div>
 
 <div *ngIf="photos.length>0" class="photostoupload">

@@ -51,8 +51,8 @@ export class IndexRoutesService {
   }
 
 
-  DELETE(url:string,id:string){
-    return this.http.delete<any>(`${url}${id}`,{ withCredentials: true })
+  DELETE(url:string){
+    return this.http.delete<any>(`${url}`,{ withCredentials: true })
 
   }
   CARTDELETEPRODUCT(url:string,id:string){

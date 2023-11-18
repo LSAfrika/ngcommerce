@@ -43,7 +43,8 @@ return this.endpoints.POST(registerurl,this.userdata)
   }
 
   deleteuseraccount(){
-    return this.endpoints.DELETE(this.ROOT_USER_URL,this.authuserid)
+    const deleteuserurl=`${this.ROOT_USER_URL}${this.authuserid}`
+    return this.endpoints.DELETE(deleteuserurl)
 
   }
 

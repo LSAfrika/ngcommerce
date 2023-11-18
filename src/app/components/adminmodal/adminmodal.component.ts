@@ -166,7 +166,9 @@ this.uiservice.productphotoupdate$.next(true)
 
 }
 
-
+updateproductphotosonly(){
+  this.openmodal=5
+}
 
 newproductcreatedevent(){
   this.creatednewproductemitter.emit(true)
@@ -254,6 +256,40 @@ deletephotofromphotoupdatearray(index:number){
 
 }
 
+deleteproductphotofromDB(id:string,index:number){
+
+this.productservice.updateproduct$.next(true)
+this.productservice.productmodalmessage='deleteing photo ...'
+
+
+  this.productservice.deleteproductimage(id,index).pipe(delay(5000),takeUntil(this.destroy$)).subscribe((res)=>{
+
+    this.completedimagedeletion(res,index)
+
+  })
+}
+
+completedimagedeletion(res:any,index:number){
+this.productservice.modalspinner$.next(false)
+
+this.productservice.productmodalmessage=res.exceptionmessage||res.message
+
+if(res.message){
+  this.productservice.producttoedit!.productimages.splice(index,1)
+}
+
+setTimeout(() => {
+
+this.productservice.productmodalmessage=''
+this.productservice.updateproduct$.next(false)
+this.productservice.modalspinner$.next(true)
+
+
+
+
+}, 3000);
+
+}
 get _productname(){
   return this.productform.get('productname')
 }
