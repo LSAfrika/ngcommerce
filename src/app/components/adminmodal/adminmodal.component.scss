@@ -31,6 +31,13 @@
     }
   }
 
+  .photostoupload{
+    @apply w-full text-teal-600 min-h-[30px] flex flex-col sm:max-w-[450px] my-5;
+    .uploadphoto{
+      @apply flex justify-between items-center my-[10px]
+    }
+  }
+
 
   .btnholder{
     @apply w-full flex justify-center items-center  min-h-[50px] mt-auto gap-5 ;

@@ -24,9 +24,12 @@ public productservice=inject(ProductsService)
   productform!:FormGroup;
 productformdata=new FormData()
 destroy$=new Subject<void>()
+photos:File[]=[]
+maxphotoupload=6
 constructor(private formbulder:FormBuilder) {
    console.log('product received',this.productservice.producttoedit);
 this.openmodal=5
+
 
 }
 
@@ -219,6 +222,29 @@ deletespec(i:number){
   this.productservice.productspecs.splice(i,1)
   this._productspecifications?.setValue(this.productservice.productspecs)
 
+}
+
+
+updatephotouploads(file:any){
+
+
+  this.photos.push(...file.target.files)
+  // console.log(this.photos)
+
+    if( this.productservice.producttoedit !=undefined&& this.productservice.producttoedit.productimages.length>=6 ) {return alert('max images uploaded')}
+    const photoslength=this.productservice.producttoedit!.productimages.length
+  console.log(photoslength);
+
+  if(this.photos.length>=this.maxphotoupload-photoslength){
+const splicecounter=this.maxphotoupload-photoslength
+console.log('splice counter',splicecounter);
+
+    this.photos.splice(splicecounter)
+  }
+
+//  const files=Array.isArray(file)?file:[file]
+
+//  console.log('array from files:',files)
 }
 
 get _productname(){
