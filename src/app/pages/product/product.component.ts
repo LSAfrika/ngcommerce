@@ -7,6 +7,7 @@ import { FrontEndCartService } from 'src/app/services/frontendservices/cart.serv
 import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { ProductService } from 'src/app/services/frontendservices/product.service';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
+import { BrandsandcategoriesService } from 'src/app/services/frontendservices/brandsandcategories.service';
 
 @Component({
   selector: 'app-product',
@@ -18,6 +19,7 @@ export class ProductComponent {
   private activeroute=inject(ActivatedRoute)
   private backendcartservice=inject(CartService)
   private frontendcartservice=inject(FrontEndCartService)
+  private brandcategoryservice=inject(BrandsandcategoriesService)
 
   public uiservice=inject(UiService)
   public backendproductservice=inject(ProductsService)
@@ -87,6 +89,9 @@ this.viewstoreproduct$= this.backendproductservice.storeproducts(this.storeid)
     this.uiservice.modalspinner$.next(true)
 
     }, 3000);
+  }
+  resetcategory(){
+    this.backendproductservice.category=this.brandcategoryservice.currentcategory='all'
   }
 
   getproduct(productid:string,storeid:string){

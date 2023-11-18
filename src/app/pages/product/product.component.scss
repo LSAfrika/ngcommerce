@@ -117,7 +117,7 @@ span{
 
     ;
     .logo{
-        @apply w-[50px] h-[50px] bg-slate-200 rounded-full bg-cover bg-center overflow-hidden flex
+        @apply w-[50px] h-[50px] bg-slate-400 rounded-full bg-cover bg-center overflow-hidden flex p-2
         justify-center items-center;
         img{
           @apply w-[100%] h-[100%]
@@ -132,7 +132,7 @@ span{
     }
     .visitstore{
 @apply w-full max-w-[150px] p-2 px-4 bg-slate-900 text-white
-text-sm font-semibold rounded-full mb-1
+text-sm font-semibold rounded-sm mb-1
     }
 }
 

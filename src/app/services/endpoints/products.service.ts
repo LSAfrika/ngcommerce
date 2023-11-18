@@ -230,11 +230,13 @@ console.log(products);
       }
 
       get  vendorproducts():Observable<Product[]>{
+console.log('current category from service',this.category);
 
         //this.viewproducts$=
         return    this.storepaginationObs$.pipe(switchMap(res=>{
-
-          const url=this.ROOT_STORES_PRODUCTS_URL+`${this.storeid}?pagination=${res}`
+          let url=''
+        if(this.category=='all')   url=this.ROOT_STORES_PRODUCTS_URL+`${this.storeid}?pagination=${res}`
+        if(this.category!=='all')   url=this.ROOT_STORES_PRODUCTS_URL+`${this.storeid}?pagination=${res}&category=${this.category}`
 
          return this.productendpoints.GETALL(url)
         }),map((products:Product[])=>{
@@ -251,6 +253,8 @@ console.log(products);
         )
 
       }
+
+
 
       get  adminproducts():Observable<Product[]>{
 

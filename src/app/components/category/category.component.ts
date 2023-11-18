@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
@@ -14,16 +14,20 @@ import { UiService } from 'src/app/services/frontendservices/ui.service';
 export class CategoryComponent {
 
   public uiservice= inject(UiService)
+
+  @Output()category:EventEmitter<string>=new EventEmitter<string>()
   public brandcategoryservice= inject(BrandsandcategoriesService)
   private router=inject(Router)
   private activeroute=inject(ActivatedRoute)
   private endpointsprodcutservice=inject(ProductsService)
+  currentlocation=''
 urlpage=''
 // close=false
 constructor(){console.log('current route: ',this.brandcategoryservice.currentcategory);
 
 const array=this.brandcategoryservice.currentcategory.split('%20')
-  console.log('theres a joiner',array);
+  console.log('current category',this.endpointsprodcutservice.category);
+this.currentlocation=this.router.url.split('?')[0]
 
 
 this.geturlsegmentandquery()
@@ -54,14 +58,23 @@ this.uiservice.closeallpanels()
 
       return
     }
-    this.brandcategoryservice.currentcategory=category
-    this.endpointsprodcutservice.category=category
+   category=='All categories' ?
+   this.endpointsprodcutservice.category=this.brandcategoryservice.currentcategory='all' :
+   this.endpointsprodcutservice.category=this.brandcategoryservice.currentcategory=category
+
     this.endpointsprodcutservice.categoryproducts$=new BehaviorSubject<Product[]>([])
 console.log('current categories:',this.endpointsprodcutservice.category);
+if(this.currentlocation=='/categories') this.router.navigateByUrl(`/categories?category=${category}`)
 
-    this.router.navigateByUrl(`/categories?category=${category}`)
+if(this.currentlocation=='/store'){
+  this.endpointsprodcutservice.vendorproducts$=new BehaviorSubject<Product[]>([])
+
+  this.category.emit(this.endpointsprodcutservice.category)
+  this.endpointsprodcutservice.storepagination$.next(0)
+    console.log('we are in the store page');}
+
     this.endpointsprodcutservice.resetscategorypagination()
-this.uiservice.closeallpanels()
+    this.uiservice.closeallpanels()
 
 
   }

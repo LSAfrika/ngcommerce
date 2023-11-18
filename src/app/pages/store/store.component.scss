@@ -25,14 +25,14 @@
     ;
     .storename{
       @apply text-sm font-bold p-1 min-w-full
-px-5 bg-teal-500 rounded-sm pb-2 text-white
+px-5 bg-slate-900 rounded-sm pb-2 text-white
 sm:text-lg
 
 
 }
 
     .products{
-      @apply  font-semibold text-lg
+      @apply  font-semibold text-lg text-teal-600 md:text-xl
     }
   }
 
@@ -67,6 +67,13 @@ sm:text-lg
 
   ;
 
+}
+
+.noproducts{
+  @apply w-full min-h-[80vh] flex justify-center items-center;
+  .text{
+    @apply text-sm font-bold text-teal-500 sm:text-lg md:text-xl
+  }
 }
 
 .loadmore{

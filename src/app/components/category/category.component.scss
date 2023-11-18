@@ -4,9 +4,10 @@
     ;
 }
 .categoriesbtn, .brandsbtn{
-    @apply min-w-[100px] px-2 py-1 rounded-full bg-white text-teal-600 drop-shadow-xl font-semibold text-xs pl-3 relative
+    @apply min-w-[100px] px-3 py-1 rounded-md bg-white text-teal-600 drop-shadow-xl font-semibold text-xs pl-3 relative
     flex items-center justify-between
  cursor-pointer
+ md:min-w-[150px] md:text-lg
 }
 
 .brandspanel,.categoriespanel{

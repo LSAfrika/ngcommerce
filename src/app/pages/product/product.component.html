@@ -60,7 +60,7 @@
               <img src="http://localhost:3000/{{product.store.storeimage}}" alt="">
             </div>
     <div class="storename">{{product.store.storename}}</div>
-    <button routerLink="/store" [queryParams]="{ storeid:product.store._id}" class="visitstore">Visit store</button>
+    <button (click)="resetcategory()" routerLink="/store" [queryParams]="{ storeid:product.store._id}" class="visitstore">Visit store</button>
 
         </div>
     </div>

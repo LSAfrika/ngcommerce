@@ -22,14 +22,16 @@
 <!-- <pre>{{store | json}}</pre> -->
 
 </ng-container>
-<app-category></app-category>
+<app-category (category)="category($event)"></app-category>
 
 <div class="container">
 <div class="adcontainer">
 
   <ng-container *ngIf="storeproducts$|async as storeproduct; else loading " >
-
-    <app-product *ngFor="let product of storeproduct; ngForTrackBy:productngForTrackBy" [product]="product" ></app-product>
+<div *ngIf="storeproduct.length==0" class="noproducts ">
+<div class="text"> no {{productservice.category}} listed in store</div>
+</div>
+    <app-product *ngFor="let product of storeproduct; TrackBy:productngForTrackBy" [product]="product" ></app-product>
   </ng-container>
 
   <ng-template #loading>

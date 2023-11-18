@@ -28,7 +28,7 @@ export class BrandsandcategoriesService {
 category='categories'
 
   categories:Categories[]=[
-    // {category:'All Categories',icon:'../../../assets/categories/allcat.svg'},
+
     {category:'Phones',icon:'../../../assets/categories/mobile.svg'},
     {category:'Laptops',icon:'../../../assets/categories/laptop.svg'},
     {category:'Desktops',icon:'../../../assets/categories/computer.svg'},

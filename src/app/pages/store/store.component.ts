@@ -13,7 +13,7 @@ import { delay, of } from 'rxjs';
 export class StoreComponent {
 
   private activeroute=inject(ActivatedRoute)
-  private productservice=inject(ProductsService)
+  public productservice=inject(ProductsService)
   private storeservice=inject(StoreService)
 
   storedetails$
@@ -31,7 +31,10 @@ ngOnInit(){
 
 }
 
-
+category(event:string){
+  console.log(event)
+  this.storeproducts$=this.productservice.vendorproducts
+}
 ngOnDestroy(){
 this.productservice.resetstorepagination()
 // this.storeproducts$=of([])
