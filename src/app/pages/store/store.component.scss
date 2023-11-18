@@ -11,16 +11,23 @@
     md:max-w-[500px]
    ;
   .storeavatar{
-    @apply w-[70px] h-[70px] bg-blue-500 rounded-lg flex items-center justify-center
+    @apply min-w-[70px] min-h-[70px] bg-slate-500 rounded-lg flex items-center justify-center
     bg-cover overflow-hidden
+    md:min-w-[100px] md:min-h-[100px]
   }
 
   .storeinfo{
-    @apply flex flex-col justify-center items-start min-w-[100px]  p-2
-    min-h-[50px];
+    @apply flex flex-col justify-center items-start min-w-[200px]  p-2
+    min-h-[50px]
+
+    sm:min-w-[300px]
+    md:min-h-[100px]
+    ;
     .storename{
-      @apply text-xl font-bold p-1
-px-5 bg-teal-500 rounded-md pb-2 text-white
+      @apply text-sm font-bold p-1 min-w-full
+px-5 bg-teal-500 rounded-sm pb-2 text-white
+sm:text-lg
+
 
 }
 

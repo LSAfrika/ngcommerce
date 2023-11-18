@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { StoreService } from 'src/app/services/endpoints/store.service';
-import { of } from 'rxjs';
+import { delay, of } from 'rxjs';
 
 @Component({
   selector: 'app-store',
