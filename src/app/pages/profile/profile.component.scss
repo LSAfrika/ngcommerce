@@ -108,7 +108,12 @@ px-2 md:max-w-[550px] lg:max-w-[800px] xl:max-w-[1000px]
         @apply absolute top-1 right-1 rotate-45 cursor-pointer
       }
       .profilepic{
-         @apply w-[125px] h-[125px] rounded-md bg-teal-500  bg-cover overflow-hidden bg-center
+         @apply w-[125px] h-[125px] rounded-md bg-teal-500  bg-cover overflow-hidden bg-center relative;
+         .removephoto{
+          @apply absolute min-h-[30px] bg-teal-600/90 text-center w-full
+           bottom-0 text-white font-bold cursor-pointer text-xs mx-auto
+
+         }
       }
       .usernameinput{
         @apply outline-none focus:border-2 focus:border-teal-600 focus:rounded-md

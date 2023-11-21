@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { IndexRoutesService } from './index.routes.service';
 import {User,getuserhttpresponse,loginhttpresponse,registerhttpresponse,updateuserhttpresponse} from '../../interfaces/user.interface'
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +12,9 @@ export class UserService {
   ROOT_USER_URL='http://localhost:3000/api/v1/user/'
 
    REFRESH_URL='http://localhost:3000/api/v1/user/refresh'
+   viewmodal$=new BehaviorSubject(false)
+   modalmessage=''
+    spinnerstate=true
 
   authuserid='1'
   userdata:any={}
@@ -35,10 +38,10 @@ return this.endpoints.POST(registerurl,this.userdata)
     return this.endpoints.POST(loginurl,this.userdata, )
   }
 
-  updateuser():Observable<updateuserhttpresponse>{
+  updateuser(userdata:FormData):Observable<updateuserhttpresponse>{
 
-    const userupdateurl=this.ROOT_USER_URL+this.authuserid
-  return this.endpoints.PATCH(userupdateurl,this.userdata)
+    const userupdateurl=this.ROOT_USER_URL+'updatebio'
+  return this.endpoints.PATCH(userupdateurl,userdata)
 
   }
 
@@ -54,7 +57,7 @@ return this.endpoints.POST(registerurl,this.userdata)
   }
 
   logout(){
-    const logouturl='http://localhost:3000/api/v1/user/logout'
+    const logouturl=this.ROOT_USER_URL+'logout'
     return this.endpoints.POST(logouturl,{})
   }
 }
