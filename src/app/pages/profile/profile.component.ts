@@ -9,4 +9,13 @@ import { UiService } from 'src/app/services/frontendservices/ui.service';
 export class ProfileComponent {
 
   public uiservice=inject(UiService)
+
+  openmodal(){
+    this.uiservice.editprofilemodal$.next(true)
+  }
+
+
+  closemodal(){
+    this.uiservice.editprofilemodal$.next(false)
+  }
 }

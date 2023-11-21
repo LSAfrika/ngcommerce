@@ -8,8 +8,14 @@ add check for behaviour subject to avoid unecessary network calls bsubh=jects in
 
   cart panel section to feture completed orders
 
-work on user profile page
 nav bar cart count updater
+
+=======IN PROGRESS======
+work on user profile page
+
+
+
+
 =======DONE======
 add add to cart functionality DONE
 Dashboard basic functionality DONE
