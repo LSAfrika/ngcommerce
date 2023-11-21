@@ -11,7 +11,7 @@ import { UserService } from '../endpoints/user.service';
 export class UiService {
 
   openfilter=false
-  editprofilemodal$=new BehaviorSubject(false)
+  editprofilemodal$=new BehaviorSubject(true)
   globalmodal$=new BehaviorSubject<boolean>(false)
   globalmodalcart$=new BehaviorSubject<boolean>(false)
   modalspinner$=new BehaviorSubject<boolean>(true)

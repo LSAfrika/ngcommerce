@@ -9,8 +9,8 @@ px-2 md:max-w-[550px] lg:max-w-[800px] xl:max-w-[1000px]
 }
 
 .avatar{
-  @apply mt-[50px] w-[80px] h-[80px] rounded-full overflow-hidden bg-cover
-  bg-slate-500 relative
+  @apply mt-[50px] w-[80px] h-[80px] rounded-full   bg-cover overflow-hidden bg-center
+  bg-teal-500 relative
   sm:w-[120px] sm:h-[120px]
   ;
   img{
@@ -108,9 +108,9 @@ px-2 md:max-w-[550px] lg:max-w-[800px] xl:max-w-[1000px]
         @apply absolute top-1 right-1 rotate-45 cursor-pointer
       }
       .profilepic{
-         @apply w-[125px] h-[125px] rounded-md bg-red-400
+         @apply w-[125px] h-[125px] rounded-md bg-teal-500  bg-cover overflow-hidden bg-center
       }
-      input{
+      .usernameinput{
         @apply outline-none focus:border-2 focus:border-teal-600 focus:rounded-md
 
         w-[90%] max-w-[200px]
@@ -122,5 +122,10 @@ px-2 md:max-w-[550px] lg:max-w-[800px] xl:max-w-[1000px]
       .bgbtn{
         @apply bg-teal-500 text-white mb-5 mt-auto
       }
+
+      .storestate{
+        @apply w-full flex   items-center max-w-[200px] justify-between
+      }
+
     }
   }

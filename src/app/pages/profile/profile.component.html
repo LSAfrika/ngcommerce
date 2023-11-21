@@ -2,10 +2,10 @@
 <div class="container">
 
     <div class="profile">
-    <div class="avatar">
+    <div class="avatar" [style]="{ 'background-image': 'url(http://localhost:3000/' + userservice.user.profileimg + ')' }" >
     </div>
     <div class="name">
-      <div>wilson chege</div>
+      <div>{{userservice.user.username}}</div>
       <button class="editicon" (click)="openmodal()">Edit profile</button>
 
 
@@ -63,11 +63,21 @@
   <div class="profilemodal">
     <svg (click)="closemodal()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="close" style="fill: rgba(20 184 166);"><path _ngcontent-hsv-c15="" d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
 
-    <div class="profilepic"></div>
+    <div *ngIf="previewsource==false" class="profilepic" [style]="{ 'background-image': 'url(http://localhost:3000/' + userservice.user.profileimg + ')' }" ></div>
+    <div *ngIf="previewsource==true" class="profilepic" [style]="{ 'background-image': 'url(http://localhost:3000/' + userservice.user.profileimg + ')' }" ></div>
+<input type="file" class="hidden" (change)="attachprofilepicturetoform($event)" #file name="" id="">
+    <button (click)="file.click()" class="changepic">change picture</button>
 
-    <button class="changepic">change picture</button>
+    <input class="usernameinput" placeholder="" type="text" [(ngModel)]="username">
 
-    <input placeholder="" type="text">
-    <button class="changepic bgbtn">update profile</button>
+    <ng-container *ngIf="userservice.user.vendor==true">
+    <div class="storestate">
+
+        <span *ngIf="userservice.user.storedeactivated==false">Disable store? </span>
+        <span *ngIf="userservice.user.storedeactivated==true">Enable store? </span>
+      <input type="checkbox" name="" (change)="storeactivesatetoggle($event)" id="">
+    </div>
+  </ng-container>
+    <button (click)="updateformdata()" class="changepic bgbtn">update profile</button>
   </div>
 </div>
