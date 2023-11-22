@@ -16,6 +16,7 @@ export class ProfileComponent {
 public userservice=inject(UserService)
 username=''
 imagesrcurl=''
+imagesrcurlplaceholder=''
 deactivatestore=false
 storedisabled=false
 previewsource=false
@@ -119,6 +120,7 @@ if(res.updateuser){
      this.userservice.user= this.retreiveuserfromtoken(token)
 
      console.log(this.userservice.user);
+     this.imagesrcurlplaceholder=this.imagesrcurl
 
   this.updatecomplete('profile updated')
 }
@@ -149,6 +151,7 @@ if(res.updateuser){
     setTimeout(() => {
     this.userservice.spinnerstate=true
     this.userservice.modalmessage=''
+    this.imagesrcurl=''
     this.userservice.viewmodal$.next(false)
 
     }, 2000);

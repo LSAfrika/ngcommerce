@@ -2,8 +2,11 @@
 <div class="container">
 
     <div class="profile">
-    <div class="avatar" [style]="{ 'background-image': 'url(http://localhost:3000/' + userservice.user.profileimg + ')' }" >
+    <div *ngIf="imagesrcurlplaceholder==''" class="avatar" [style]="{ 'background-image': 'url(http://localhost:3000/' + userservice.user.profileimg + ')' }" >
     </div>
+    <div *ngIf="imagesrcurlplaceholder!=''" class="avatar" [style]="{ 'background-image': 'url(' +imagesrcurlplaceholder + ')' }" >
+    </div>
+
     <div class="name">
       <div>{{userservice.user.username}}</div>
       <button class="editicon" (click)="openmodal()">Edit profile</button>
