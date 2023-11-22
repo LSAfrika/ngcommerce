@@ -30,15 +30,17 @@
 
     <div class="sectioncontainer">
 
-        <div *ngFor="let item of [].constructor(5)" class="productviewcontainer ">
-            <div class="productavatar"></div>
+        <div *ngFor="let item of fav" class="productviewcontainer ">
+
+          <div class="favbtn">remove</div>
+            <div class="productavatar" [style]="{ 'background-image': 'url(http://localhost:3000/' + item.productimages[0] + ')' }"></div>
             <div class="description">
-                <div class="name">dell 13"</div>
-                <div class="category">laptop</div>
+                <div class="productname">{{item.productname}}</div>
+                <div class="category">{{item.category}}</div>
             </div>
-            <div class="views"></div>
+            <!-- <div class="views"></div>
             <div class="mostviewed"></div>
-            <div class="salesview"></div>
+            <div class="salesview"></div> -->
         </div>
     </div>
   </ng-container>

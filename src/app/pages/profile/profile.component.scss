@@ -48,10 +48,11 @@ px-2 md:max-w-[550px] lg:max-w-[800px] xl:max-w-[1000px]
 }
 
 .productviewcontainer{
-    @apply flex justify-start gap-4 items-center
+    @apply flex justify-start gap-4 items-center bg-white
     min-h-[70px] my-2 p-2 bg-white w-full relative
-    drop-shadow-lg cursor-pointer
+    drop-shadow-xl cursor-pointer
     max-w-[400px]
+    relative
     md:max-w-[200px] md:min-h-fit md:flex-col
     md:justify-start md:items-stretch
     md:rounded-md md:p-0
@@ -60,26 +61,33 @@ px-2 md:max-w-[550px] lg:max-w-[800px] xl:max-w-[1000px]
 
 
     ;
-
+.favbtn{
+  @apply min-w-[50px] min-h-fit px-[10px]
+  absolute right-1 bg-red-400 top-[50%] translate-y-[-50%]
+  cursor-pointer
+   text-sm font-semibold hover:bg-teal-600 bg-white text-teal-600
+   hover:text-white pb-1 rounded-full border-2 border-teal-600
+    md:top-[95%] md:translate-y-[-95%]
+}
 
     .productavatar{
-      @apply w-10 h-10 rounded-lg bg-indigo-600
-      justify-center items-center bg-cover overflow-hidden
+      @apply min-w-[75px] min-h-[75px] rounded-md bg-slate-600
+      bg-center bg-cover overflow-hidden
       md:w-full md:h-[125px] md:rounded-t-md md:rounded-b-none
       lg:min-h-[150px]
     }
     .description{
-      @apply flex flex-col justify-start items-start px-2
-      md:flex-row gap-[10px]
+      @apply flex flex-col justify-center items-start px-2 w-full box-border  w-full
+       gap-y-[10px] pb-[10px]
       ;
 
 
-      .name{
-        @apply text-sm font-bold text-slate-900
+      .productname{
+        @apply text-sm font-bold text-slate-900   text-left
       }
 
       .category{
-        @apply text-sm font-light text-slate-900
+        @apply text-sm font-light text-slate-900 md:font-semibold
       }
     }
     .views{
