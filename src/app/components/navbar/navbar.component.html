@@ -18,9 +18,9 @@
 
 
     <div class="flex gap-3">
-      <div [routerLink]="['/admin',this.userservice.user._id]" *ngIf="(isVendor$|async)==true" class="dashboard">
+      <div [routerLink]="['/admin',this.userservice.user.value?._id]" *ngIf="(isVendor$|async)==true" class="dashboard">
 <span>Dashboard</span>
-<!-- <span>{{this.userservice.user._id}}</span> -->
+<!-- <span>{{this.userservice.user?._id}}</span> -->
       </div>
 
       <div class="cartholder">

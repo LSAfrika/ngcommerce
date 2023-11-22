@@ -33,7 +33,7 @@ disablenav=false
   constructor(){
     if(!!localStorage.getItem('ecomtoken')){
       console.log('ecom token found',this.userservice.user);
-this.username=this.userservice.user.username
+this.username=this.userservice.user.value?.username||''
     }
   }
 
@@ -67,7 +67,7 @@ this.username=this.userservice.user.username
     this.userservice.viewmodal$.next(true)
     this.userservice.modalmessage='removing product'
 
-    this.productservice.removeproductfromfavorites(productid).pipe(
+    this.productservice.removeaddproductfromfavorites(productid).pipe(
       //delay(3000),
       catchError((err:HttpErrorResponse)=>{ return of({errormessage:'an error occured try agin later',errorlog:err.message})}),
       tap((res:any)=>{
@@ -129,8 +129,8 @@ if(this.updateform.has('profileimage'))this.updateform.delete('profileimage')
   storeactivesatetoggle(ev:any){
 
     let storestate
-    if(this.userservice.user.storedeactivated==false) storestate=true
-    if(this.userservice.user.storedeactivated==true) storestate=false
+    if(this.userservice.user.value?.storedeactivated==false) storestate=true
+    if(this.userservice.user.value?.storedeactivated==true) storestate=false
 
     if(this.updateform.has('storedeactivated'))  this.updateform.delete('storedeactivated')
 
@@ -142,7 +142,7 @@ if(this.updateform.has('profileimage'))this.updateform.delete('profileimage')
 
   updateprofiledata(){
 
-    if(this.username !=this.userservice.user.username)   {
+    if(this.username !=this.userservice.user.value?.username)   {
       if(this.updateform.has('username'))this.updateform.delete('username')
       this.updateform.append('username',this.username)
     }
@@ -178,7 +178,7 @@ if(res.updateuser){
   localStorage.setItem('ecomtoken',res.token)
   const tokenavailable=localStorage.getItem('ecomtoken')
       const  token=tokenavailable?.split('.')[1]||''
-     this.userservice.user= this.retreiveuserfromtoken(token)
+   if(token)  this.userservice.user.next( this.retreiveuserfromtoken(token))
 
      console.log(this.userservice.user);
      this.imagesrcurlplaceholder=this.imagesrcurl
@@ -197,7 +197,7 @@ if(res.updateuser){
 
   retreiveuserfromtoken(token:string){
 
-    if(token=='')return this.userservice.user
+    if(token=='')return this.userservice.user.value
     const userbio= JSON.parse(atob(token))
 
     return userbio as User

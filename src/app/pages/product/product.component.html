@@ -53,6 +53,7 @@
         </button>
       </div>
       <button (click)="addproduct()" class="addproduct">add to cart</button>
+      <button *ngIf="userservice.user !=undefined" (click)="addproducttofavorite()" class="addproduct fav">{{fav}}</button>
 
     </div>
         <div class="store">

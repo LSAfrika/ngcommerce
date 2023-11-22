@@ -312,10 +312,15 @@ console.log('current category from service',this.category);
         const posturl=this.PRODUCTS_URL+'createproduct'
         return this.productendpoints.POST(posturl,this.productformdata)
       }
-removeproductfromfavorites(productid:string){
+removeaddproductfromfavorites(productid:string){
   const favurl=this.PRODUCTS_URL+'favoriteproduct/'+productid
 
   return this.productendpoints.POST(favurl,{})
+}
+
+checkiffovorited(productid:string):Observable<boolean>{
+const favurl=this.PRODUCTS_URL+'/checkproductfavorited/'+productid
+  return this.productendpoints.GETSINGLE(favurl).pipe(map((res:{favorited:boolean})=> {return res.favorited}))
 }
 
 

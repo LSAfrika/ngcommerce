@@ -110,6 +110,9 @@ span{
   font-bold bg-slate-950 p-2 px-4
   rounded-full pb-2
 }
+.fav{
+  @apply bg-teal-500
+}
 }
 .store{
     @apply  w-full min-h-[100px] flex justify-center

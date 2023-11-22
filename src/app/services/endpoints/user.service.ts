@@ -18,8 +18,8 @@ export class UserService {
 
   authuserid='1'
   userdata:any={}
-  user:User
-  ={_id:'',createdAt:'',profileimg:'',updatedAt:'',username:'',vendor:false}
+  user=new BehaviorSubject<User|undefined>(undefined)
+ // ={_id:'',createdAt:'',profileimg:'',updatedAt:'',username:'',vendor:false}
   constructor( private endpoints:IndexRoutesService) { }
 
   authuser():Observable<getuserhttpresponse>{

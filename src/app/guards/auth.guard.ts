@@ -22,7 +22,7 @@ constructor(private router:Router,private usersvc:UserService){}
        return this.userstate.pipe(map((res)=>{
 
         console.log('user log state: ',res);
-        
+
         if(res==true) {
 
     const tokenavailable=localStorage.getItem('ecomtoken')
@@ -36,8 +36,8 @@ constructor(private router:Router,private usersvc:UserService){}
         delete  userbio.exp
         delete  userbio.iat
 
-
-        this.usersvc.user=userbio as User
+const user=userbio as User
+        this.usersvc.user.next(user)
 
 
 

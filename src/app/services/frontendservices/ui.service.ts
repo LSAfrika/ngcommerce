@@ -36,7 +36,7 @@ export class UiService {
          const token=localStorage.getItem('ecomtoken')
         const tokendata=token?.split('.')[1]||''
          const user:User= JSON.parse(atob(tokendata))
-         this.userservice.user=user
+         this.userservice.user.next(user)
 // console.log('admin check json',user)
          if(user.vendor==true) return true
          return false;

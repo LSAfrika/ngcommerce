@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, delay, map, Observable, Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, catchError, delay, map, Observable, of, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { CartService } from 'src/app/services/endpoints/cart.service';
 import { FrontEndCartService } from 'src/app/services/frontendservices/cart.service';
@@ -8,6 +8,8 @@ import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { ProductService } from 'src/app/services/frontendservices/product.service';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
 import { BrandsandcategoriesService } from 'src/app/services/frontendservices/brandsandcategories.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { UserService } from 'src/app/services/endpoints/user.service';
 
 @Component({
   selector: 'app-product',
@@ -20,7 +22,8 @@ export class ProductComponent {
   private backendcartservice=inject(CartService)
   private frontendcartservice=inject(FrontEndCartService)
   private brandcategoryservice=inject(BrandsandcategoriesService)
-
+  public userservice=inject(UserService)
+  public fav=''
   public uiservice=inject(UiService)
   public backendproductservice=inject(ProductsService)
   public frontendproductservice=inject(ProductService)
@@ -39,6 +42,29 @@ export class ProductComponent {
     this.storeid= this.activeroute.snapshot.params['storeid']
 this.viewproduct$=this.backendproductservice.viewproduct(this.productid)
 this.viewstoreproduct$= this.backendproductservice.storeproducts(this.storeid)
+this.checkiffavorited()
+  }
+
+  checkiffavorited(){
+    const productid=this.router.url.split('/')[2]
+    setTimeout(() => {
+   console.log('check function triggered and user',this.userservice.user.value);
+   if(this.userservice.user!=undefined){
+    this.backendproductservice.checkiffovorited(productid).pipe(
+tap((res:any)=>{
+console.log('response from check:',res)
+
+res==true ?this.fav='remove from favorite':this.fav='add to favorites'
+
+
+}),
+takeUntil(this.destroy$)
+    ).subscribe()
+  }
+
+ }, 1000);
+console.log('time out complete');
+
 
   }
 
@@ -61,8 +87,7 @@ this.viewstoreproduct$= this.backendproductservice.storeproducts(this.storeid)
 
     const cartproducts=[
    {product:   {
-    //_id:'653f6f67e8abac8fe84482bz',
-    //653f6f67e8abac8fe84482bd
+
     _id:productid,
        quantity:this.frontendproductservice.productcount$.value
       }}
@@ -77,6 +102,37 @@ this.viewstoreproduct$= this.backendproductservice.storeproducts(this.storeid)
      }),tap(res=>{console.log('cart updated:',res);
 
      this.frontendproductservice.productcount$.next(1);this.resetmodal() }),takeUntil(this.destroy$)).subscribe()
+
+  }
+
+  addproducttofavorite(){
+    const productid=this.router.url.split('/')[2]
+
+    this.uiservice.globalmodal$.next(true)
+    this.uiservice.globalmodalmessage='addin product to favorites...'
+    this.backendproductservice.removeaddproductfromfavorites(productid).pipe(
+      catchError((err:HttpErrorResponse)=>{ return of({errormessage:'an error occured try agin later',errorlog:err.message})}),
+
+tap(res=>{
+
+
+  if(res.message)this.completedaddingproduct(res.message),this.checkiffavorited()
+  if(res.errormessage)this.completedaddingproduct(res.errormessage)
+})
+
+
+
+    ).subscribe()
+
+  }
+  completedaddingproduct(message:string){
+    this.uiservice.globalmodalmessage=message
+    this.uiservice.modalspinner$.next(false)
+    setTimeout(() => {
+      this.uiservice.globalmodal$.next(false)
+    this.uiservice.modalspinner$.next(true)
+    this.uiservice.globalmodalmessage=''
+    }, 2000);
 
   }
 

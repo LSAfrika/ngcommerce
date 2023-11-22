@@ -165,7 +165,7 @@ this.userendpoints.registeruser().pipe(takeUntil(this.destroy$)).subscribe(res=>
 
     localStorage.setItem('ecomtoken',res.token)
     // localStorage.setItem('ecomrefreshtoken',res.refreshtoken)
-    this.userendpoints.user=res.user
+    this.userendpoints.user.next(res.user)
 
     alert(res.message)
 
@@ -228,16 +228,19 @@ loginuser(){
   }
 console.log('login payload: ',loginpayload);
 this.userendpoints.userdata=loginpayload
-this.userendpoints.loginuser().pipe(takeUntil(this.destroy$)).subscribe(res=>{
+this.userendpoints.loginuser().pipe(takeUntil(this.destroy$)).subscribe((res:any)=>{
 
-  console.log('login resp:',res);
+  // console.log('login resp:',res);
 
 
 
     localStorage.setItem('ecomtoken',res.token)
     // localStorage.setItem('ecomrefreshtoken',res.refreshtoken)
     this.ui.navbar$.next(!!localStorage.getItem('ecomtoken'))
-    this.userendpoints.user=res.user
+    this.userendpoints.user.next(res.userdata)
+
+    console.log('user upon login',this.userendpoints.user.value);
+
 this.userendpoints.userdata={}
 this.logintext='log in'
 
