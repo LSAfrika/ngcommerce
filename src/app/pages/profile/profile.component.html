@@ -1,4 +1,6 @@
 <app-navbar></app-navbar>
+
+
 <div class="container">
 
     <div class="profile">
@@ -23,6 +25,9 @@
     </div>
 
     <ng-container *ngIf="uiservice.togglemenu$.value==true">
+      <ng-container *ngIf="myfavoriteproducts$|async as fav">
+  <ng-container *ngIf="fav.length>0;else emptyproducts" >
+
     <div class="sectioncontainer">
 
         <div *ngFor="let item of [].constructor(5)" class="productviewcontainer ">
@@ -36,6 +41,14 @@
             <div class="salesview"></div>
         </div>
     </div>
+  </ng-container>
+
+        <ng-template #emptyproducts>
+<div class=""></div>
+          <div class="my-auto text-lg font-semibold text-teal-600">you don't have any product saved</div>
+
+        </ng-template>
+      </ng-container>
 
     </ng-container>
     <ng-container *ngIf="uiservice.togglemenu$.value==false">

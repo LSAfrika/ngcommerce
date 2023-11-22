@@ -11,6 +11,8 @@ import { IndexRoutesService } from './index.routes.service';
   providedIn: 'root'
 })
 export class ProductsService {
+
+  //#region //* VARIABLES================================
   PRODUCTS_URL='http://localhost:3000/api/v1/products/'
   ROOT_STORES_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproductsstore/'
   ROOT_ADMIN_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproductsstoreadmin'
@@ -18,7 +20,7 @@ export class ProductsService {
   FETCH_PRODUCTS_URL='http://localhost:3000/api/v1/products/getallproducts?pagination='
   category='all'
   FETCH_CATEGORY_PRODUCTS_URL=`http://localhost:3000/api/v1/products/getallproductscategory?`
-
+  favoriteproducts$=new BehaviorSubject<Product[]>([])
   private productendpoints=inject(IndexRoutesService)
   private activeroute=inject(ActivatedRoute)
   private categoryservice=inject(BrandsandcategoriesService)
@@ -52,6 +54,9 @@ noproducts=false
   updateproduct$=new BehaviorSubject(false)
   modalspinner$=new BehaviorSubject(true)
   updateproductphotos$=new BehaviorSubject(true)
+
+
+  //#endregion
   constructor(){
     this.category= this.activeroute.snapshot.queryParamMap.get('category')||'all'
     // console.log('current category',this.category);
@@ -183,6 +188,24 @@ console.log(products);
       }
 
 
+
+      get favoriteproducts():Observable<Product[]>{
+        const fovoriteproducturl=this.PRODUCTS_URL+'favoriteproducts'
+
+        console.log('current products in Bsubject: ',this.favoriteproducts$.value);
+
+        if(this.favoriteproducts$.value.length>0) return this.favoriteproducts$.asObservable()
+        return this.productendpoints.GETALL(fovoriteproducturl).pipe(
+          map((res)=>{
+
+            this.favoriteproducts$.next([...res])
+
+            return res
+          })
+          )
+
+
+      }
 
 
 

@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { catchError, of, Subject, takeUntil, tap } from 'rxjs';
 import { User } from 'src/app/interfaces/user.interface';
+import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { UserService } from 'src/app/services/endpoints/user.service';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
 
@@ -14,6 +15,7 @@ export class ProfileComponent {
 
   public uiservice=inject(UiService)
 public userservice=inject(UserService)
+public productservice=inject(ProductsService)
 username=''
 imagesrcurl=''
 imagesrcurlplaceholder=''
@@ -22,6 +24,7 @@ storedisabled=false
 previewsource=false
 updateform=new FormData()
 destroy$=new Subject<void>()
+myfavoriteproducts$=this.productservice.favoriteproducts
 
   constructor(){
     if(!!localStorage.getItem('ecomtoken')){
@@ -141,6 +144,7 @@ if(res.updateuser){
 
     return userbio as User
   }
+
 
 
   updatecomplete(message:string){
