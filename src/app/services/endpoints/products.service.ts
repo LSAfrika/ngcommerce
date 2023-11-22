@@ -55,7 +55,6 @@ noproducts=false
   modalspinner$=new BehaviorSubject(true)
   updateproductphotos$=new BehaviorSubject(true)
 
-
   //#endregion
   constructor(){
     this.category= this.activeroute.snapshot.queryParamMap.get('category')||'all'
@@ -313,7 +312,11 @@ console.log('current category from service',this.category);
         const posturl=this.PRODUCTS_URL+'createproduct'
         return this.productendpoints.POST(posturl,this.productformdata)
       }
+removeproductfromfavorites(productid:string){
+  const favurl=this.PRODUCTS_URL+'favoriteproduct/'+productid
 
+  return this.productendpoints.POST(favurl,{})
+}
 
 
 patchproduct(){

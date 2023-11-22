@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
-import { catchError, of, Subject, takeUntil, tap } from 'rxjs';
+import { Router } from '@angular/router';
+import { catchError, delay, of, Subject, takeUntil, tap } from 'rxjs';
 import { User } from 'src/app/interfaces/user.interface';
 import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { UserService } from 'src/app/services/endpoints/user.service';
@@ -16,6 +17,7 @@ export class ProfileComponent {
   public uiservice=inject(UiService)
 public userservice=inject(UserService)
 public productservice=inject(ProductsService)
+public router=inject(Router)
 username=''
 imagesrcurl=''
 imagesrcurlplaceholder=''
@@ -25,6 +27,8 @@ previewsource=false
 updateform=new FormData()
 destroy$=new Subject<void>()
 myfavoriteproducts$=this.productservice.favoriteproducts
+disablenav=false
+
 
   constructor(){
     if(!!localStorage.getItem('ecomtoken')){
@@ -44,6 +48,60 @@ this.username=this.userservice.user.username
     this.uiservice.editprofilemodal$.next(true)
   }
 
+
+  navigatetofavoriteproduct(productid:string,storeid:string){
+
+    if(this.disablenav==true) return
+    this.router.navigateByUrl(`/product/${productid}/store/${storeid}`)
+  }
+
+  disablenavigation(){
+    this.disablenav=true
+      }
+      enablenavigation(){
+        this.disablenav=false
+
+      }
+  removefromfavorite(productid:string){
+
+    this.userservice.viewmodal$.next(true)
+    this.userservice.modalmessage='removing product'
+
+    this.productservice.removeproductfromfavorites(productid).pipe(
+      //delay(3000),
+      catchError((err:HttpErrorResponse)=>{ return of({errormessage:'an error occured try agin later',errorlog:err.message})}),
+      tap((res:any)=>{
+        if(res.message) {
+
+          const indexofremovedproduct=this.productservice.favoriteproducts$.value.map(prod=> prod._id.toString()).indexOf(productid)
+
+          if(indexofremovedproduct!=-1)this.productservice.favoriteproducts$.value.splice(indexofremovedproduct,1)
+          this.myfavoriteproducts$=this.productservice.favoriteproducts
+          this.removeproductcomplete(res.message);
+        }
+        if(res.errormessage){
+          this.removeproductcomplete(res.errormessage);
+
+        }
+
+      }),
+
+      takeUntil(this.destroy$)
+    ).
+    subscribe()
+
+  }
+
+removeproductcomplete(message:string){
+this.userservice.modalmessage=message
+this.userservice.spinnerstate=false
+setTimeout(() => {
+  this.userservice.viewmodal$.next(false)
+
+this.userservice.spinnerstate=true
+
+}, 2000);
+}
 
   closemodal(){
     this.uiservice.editprofilemodal$.next(false)

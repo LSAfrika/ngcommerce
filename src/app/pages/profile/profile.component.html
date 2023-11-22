@@ -30,9 +30,9 @@
 
     <div class="sectioncontainer">
 
-        <div *ngFor="let item of fav" class="productviewcontainer ">
+        <div *ngFor="let item of fav" class="productviewcontainer " (click)="navigatetofavoriteproduct(item._id,item.store._id)">
 
-          <div class="favbtn">remove</div>
+          <div (mouseenter)="disablenavigation()" (mouseleave)="enablenavigation()" (click)="removefromfavorite(item._id)" class="favbtn">remove</div>
             <div class="productavatar" [style]="{ 'background-image': 'url(http://localhost:3000/' + item.productimages[0] + ')' }"></div>
             <div class="description">
                 <div class="productname">{{item.productname}}</div>
