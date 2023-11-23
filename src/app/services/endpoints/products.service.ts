@@ -1,9 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { ThisReceiver } from '@angular/compiler';
 import { Injectable, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, EMPTY, map, Observable, of, switchMap } from 'rxjs';
-import {  tap} from "rxjs/operators";
+import {  catchError, tap} from "rxjs/operators";
 import { Product } from 'src/app/interfaces/product';
+import { Store } from 'src/app/interfaces/store.interface';
 import { BrandsandcategoriesService } from '../frontendservices/brandsandcategories.service';
 import { IndexRoutesService } from './index.routes.service';
 
@@ -21,6 +23,7 @@ export class ProductsService {
   category='all'
   FETCH_CATEGORY_PRODUCTS_URL=`http://localhost:3000/api/v1/products/getallproductscategory?`
   favoriteproducts$=new BehaviorSubject<Product[]>([])
+
   private productendpoints=inject(IndexRoutesService)
   private activeroute=inject(ActivatedRoute)
   private categoryservice=inject(BrandsandcategoriesService)

@@ -32,7 +32,7 @@
 
         <div *ngFor="let item of fav" class="productviewcontainer " (click)="navigatetofavoriteproduct(item._id,item.store._id)">
 
-          <div (mouseenter)="disablenavigation()" (mouseleave)="enablenavigation()" (click)="removefromfavorite(item._id)" class="favbtn">remove</div>
+          <div (mouseenter)="disablenavigation()" (mouseleave)="enablenavigation()" (click)="removeproductfromfavorite(item._id)" class="favbtn">remove</div>
             <div class="productavatar" [style]="{ 'background-image': 'url(http://localhost:3000/' + item.productimages[0] + ')' }"></div>
             <div class="description">
                 <div class="productname">{{item.productname}}</div>
@@ -54,20 +54,31 @@
 
     </ng-container>
     <ng-container *ngIf="uiservice.togglemenu$.value==false">
-
+      <ng-container *ngIf="myfavoritestores$|async as fav">
+        <ng-container *ngIf="fav.length>0;else emptystores" >
         <div class="sectioncontainer">
 
-            <div *ngFor="let item of [].constructor(5)"  class="productviewcontainer ">
-                <div class="productavatar"></div>
-                <div class="description">
-                    <div class="name">wills electronics</div>
-                    <div class="category"></div>
-                </div>
-                <div class="views"></div>
-                <div class="mostviewed"></div>
-                <div class="salesview"></div>
-            </div>
+          <div *ngFor="let store of fav" class="productviewcontainer productviewcontainerstore " (click)="navigatetofavoritestore(store._id)">
+
+              <div class="productavatar" [style]="{ 'background-image': 'url(http://localhost:3000/' + store.storeimage + ')' }"></div>
+              <div class="description descriptionstoreheight" >
+                  <div class="productname">{{store.storename}}</div>
+                  <!-- <div class="category">{{store.storename}}</div> -->
+            <div (mouseenter)="disablenavigation()" (mouseleave)="enablenavigation()" (click)="removestorefromfavorite(store._id)" class="favbtn ">remove</div>
+
+              </div>
+              <!-- <div class="views"></div>
+              <div class="mostviewed"></div>
+              <div class="salesview"></div> -->
+          </div>
         </div>
+      </ng-container>
+      <ng-template #emptystores>
+        <div class=""></div>
+                  <div class="my-auto text-lg font-semibold text-teal-600">you don't have any stores saved</div>
+
+                </ng-template>
+    </ng-container>
     </ng-container>
 
 

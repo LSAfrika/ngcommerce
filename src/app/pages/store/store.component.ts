@@ -44,7 +44,7 @@ this.productservice.resetstorepagination()
 console.log('current array value:',this.productservice.products$.value);
 
 
-// this.storeproducts$.subscribe(console.log)
+// this.storeproducts$.subscribe()
 
 }
 fetchmorestoreproducts(){

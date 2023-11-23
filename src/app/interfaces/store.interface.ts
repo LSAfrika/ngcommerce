@@ -2,7 +2,7 @@ export interface Store {
 _id:string
 storename:string
 storeimage:string
-membersince:number
+membersince?:number
 productcount?:number
 
 }

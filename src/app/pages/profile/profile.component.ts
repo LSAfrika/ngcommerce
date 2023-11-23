@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { catchError, delay, of, Subject, takeUntil, tap } from 'rxjs';
 import { User } from 'src/app/interfaces/user.interface';
 import { ProductsService } from 'src/app/services/endpoints/products.service';
+import { StoreService } from 'src/app/services/endpoints/store.service';
 import { UserService } from 'src/app/services/endpoints/user.service';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
 
@@ -17,6 +18,7 @@ export class ProfileComponent {
   public uiservice=inject(UiService)
 public userservice=inject(UserService)
 public productservice=inject(ProductsService)
+public storeservice=inject(StoreService)
 public router=inject(Router)
 username=''
 imagesrcurl=''
@@ -27,6 +29,7 @@ previewsource=false
 updateform=new FormData()
 destroy$=new Subject<void>()
 myfavoriteproducts$=this.productservice.favoriteproducts
+myfavoritestores$=this.storeservice.favoritestores
 disablenav=false
 
 
@@ -54,15 +57,19 @@ this.username=this.userservice.user.value?.username||''
     if(this.disablenav==true) return
     this.router.navigateByUrl(`/product/${productid}/store/${storeid}`)
   }
+  navigatetofavoritestore(storeid:string){
+    if(this.disablenav==true) return
 
+    this.router.navigateByUrl(`/store?storeid=${storeid}`)
+  }
   disablenavigation(){
     this.disablenav=true
       }
-      enablenavigation(){
-        this.disablenav=false
+  enablenavigation(){
+    this.disablenav=false
 
-      }
-  removefromfavorite(productid:string){
+  }
+  removeproductfromfavorite(productid:string){
 
     this.userservice.viewmodal$.next(true)
     this.userservice.modalmessage='removing product'
@@ -77,6 +84,39 @@ this.username=this.userservice.user.value?.username||''
 
           if(indexofremovedproduct!=-1)this.productservice.favoriteproducts$.value.splice(indexofremovedproduct,1)
           this.myfavoriteproducts$=this.productservice.favoriteproducts
+          this.removeproductcomplete(res.message);
+        }
+        if(res.errormessage){
+          this.removeproductcomplete(res.errormessage);
+
+        }
+
+      }),
+
+      takeUntil(this.destroy$)
+    ).
+    subscribe()
+
+  }
+
+  removestorefromfavorite(storeid:string){
+
+    this.userservice.viewmodal$.next(true)
+    this.userservice.modalmessage='removing store'
+
+    this.storeservice.removeaddstorefromfavorites(storeid).pipe(
+      //delay(3000),
+      catchError((err:HttpErrorResponse)=>{ return of({errormessage:'an error occured try agin later',errorlog:err.message})}),
+      tap((res:any)=>{
+        if(res.message) {
+
+          const indexofremovedstore=this.storeservice.favoritestores$.value.map(store=> store._id.toString()).indexOf(storeid)
+
+          console.log('current store index:',indexofremovedstore);
+
+          if(indexofremovedstore!=-1)this.storeservice.favoritestores$.value.splice(indexofremovedstore,1)
+          this.myfavoritestores$=this.storeservice.favoritestores
+
           this.removeproductcomplete(res.message);
         }
         if(res.errormessage){
@@ -218,4 +258,6 @@ if(res.updateuser){
 
     }, 2000);
   }
+
+
 }
