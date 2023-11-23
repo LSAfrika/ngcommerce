@@ -125,7 +125,7 @@ appenddatatoform(){
  this.productservice.postproduct().pipe(
 tap(()=> {alert('product created successfully'),this.newproductcreatedevent();this.closemodal();this.createproductform()} ),takeUntil(this.destroy$)
 
- ).subscribe(console.log)
+ ).subscribe()
 }
 
 appendupdatedatatoform(){
@@ -148,11 +148,11 @@ this.productservice.updateproduct$.next(true)
   }),
   takeUntil(this.destroy$)
   ).
-  subscribe(console.log)
+  subscribe()
 //  this.productservice.postproduct().pipe(
 // tap(()=> {alert('product updated successfully'),this.newproductcreatedevent();this.closemodal();this.createproductform()} ),takeUntil(this.destroy$)
 
-//  ).subscribe(console.log)
+//  ).subscribe()
 }
 
 completedupdatingproduct(){

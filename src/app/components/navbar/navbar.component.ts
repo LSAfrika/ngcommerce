@@ -28,7 +28,7 @@ export class NavbarComponent {
        const tokendata=token?.split('.')[1]||''
         const user:User= JSON.parse(atob(tokendata))
         this.userservice.user.next(user)
-console.log('admin check json',this.userservice.user)
+// console.log('admin check json',this.userservice.user.value)
         if(user.vendor==true) return true
         return false;
    }
@@ -54,6 +54,8 @@ console.log('admin check json',this.userservice.user)
 
       localStorage.removeItem('ecomtoken')
 this.userservice.user.next(undefined)
+console.log('user on logout',this.userservice.user.value);
+
       this.uiservice.navbar$.next(!!localStorage.getItem('ecomtoken'))
       if(this.uiservice.logintredirectroute =='/profile'){
 

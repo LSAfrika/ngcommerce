@@ -23,7 +23,7 @@ export class ProductComponent {
   private frontendcartservice=inject(FrontEndCartService)
   private brandcategoryservice=inject(BrandsandcategoriesService)
   public userservice=inject(UserService)
-  public fav=''
+  public fav='loading...'
   public uiservice=inject(UiService)
   public backendproductservice=inject(ProductsService)
   public frontendproductservice=inject(ProductService)
@@ -48,7 +48,7 @@ this.checkiffavorited()
   checkiffavorited(){
     const productid=this.router.url.split('/')[2]
     setTimeout(() => {
-   console.log('check function triggered and user',this.userservice.user.value);
+  //  console.log('check function triggered and user',this.userservice.user.value);
    if(this.userservice.user!=undefined){
     this.backendproductservice.checkiffovorited(productid).pipe(
 tap((res:any)=>{
@@ -62,8 +62,8 @@ takeUntil(this.destroy$)
     ).subscribe()
   }
 
- }, 1000);
-console.log('time out complete');
+ }, 500);
+// console.log('time out complete');
 
 
   }

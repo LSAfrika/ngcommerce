@@ -4,6 +4,7 @@ import { Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { StoreService } from 'src/app/services/endpoints/store.service';
 import { delay, of } from 'rxjs';
+import { UiService } from 'src/app/services/frontendservices/ui.service';
 
 @Component({
   selector: 'app-store',
@@ -15,6 +16,7 @@ export class StoreComponent {
   private activeroute=inject(ActivatedRoute)
   public productservice=inject(ProductsService)
   private storeservice=inject(StoreService)
+  public uiservice=inject(UiService)
 
   storedetails$
   storeproducts$
@@ -42,7 +44,7 @@ this.productservice.resetstorepagination()
 console.log('current array value:',this.productservice.products$.value);
 
 
-this.storeproducts$.subscribe(console.log)
+// this.storeproducts$.subscribe(console.log)
 
 }
 fetchmorestoreproducts(){

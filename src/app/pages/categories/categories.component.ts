@@ -27,7 +27,7 @@ constructor(){
 // console.log(this.productservice.categoriesurl)
 this.categoryproduct$=this.productservice.viewcategoryproducts
 
-// this.productservice.viewcategoryproducts.subscribe(console.log)
+// this.productservice.viewcategoryproducts.subscribe()
 
 }
 

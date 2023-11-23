@@ -17,6 +17,11 @@
       </ul>
     </div>
 
+    <ng-container *ngIf="currentlocation =='/store'">
+
+      <button *ngIf="userservice.user.value!=undefined" (click)="addremovestorefromfavorites()" class="favbtn">{{fav}}</button>
+
+    </ng-container>
     <!-- <div *ngIf="uiservice.brandspanel.value==true" class="brandspanel brandspositioning"
     [ngClass]="{categoriespagepositioning:urlpage=='/categories'||urlpage=='/brands'}">
 
