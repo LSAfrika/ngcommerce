@@ -101,6 +101,15 @@ div{
 
 }
 
+.cartpanelnav{
+  @apply w-full min-h-[50px] absolute bottom-0 bg-red-500 flex justify-center items-stretch;
+  button{
+    @apply flex-grow bg-white text-teal-500
+  }
+  .activebtn{
+    @apply bg-teal-500 text-white font-semibold
+  }
+}
 
 .close{
   @apply absolute w-5 h-5  bg-teal-500 right-0 top-[45%] translate-y-[-50%] cursor-pointer rounded-full fill-white

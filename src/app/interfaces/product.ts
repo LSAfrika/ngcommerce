@@ -24,7 +24,7 @@ export interface producttocart{
 
 export interface Dashboard{
   productcount:number
-stockbalance:number
+  stockbalance:number
   totalviews: number,
   totalsales: number,
   soldproducts: number

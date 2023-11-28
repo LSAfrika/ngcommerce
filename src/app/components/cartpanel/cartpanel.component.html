@@ -67,8 +67,12 @@
     </div>
   </div>
 </ng-container>
-</div>
+<div class="cartpanelnav">
 
+  <button>cart</button>
+  <button>orders</button>
+</div>
+</div>
 </div>
 
 <app-globalmodal *ngIf="uiservice.globalmodalcart$.value==true" [modalmessage]="modalmessage"
