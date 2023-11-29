@@ -59,8 +59,8 @@ div{
       pr-8
      }
      .checkoutcart{
-        @apply mt-5 w-full min-h-[50px] bg-teal-500 text-sm font-bold text-white px-2 flex items-center justify-center rounded-full
-        max-w-[200px] mx-auto
+        @apply mt-5 w-full min-h-[40px] bg-teal-600 text-sm font-bold text-white px-2 flex items-center justify-center rounded-sm
+         mx-auto
 
      }
    }
@@ -101,8 +101,52 @@ div{
 
 }
 
+.orderscontainer{
+  @apply w-full h-[calc(100vh-110px)] max-h-[calc(100vh-110px)] px-[10px]
+  overflow-y-scroll scrollbar-thin  flex flex-col justify-start
+  py-1
+  items-center;
+
+
+
+
+.sectiontitle{
+  @apply w-full min-h-[40px] bg-teal-500 flex justify-start items-center text-white text-sm text-left font-bold px-2 uppercase;
+
+}
+
+
+
+.completedorders,.ongoingorders{
+  @apply w-full min-h-fit py-[10px]   flex flex-col justify-start items-center gap-[10px] ;
+.nocompleteorders,.noongoingorders{
+  @apply text-teal-600 text-lg font-semibold  my-auto min-h-[300px] flex justify-center items-center
+}
+
+}
+
+.orderdetail{
+  @apply w-full min-h-[60px] bg-white flex justify-center items-start flex-col h-fit text-slate-900 px-2  relative;
+
+ .ordernumber{
+  @apply text-sm font-semibold
+ }
+  .orderststatus{
+    @apply text-sm font-semibold text-teal-600
+  }
+
+
+  .vieworder{
+    @apply text-xs font-semibold min-w-[75px] absolute top-[50%] translate-y-[-50%] right-2 bg-white text-teal-600 rounded-full
+    border-2 border-teal-500 py-1 hover:bg-teal-500 hover:text-white
+  }
+
+
+}
+}
+
 .cartpanelnav{
-  @apply w-full min-h-[50px] absolute bottom-0 bg-red-500 flex justify-center items-stretch;
+  @apply w-full min-h-[50px] absolute bottom-0 bg-red-200 flex justify-center items-stretch;
   button{
     @apply flex-grow bg-white text-teal-500
   }

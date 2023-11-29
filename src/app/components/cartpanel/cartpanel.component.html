@@ -7,6 +7,7 @@
 </div>
 
 <!-- *ngIf="cartservice.activecart$.value.length==0" -->
+<ng-container *ngIf="cartservice.cartactivesection$.value=='cart'">
 <ng-container *ngIf="componentcart$|async as cart" >
    <!-- {{cart|json}} -->
 <ng-container *ngIf="cart.products.length==0" >
@@ -55,6 +56,44 @@
 </ng-container>
 
 </ng-container>
+</ng-container>
+<ng-container *ngIf="cartservice.cartactivesection$.value=='orders'">
+<div class="orderscontainer">
+
+  <div class="sectiontitle"><span>completed orders</span></div>
+
+<div class="completedorders">
+  <!-- <div class="nocompleteorders">no completed orders</div> -->
+  <div class="orderdetail" *ngFor="let item of [].constructor(5);let i=index">
+    <div class="ordernumber">order: {{i}}-well-2022-12-01</div>
+    <div class="orderststatus">completed</div>
+    <button class="vieworder"> details</button>
+
+    </div>
+</div>
+<div class="sectiontitle"><span>ongoing orders</span></div>
+<div class="ongoingorders">
+  <div class="orderdetail" *ngFor="let item of [].constructor(3);let i=index">
+    <div class="ordernumber">order: {{i}}-well-2022-12-01</div>
+    <div class="orderststatus">in progress</div>
+    <button class="vieworder"> details</button>
+
+    </div>
+  <!-- <div class="noongoingorders">
+    <span>no ongoing orders</span>
+  </div> -->
+
+
+</div>
+
+
+
+</div>
+<!--  -->
+
+
+
+</ng-container>
 <ng-container *ngIf="uiservice.cartpaneldeleteoverlay$.value==true" >
   <div class="overlay">
     <div class="deletemodal">
@@ -69,8 +108,8 @@
 </ng-container>
 <div class="cartpanelnav">
 
-  <button>cart</button>
-  <button>orders</button>
+  <button (click)="cartactivesection('cart')" [ngClass]="{activebtn:cartservice.cartactivesection$.value=='cart'}">cart</button>
+  <button (click)="cartactivesection('orders')" [ngClass]="{activebtn:cartservice.cartactivesection$.value=='orders'}">orders</button>
 </div>
 </div>
 </div>

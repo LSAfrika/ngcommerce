@@ -34,6 +34,10 @@ ngOnDestroy(){
 }
 
 
+cartactivesection(section:string){
+  this.cartservice.cartactivesection$.next(section)
+}
+
 
   reducequantity(i:number,productid:string){
     this.decreaseproduct++
