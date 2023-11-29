@@ -44,7 +44,7 @@ div{
 
 .cartfull{
   @apply w-full
-  max-w-[350px]
+  max-w-[360px]
    gap-5  h-[calc(100vh-60px)]
    flex justify-start
    items-center flex-col
@@ -102,7 +102,7 @@ div{
 }
 
 .orderscontainer{
-  @apply w-full h-[calc(100vh-110px)] max-h-[calc(100vh-110px)] px-[10px]
+  @apply w-full h-[calc(100vh-110px)] max-h-[calc(100vh-110px)] px-[10px] max-w-[400px]
   overflow-y-scroll scrollbar-thin  flex flex-col justify-start
   py-1
   items-center;
@@ -156,7 +156,7 @@ div{
 }
 
 .close{
-  @apply absolute w-5 h-5  bg-teal-500 right-0 top-[45%] translate-y-[-50%] cursor-pointer rounded-full fill-white
+  @apply absolute w-5 h-5  bg-teal-500 right-[10px] top-[45%] translate-y-[-50%] cursor-pointer rounded-full fill-white
 }
 @keyframes opencart {
 

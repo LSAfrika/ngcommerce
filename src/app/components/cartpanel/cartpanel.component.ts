@@ -34,6 +34,10 @@ ngOnDestroy(){
 }
 
 
+openordermodal(){
+  this.cartservice.vieworderdetails$.next(true)
+}
+
 cartactivesection(section:string){
   this.cartservice.cartactivesection$.next(section)
 }

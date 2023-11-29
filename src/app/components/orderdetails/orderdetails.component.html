@@ -1,0 +1,34 @@
+<div class="orderdetails">
+  <div class="detailsmodal">
+
+    <svg (click)="closemodal()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="close" style="fill: rgba(20 184 166);"><path _ngcontent-pei-c16="" d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
+
+    <div class="nav">
+      <div>product</div>
+      <div>quantity</div>
+      <div>total</div>
+    </div>
+    <div class="completeorder">
+
+<div class="product" *ngFor="let item of [].constructor(5); let i=index">
+<div class="productname">{{i+1}}. sony shake dav 6000 lts 100d</div>
+<div class="quantity">1</div>
+<div class="totalprice">ksh 125,000</div>
+</div>
+<div class="shipping shippinggap">
+  <span class="spantext">shipping cost:</span>
+  <span>2500</span>
+</div>
+
+<div class="total">
+  <span class="spantext">total cost:</span>
+  <span >127,500</span>
+</div>
+<div class="status">
+  <span class="spantext">status:</span>
+  <span >completed</span>
+</div>
+</div>
+<div class="ongoingorder"></div>
+  </div>
+</div>

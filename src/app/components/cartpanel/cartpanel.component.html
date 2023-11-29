@@ -67,7 +67,7 @@
   <div class="orderdetail" *ngFor="let item of [].constructor(5);let i=index">
     <div class="ordernumber">order: {{i}}-well-2022-12-01</div>
     <div class="orderststatus">completed</div>
-    <button class="vieworder"> details</button>
+    <button class="vieworder" (click)="openordermodal()"> details</button>
 
     </div>
 </div>
@@ -113,6 +113,8 @@
 </div>
 </div>
 </div>
+
+<app-orderdetails *ngIf="cartservice.vieworderdetails$.value==true"></app-orderdetails>
 
 <app-globalmodal *ngIf="uiservice.globalmodalcart$.value==true" [modalmessage]="modalmessage"
 [spinnerstate]="uiservice.modalspinner$.value"

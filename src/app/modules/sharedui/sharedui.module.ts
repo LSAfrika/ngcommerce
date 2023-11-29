@@ -13,6 +13,7 @@ import { CartpanelComponent } from '../../components/cartpanel/cartpanel.compone
 import { GlobalmodalComponent } from '../../components/globalmodal/globalmodal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterComponent } from '../../components/filter/filter.component';
+import { OrderdetailsComponent } from '../../components/orderdetails/orderdetails.component';
 
 
 
@@ -28,7 +29,8 @@ import { FilterComponent } from '../../components/filter/filter.component';
     ProductComponent,
     CartpanelComponent,
     GlobalmodalComponent,
-    FilterComponent
+    FilterComponent,
+    OrderdetailsComponent
   ],
   imports: [
     CommonModule,RouterModule,ReactiveFormsModule
@@ -43,7 +45,7 @@ import { FilterComponent } from '../../components/filter/filter.component';
     CategoryComponent,
     ProductComponent,
     CartpanelComponent,
-    GlobalmodalComponent,FilterComponent
+    GlobalmodalComponent,FilterComponent,OrderdetailsComponent
   ]
 })
 export class ShareduiModule { }
