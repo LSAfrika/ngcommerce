@@ -146,7 +146,7 @@ div{
 }
 
 .cartpanelnav{
-  @apply w-full min-h-[50px] absolute bottom-0 bg-red-200 flex justify-center items-stretch;
+  @apply w-full min-h-[50px] absolute bottom-0 bg-red-200 flex justify-center items-stretch max-w-[385px] md:max-w-full;
   button{
     @apply flex-grow bg-white text-teal-500
   }
