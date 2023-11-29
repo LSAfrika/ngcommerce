@@ -87,7 +87,7 @@ text-lg text-teal-600
 }
 .addtocart{
   @apply w-full min-h-[50px]  flex
-  justify-center mb-3 gap-10 items-center
+  justify-center mb-3 gap-5 sm:gap-10 items-center
   md:justify-start
 ;
   .quantity{
@@ -105,13 +105,13 @@ span{
 }
   }
 .addproduct{
-  @apply min-w-[100px] text-sm
+  @apply min-w-[100px] text-xs
   text-white
   font-bold bg-slate-950 p-2 px-4
   rounded-full pb-2
 }
 .fav{
-  @apply bg-teal-600
+  @apply bg-teal-600 truncate mr-0
 }
 }
 .store{
