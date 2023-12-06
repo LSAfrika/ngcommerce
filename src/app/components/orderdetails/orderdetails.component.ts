@@ -1,4 +1,5 @@
-import { Component ,inject} from '@angular/core';
+import { Component ,inject, Input} from '@angular/core';
+import { Carthistory, productincart } from 'src/app/interfaces/cart';
 import { FrontEndCartService } from 'src/app/services/frontendservices/cart.service';
 
 @Component({
@@ -10,7 +11,12 @@ export class OrderdetailsComponent {
 
 
   cartservice=inject(FrontEndCartService)
+  @Input()carthistory!:productincart
 
+  ngOnInit(){
+    console.log(this.carthistory);
+
+  }
   closemodal(){
     this.cartservice.vieworderdetails$.next(false)
   }

@@ -9,25 +9,31 @@
       <div>total</div>
     </div>
     <div class="completeorder">
-
-<div class="product" *ngFor="let item of [].constructor(5); let i=index">
-<div class="productname">{{i+1}}. sony shake dav 6000 lts 100d</div>
-<div class="quantity">1</div>
-<div class="totalprice">ksh 125,000</div>
+<ng-container *ngIf="carthistory!=undefined">
+  <!-- {{carthistory|json}} -->
+<div class="product" *ngFor="let product of carthistory.products; let i=index">
+<div class="productname">{{product.product.productname}}</div>
+<div class="quantity">{{product.quantity}}</div>
+<div class="totalprice">{{product.sumtotal}}</div>
 </div>
 <div class="shipping shippinggap">
+  <span class="spantext">product cost:</span>
+  <span>{{carthistory.totalprice}}</span>
+</div>
+<div class="shipping ">
   <span class="spantext">shipping cost:</span>
   <span>2500</span>
 </div>
 
 <div class="total">
   <span class="spantext">total cost:</span>
-  <span >127,500</span>
+  <span >{{carthistory.totalprice +2500}}</span>
 </div>
 <div class="status">
   <span class="spantext">status:</span>
   <span >completed</span>
 </div>
+</ng-container>
 </div>
 <div class="ongoingorder"></div>
   </div>
