@@ -30,8 +30,8 @@
   <span >{{carthistory.totalprice +2500}}</span>
 </div>
 <div class="status">
-  <span class="spantext">status:</span>
-  <span >completed</span>
+  <span class="spantext">completed:</span>
+  <span > {{carthistory.timestamp|date:'longDate'}} at {{carthistory.timestamp|date:'shortTime'}}</span>
 </div>
 </ng-container>
 </div>

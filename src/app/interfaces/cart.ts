@@ -40,6 +40,8 @@ export interface Carthistory{
 export interface productincart {
   products:[productarray]
   totalprice:number
+  timestamp:number
+
   _id:string
 }
 

@@ -1,7 +1,7 @@
 <div class="cart">
 <div class="panel" [ngClass]="{opencart:uiservice.cartpanel$.value==true}">
 <div class="name">
-  <svg (click)="cartservice.closecartpanel()" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z"></path></svg>
+  <svg (click)="closecartpanel()" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z"></path></svg>
 
   <div>My Cart</div>
 </div>
@@ -69,7 +69,8 @@
 
       <div class="orderdetail" *ngFor="let cart of completedcart.completedcarts;let i=index">
       <div class="ordernumber">order: {{cart._id}}</div>
-      <div class="orderststatus">completed</div>
+      <!-- <div class="orderststatus">completed </div> -->
+      <div class="orderststatus">{{cart.timestamp|date:'shortTime'}}-{{cart.timestamp|date:'mediumDate'}}</div>
       <button class="vieworder" (click)="openordermodal(i)"> details</button>
 
       </div>

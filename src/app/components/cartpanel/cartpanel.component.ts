@@ -74,6 +74,10 @@ openordermodal(i:number){
 
 }
 
+closecartpanel(){
+  this.cartservice.closecartpanel()
+  this.cartactivesection('cart')
+}
 cartactivesection(section:string){
   this.cartservice.cartactivesection$.next(section)
 
