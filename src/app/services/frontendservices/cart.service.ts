@@ -1,6 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable,inject } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
-import { Cart, cartupdatetransporter } from 'src/app/interfaces/cart';
+import { BehaviorSubject, catchError, EMPTY, map, Observable } from 'rxjs';
+import { Cart, Carthistory, cartupdatetransporter } from 'src/app/interfaces/cart';
 import { Product, producttocart } from '../../interfaces/product';
 import { IndexRoutesService } from '../endpoints/index.routes.service';
 import { UiService } from './ui.service';
@@ -16,6 +17,7 @@ export class FrontEndCartService {
 
 cartactivesection$=new BehaviorSubject<string>('cart')
 vieworderdetails$=new BehaviorSubject<boolean>(false)
+carthistory$!:BehaviorSubject<Carthistory>
 activecart$!: BehaviorSubject<Cart>
 
   totalamount=0
@@ -39,6 +41,11 @@ activecart$!: BehaviorSubject<Cart>
 
       }
 
+      get completedorders():Observable<Carthistory>{
+
+        const carthistoryurl=this.ROOT_CART_URL+'completedorders'
+        return this.indexendpoints.GETSINGLE(carthistoryurl)
+      }
 
       updatecart(updatedata:cartupdatetransporter){
         const cartupdateurl= this.ROOT_CART_URL+'updatecart'

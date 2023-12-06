@@ -29,3 +29,30 @@ export interface cartupdatetransporter{
     }
   ]
 }
+
+export interface Carthistory{
+  _id:string
+  cartowner:string
+  completedcarts:[productincart]
+
+}
+
+export interface productincart {
+  products:[productarray]
+  totalprice:number
+  _id:string
+}
+
+
+interface productarray{
+  product:{
+    _id:string
+  productname:string
+  productprice:number
+  category:string
+  },
+  _id:string
+  quantity:number
+  sumtotal:number
+
+}
