@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { of, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, map, Observable, of, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { FrontEndCartService } from 'src/app/services/frontendservices/cart.service';
 import { CartService } from 'src/app/services/endpoints/cart.service';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
-import { Cart, cartupdatetransporter } from 'src/app/interfaces/cart';
+import { Cart, Carthistory, cartupdatetransporter,productincart } from 'src/app/interfaces/cart';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-cartpanel',
@@ -19,9 +20,19 @@ export class CartpanelComponent {
   totalamount=0
   increaseproduct=0
   decreaseproduct=0
+  orderdetails!:productincart
 destroy$=new Subject<void>()
 componentcart$=this.cartservice.fetchcart$
+completedcarts$=this.cartservice.completedorders.pipe(catchError((err:HttpErrorResponse)=>{
+  console.log('error while fetch completed cart:\n',err.message);
+  return EMPTY
 
+}),
+tap(res=>{
+  if(this.cartservice.carthistory$ == undefined) this.cartservice.carthistory$=new BehaviorSubject<Carthistory>(res)
+  ,console.log('cart subject in tap: ',this.cartservice.carthistory$.value)})
+)
+// completedcarts$=this.carthistorycachecontroller
 modalmessage=' placeholder'
 productid=''
 constructor(){
@@ -29,17 +40,45 @@ constructor(){
 
 }
 
+ngOnInit(){
+   this.cartservice.completedorders.subscribe(res=>console.log('cart history detail',res))
+ // this.completedcarts$.subscribe(console.log)
+// this.cartservice.carthistory$==undefined ? console.log('carthistory is undefined'): console.log(this.cartservice.carthistory$.value);
+
+}
+
+
+get carthistorycachecontroller():Observable<Carthistory>{
+
+  let carthistory$!:Observable<Carthistory>
+  if( this.cartservice.carthistory$!==undefined) {carthistory$= this.cartservice.carthistory$.asObservable()}
+
+  if( this.cartservice.carthistory$==undefined){
+console.log('history undefined');
+
+    carthistory$=this.cartservice.completedorders.pipe(tap((res:Carthistory)=>{ this.cartservice.carthistory$.next(res)}))
+  }
+
+  return carthistory$
+}
+
 ngOnDestroy(){
   this.destroy$.next()
 }
 
 
-openordermodal(){
+openordermodal(i:number){
   this.cartservice.vieworderdetails$.next(true)
+  this.orderdetails=this.cartservice.carthistory$?.value.completedcarts[i]
+  console.log('order to view',this.orderdetails);
+
 }
 
 cartactivesection(section:string){
   this.cartservice.cartactivesection$.next(section)
+
+  // console.log('cart history Bsubject: ',this.cartservice.carthistory$.value);
+
 }
 
 

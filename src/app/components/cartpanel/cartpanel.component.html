@@ -63,15 +63,28 @@
   <div class="sectiontitle"><span>completed orders</span></div>
 
 <div class="completedorders">
-  <!-- <div class="nocompleteorders">no completed orders</div> -->
-  <div class="orderdetail" *ngFor="let item of [].constructor(5);let i=index">
-    <div class="ordernumber">order: {{i}}-well-2022-12-01</div>
-    <div class="orderststatus">completed</div>
-    <button class="vieworder" (click)="openordermodal()"> details</button>
+  <ng-container *ngIf="completedcarts$|async as completedcart; else nocompleteorder ">
 
-    </div>
+    <ng-template ngIf="completedcart.completedcarts>0 else nocompleteorder">
+
+      <div class="orderdetail" *ngFor="let cart of completedcart.completedcarts;let i=index">
+      <div class="ordernumber">order: {{cart._id}}</div>
+      <div class="orderststatus">completed</div>
+      <button class="vieworder" (click)="openordermodal(i)"> details</button>
+
+      </div>
+    </ng-template>
+
+
+
+  </ng-container>
+
+  <ng-template #nocompleteorder>
+    <div class="nocompleteorders">no completed orders</div>
+
+      </ng-template>
 </div>
-<div class="sectiontitle"><span>ongoing orders</span></div>
+<!-- <div class="sectiontitle"><span>ongoing orders</span></div>
 <div class="ongoingorders">
   <div class="orderdetail" *ngFor="let item of [].constructor(3);let i=index">
     <div class="ordernumber">order: {{i}}-well-2022-12-01</div>
@@ -79,12 +92,12 @@
     <button class="vieworder"> details</button>
 
     </div>
-  <!-- <div class="noongoingorders">
+  <div class="noongoingorders">
     <span>no ongoing orders</span>
-  </div> -->
+  </div>
 
 
-</div>
+</div> -->
 
 
 
@@ -114,7 +127,7 @@
 </div>
 </div>
 
-<app-orderdetails *ngIf="cartservice.vieworderdetails$.value==true"></app-orderdetails>
+<app-orderdetails *ngIf="cartservice.vieworderdetails$.value==true"[carthistory]="this.orderdetails"></app-orderdetails>
 
 <app-globalmodal *ngIf="uiservice.globalmodalcart$.value==true" [modalmessage]="modalmessage"
 [spinnerstate]="uiservice.modalspinner$.value"
