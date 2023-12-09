@@ -27,6 +27,7 @@ export class ProductComponent {
   public uiservice=inject(UiService)
   public backendproductservice=inject(ProductsService)
   public frontendproductservice=inject(ProductService)
+
   public router=inject(Router)
   productid=''
   storeid=''
@@ -101,6 +102,7 @@ takeUntil(this.destroy$)
       return this.frontendcartservice.fetchcart$
      }),tap(res=>{console.log('cart updated:',res);
 
+     if(res)this.frontendcartservice.cartproductcount$.next(res.products.length)
      this.frontendproductservice.productcount$.next(1);this.resetmodal() }),takeUntil(this.destroy$)).subscribe()
 
   }

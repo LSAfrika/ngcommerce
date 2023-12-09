@@ -137,6 +137,7 @@ this.cartupdate(cartproducts)
     this.cartservice.updatecart(cartproducts).pipe(
       tap((res:Cart)=>{this.componentcart$=of(res);
         this.modalmessage='cart updated'
+console.log('cart update up:',res);
 
         this.uiservice.modalspinner$.next(false)
 
@@ -174,6 +175,7 @@ this.cartservice.removecartitem(this.productid).pipe(
 
     this.componentcart$=of(cart)
     this.modalmessage=' product deleted successfully'
+    this.cartservice.cartproductcount$.next(cart.products.length)
     this.uiservice.modalspinner$.next(false)
     setTimeout(() => {
       this.uiservice.globalmodalcart$.next(false)

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable, of,Subject,takeUntil,tap } from 'rxjs';
 import { User } from 'src/app/interfaces/user.interface';
 import { UserService } from 'src/app/services/endpoints/user.service';
 import { FrontEndCartService } from 'src/app/services/frontendservices/cart.service';
@@ -16,6 +16,7 @@ export class NavbarComponent {
   public userservice=inject(UserService)
   public cartservice=inject(FrontEndCartService)
   public router=inject(Router)
+  destroy$=new Subject<void>()
   public cartcount$:Observable<number>=this.cartservice.fetchcart$.pipe(map((cart)=>{ return cart.products.length}))
  public isVendor$=
 
@@ -38,8 +39,17 @@ export class NavbarComponent {
     console.log(   this.uiservice.logintredirectroute)
    console.log(  'nav being created' )
 
-  }
+   this.cartservice.fetchcart$.pipe(map((cart)=>{ return cart.products.length}),
+   tap((cartlength:number)=>this.cartservice.cartproductcount$.next(cartlength)),
+   takeUntil(this.destroy$))
+   .subscribe(()=>console.log('value from bs cartcount ',this.cartservice.cartproductcount$.value));
 
+
+  }
+ngOnDestroy(){
+  this.destroy$.next()
+  this.destroy$.complete()
+}
   opensidenav(){
     this.uiservice.sidenav$.next(true)
   }

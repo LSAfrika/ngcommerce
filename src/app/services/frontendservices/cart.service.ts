@@ -17,6 +17,7 @@ export class FrontEndCartService {
 
 cartactivesection$=new BehaviorSubject<string>('cart')
 vieworderdetails$=new BehaviorSubject<boolean>(false)
+cartproductcount$=new BehaviorSubject(0)
 carthistory$!:BehaviorSubject<Carthistory>
 activecart$!: BehaviorSubject<Cart>
 

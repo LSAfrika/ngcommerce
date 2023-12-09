@@ -83,7 +83,7 @@ div{
 }
 
 .overlay{
-  @apply w-full fixed top-0 min-h-screen bg-black/30 flex  justify-center items-center;
+  @apply w-full fixed top-0 min-h-screen bg-black/30 flex  justify-center items-center z-[300];
   .deletemodal{
     @apply min-h-[150px] min-w-[300px] rounded-lg bg-white flex flex-col text-lg font-bold justify-center items-center;
     .btncontainer{
