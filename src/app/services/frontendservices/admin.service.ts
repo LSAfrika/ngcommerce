@@ -14,7 +14,7 @@ id=''
   viewmodal$=new BehaviorSubject(false)
   switchmodal$=new BehaviorSubject(0)
 dashboardurl='http://localhost:3000/api/v1/stores/dashboard/'
-  categories=['Phones','Laptops','Desktops','Tvs','Home theatres','monitors','Head sets']
+  categories=['Phones','Laptops','Desktops','Tvs','Home theatres','monitors','Head sets','game console']
   brands= ['Samsung','Hp','Dell','Lenovo','Acer','Sony','Apple','Xiaomi','Tecno','Infinix','Hotpoint','Oppo','Huawei','Awei','Oraimo','Lg','Hisense','Synix','Nokia']
   productimages:File[]=[]
 

@@ -10,9 +10,9 @@ add check for behaviour subject to avoid unecessary network calls bsubh=jects in
 
 nav bar cart count updater
 
-=======IN PROGRESS======
 work on user profile page
-
+=======IN PROGRESS======
+add stripe payments
 
 
 
