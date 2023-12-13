@@ -6,6 +6,7 @@ import { CartService } from 'src/app/services/endpoints/cart.service';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
 import { Cart, Carthistory, cartupdatetransporter,productincart } from 'src/app/interfaces/cart';
 import { HttpErrorResponse } from '@angular/common/http';
+import { PaymentsService } from 'src/app/services/frontendservice/payments.service';
 
 @Component({
   selector: 'app-cartpanel',
@@ -16,6 +17,7 @@ export class CartpanelComponent {
   public cartservice=inject(FrontEndCartService)
   public backendcartservice=inject(CartService)
   public uiservice=inject(UiService)
+  public paymentservice=inject(PaymentsService)
   itemindex=0
   totalamount=0
   increaseproduct=0
@@ -41,6 +43,7 @@ constructor(){
 }
 
 ngOnInit(){
+  this.paymentservice.stripeinitialize()
    this.cartservice.completedorders.subscribe(res=>console.log('cart history detail',res))
  // this.completedcarts$.subscribe(console.log)
 // this.cartservice.carthistory$==undefined ? console.log('carthistory is undefined'): console.log(this.cartservice.carthistory$.value);
