@@ -6,7 +6,7 @@
   <ng-container *ngIf="status=='success'">
 <div class="modalheading">order successful</div>
      <div class="msgbody">your order was paid for successfully
-      <div class="email">an email was sent to {{status}}</div>
+      <div class="email">an email was sent to {{userservice.user.value?.email}}</div>
     </div>
 
 

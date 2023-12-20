@@ -3,6 +3,7 @@ export interface User {
     username:string
     profileimg:string
     vendor:boolean
+    email:string
     storedeactivated?:boolean
     storename?:string
     favoritestores?:[string]
