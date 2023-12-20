@@ -10,3 +10,8 @@
 </ng-container> -->
 <app-homeproducts></app-homeproducts>
 <app-footer></app-footer>
+
+<app-globalmodal
+*ngIf="uiservice.globalmodalproduct$.value==true" [modalmessage]="uiservice.productmodalmessage"
+[spinnerstate]="uiservice.modalspinner$.value"
+></app-globalmodal>

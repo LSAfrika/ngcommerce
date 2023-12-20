@@ -10,4 +10,5 @@ import { UiService } from 'src/app/services/frontendservices/ui.service';
 export class HomeComponent {
 
   public brandcategservice=inject(BrandsandcategoriesService)
+  public uiservice=inject(UiService)
 }

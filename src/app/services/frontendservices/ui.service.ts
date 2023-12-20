@@ -14,6 +14,7 @@ export class UiService {
   editprofilemodal$=new BehaviorSubject(false)
   globalmodal$=new BehaviorSubject<boolean>(false)
   globalmodalcart$=new BehaviorSubject<boolean>(false)
+  globalmodalproduct$=new BehaviorSubject<boolean>(false)
   modalspinner$=new BehaviorSubject<boolean>(true)
   globalmodalmessage=''
   currentroute=''
@@ -24,7 +25,7 @@ export class UiService {
   sidenav$=new BehaviorSubject<boolean>(false)
   cartpanel$=new BehaviorSubject<boolean>(false)
   navbar$=new BehaviorSubject<boolean>(!!localStorage.getItem('ecomtoken'))
-
+  productmodalmessage='adding to cart'
   productphotoupdate$=new BehaviorSubject(false)
   Vendor$=
 

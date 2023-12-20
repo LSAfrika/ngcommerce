@@ -1,3 +1,10 @@
+=======IN PROGRESS======
+add stripe payments
+
+add initial check for products on nhome page if they are in cart
+
+
+
 ======WORKS======
 
 add check for behaviour subject to avoid unecessary network calls bsubh=jects in products service
@@ -11,13 +18,10 @@ add check for behaviour subject to avoid unecessary network calls bsubh=jects in
 nav bar cart count updater
 
 work on user profile page
-=======IN PROGRESS======
-add stripe payments
-add cart button on cart in home page
-
 
 
 =======DONE======
+add cart button on cart in home page DONE
 add add to cart functionality DONE
 Dashboard basic functionality DONE
 categories params not being fetched whennavigating from home hence nothing is loaded DONE
