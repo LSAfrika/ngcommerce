@@ -1,0 +1,32 @@
+
+<div class="stripecontainer">
+
+<div class="stripemodal">
+
+  <ng-container *ngIf="status=='success'">
+<div class="modalheading">order successful</div>
+     <div class="msgbody">your order was paid for successfully
+      <div class="email">an email was sent to {{status}}</div>
+    </div>
+
+
+    <div class="stripefooter"> for any further enquiry contact us at <div >lsatudiosafrika@gmail.com</div></div>
+<button routerLink="/"> back home</button>
+  </ng-container>
+  <ng-container *ngIf="status=='cancel'">
+
+    <div class="modalheading canceled">order canceled</div>
+     <div class="msgbody">your orders seems to have been canceled </div>
+
+
+    <div class="stripefooter"> for any further enquiry contact us at <div class="canceledtext">lsatudiosafrika@gmail.com</div></div>
+<button class="canceled" routerLink="/"> back home</button>
+  </ng-container>
+
+</div>
+
+
+
+
+
+</div>

@@ -1,0 +1,37 @@
+.stripecontainer{
+  @apply w-full min-h-screen flex justify-center items-center px-4 bg-slate-200
+}
+
+.stripemodal{
+  @apply w-full min-h-[300px] bg-slate-100 flex flex-col items-center justify-start  text-center rounded-md
+  drop-shadow-md font-semibold text-slate-900 gap-2 pb-2
+}
+
+.modalheading{
+  @apply min-h-[50px] text-white font-bold bg-teal-500 text-center w-full rounded-t-md pt-[10px] mb-5
+}
+.msgbody{
+  @apply text-2xl max-w-[70%];
+  .email{
+    @apply text-sm font-normal text-teal-500 mt-10 italic
+  }
+}
+.canceled{
+  @apply bg-pink-700
+}
+
+.stripefooter{
+  @apply mt-auto;
+  div{
+    @apply text-teal-500
+  }
+  .canceledtext{
+    @apply text-pink-700
+  }
+
+}
+button{
+  @apply bg-teal-500 text-white drop-shadow-lg rounded-full min-h-[40px] mb-[10px] px-10
+}
+
+
