@@ -13,6 +13,7 @@ nav bar cart count updater
 work on user profile page
 =======IN PROGRESS======
 add stripe payments
+add cart button on cart in home page
 
 
 

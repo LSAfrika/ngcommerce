@@ -14,7 +14,10 @@ export class IndexRoutesService {
 
     return this.http.get<any>(`${url}`,{ withCredentials: true })
   }
+  CHECKOUT(url:string){
 
+    return this.http.get<any>(`${url}`,{ withCredentials: true })
+  }
 
   GETSINGLE(url:string){
     return this.http.get<any>(`${url}`,{ withCredentials: true })

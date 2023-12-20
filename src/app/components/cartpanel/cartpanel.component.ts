@@ -43,7 +43,7 @@ constructor(){
 }
 
 ngOnInit(){
-  this.paymentservice.stripeinitialize()
+ // this.paymentservice.stripeinitialize()
    this.cartservice.completedorders.subscribe(res=>console.log('cart history detail',res))
  // this.completedcarts$.subscribe(console.log)
 // this.cartservice.carthistory$==undefined ? console.log('carthistory is undefined'): console.log(this.cartservice.carthistory$.value);
@@ -200,5 +200,38 @@ this.cartservice.removecartitem(this.productid).pipe(
 
 cartproducttrack(index:number,product:any){
   return product.product._id
+}
+
+
+checkout(){
+
+  this.uiservice.globalmodalcart$.next(true)
+  this.modalmessage='processing your cart..'
+  this.paymentservice.checkoutcart().pipe(
+    //switchMap()
+    catchError((errres:any)=>{console.log('stripe error:\n',errres.errormessage,errres.error.type);
+    return of({catcherror:'an error occured',errormessage:errres.errormessage})
+    })
+  ).subscribe((res)=>
+  {
+
+    console.log('stripe res',res)
+
+    this.uiservice.modalspinner$.next(false)
+    if(res.catcherror)console.log('stripe error log',res),this.modalmessage=res.catcherror
+    if(res.checkouturl){
+      console.log('stripe log',res),this.modalmessage='checking out'
+       window.location.replace(res.checkouturl)
+   //   this.resetglobalmodal()
+    }
+    this.resetglobalmodal()
+
+
+  }
+  )
+}
+
+resetglobalmodal(){
+  setTimeout(() => { this.modalmessage='',this.uiservice.modalspinner$.next(true), this.uiservice.globalmodalcart$.next(false)}, 2000);
 }
 }

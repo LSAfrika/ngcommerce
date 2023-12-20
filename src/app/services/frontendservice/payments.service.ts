@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { IndexRoutesService } from '../endpoints/index.routes.service';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class PaymentsService {
 
   paymenthandler:any=null
+  endpointservice=inject(IndexRoutesService)
   order=''
   stripepublickey='pk_test_51OHhB1IFaA81v9I8t0SD4xSDEhB9Zj0f4WzVPsTxdS1d1KAFN7e4az40oUIsZKuRLa4tGnR0uEzMjD7EQuAonnAu00VCSs62Kk'
   constructor() { }
@@ -48,5 +50,11 @@ export class PaymentsService {
       description:`payment for order ${this.order}`,
       amount:(amount/150)*100
     })
+  }
+
+
+  checkoutcart(){
+const checkouturl='http://localhost:3000/api/v1/cart/checkoutcart'
+    return this.endpointservice.CHECKOUT(checkouturl)
   }
 }

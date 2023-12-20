@@ -5,6 +5,8 @@
 .stripemodal{
   @apply w-full min-h-[300px] bg-slate-100 flex flex-col items-center justify-start  text-center rounded-md
   drop-shadow-md font-semibold text-slate-900 gap-2 pb-2
+  sm:max-w-[400px]
+
 }
 
 .modalheading{

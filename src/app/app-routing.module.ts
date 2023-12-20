@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule),canActivate:[AuthGuard] },
   { path: 'cart', loadChildren: () => import('./pages/cart/cart.module').then(m => m.CartModule),canActivate:[AuthGuard] },
   { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule),canActivate:[LoginGuard] },
+  { path: 'checkout/:status', loadChildren: () => import('./pages/stripe/stripe.module').then(m => m.StripeModule) },
   { path: '**', loadChildren: () => import('./pages/nf404/nf404.module').then(m => m.Nf404Module) }];
 
 @NgModule({

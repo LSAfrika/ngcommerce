@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ShareduiModule } from './modules/sharedui/sharedui.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './guards/auth.interceptor';
+import { StripeModule } from './pages/stripe/stripe.module';
 // import { AuthInterceptor } from './guards/auth.interceptor';
 
 
@@ -15,7 +16,7 @@ import { AuthInterceptor } from './guards/auth.interceptor';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,ShareduiModule,HttpClientModule
+    AppRoutingModule,ShareduiModule,HttpClientModule, StripeModule
   ],
   providers: [
      {provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor,multi:true}
