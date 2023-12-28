@@ -101,6 +101,21 @@
 
 
 }
+
+.orderviewcontainer{
+  @apply flex  flex-col  justify-start gap-1 items-start
+  min-h-[50px] my-2 p-2 bg-white w-full relative
+  drop-shadow-lg cursor-pointer text-slate-950
+  max-w-[500px];
+  span{@apply text-teal-600 md:mr-5}
+  .time{
+    @apply text-xs font-bold text-teal-600
+  }
+  button{
+    @apply ml-auto text-teal-500 px-2 rounded-full border-2 bg-white min-w-[75px]
+     border-teal-500 absolute right-1 top-[50%] translate-y-[-50%]
+  }
+}
 .sales{
   @apply fixed z-10 top-[40px] drop-shadow-none bg-slate-100 max-w-[500px] md:top-[65px]
 }

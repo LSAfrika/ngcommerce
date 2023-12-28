@@ -218,7 +218,7 @@
       <span class="ml-auto text-lg font-semibold text-teal-600">ksh: {{dashboardstats.totalsales}}</span>
     </div>
 
-    <div [ngClass]="{margintop:i==0}" class="productviewcontainer" *ngFor="let product of dashboardstats.products;let i=index">
+    <div [ngClass]="{margintop:i==0&&dashboardstats.products.length>1}" class="productviewcontainer" *ngFor="let product of dashboardstats.products;let i=index">
       <div class="avatar" [style]="{ 'background-image': 'url(http://localhost:3000/' + product.productimages[0] + ')' }"></div>
       <div class="description">
         <div class="name">{{product.productname}}</div>
@@ -233,37 +233,29 @@
 </ng-container>
 
 <ng-container *ngIf="openmodal==5">
-<!-- {{productservice.producttoedit|json}} -->
-<!-- [style]="{ 'background-image': 'url(' + link + ')' }" -->
-
-<!-- [style]="{ 'background-image': 'url(http://localhost:3000/' + photo + ')' }" -->
-  <div class=" mainphotos">
-<div class="productphoto" *ngFor="let photo of productservice.producttoedit?.productimages;let i=index"
- >
-  <img src="http://localhost:3000/{{photo}}" alt="">
 
 
-  <button (click)="deleteproductphotofromDB(productservice.producttoedit!._id,i)" class="deletephoto">delete photo</button>
-</div>
+  <div class="main">
+    <div class="nav">
 
-<div *ngIf="photos.length>0" class="photostoupload">
-  <div *ngFor="let photo of photos;let i=index" class="uploadphoto">
-{{photo.name}}
-<svg (click)="deletephotofromphotoupdatearray(i)" _ngcontent-msf-c14="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-class="rotate-[45deg] cursor-pointer" style="fill: rgba(20 184 166);"><path _ngcontent-msf-c14="" d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
+      <h1 class="maintitle">Orders</h1>
+      <svg (click)="closemodal()" class="close" xmlns="http://www.w3.org/2000/svg"
+    width="24" height="24" viewBox="0 0 24 24"
+    style="fill: rgba(20 184 166)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
+    </div>
+    <!-- <pre>{{dashboardstats.orders|json}}</pre> -->
+    <div [ngClass]="{margintop:i==0&&dashboardstats.orders.length>1}" class="orderviewcontainer" *ngFor="let order of dashboardstats.orders;let i=index">
+      
 
-  </div>
+   <div> <span>order:</span>  {{order._id}}</div>
+   <div> <span>status:</span> {{order.orderstatus}}</div> 
+   <div class="time">{{order.created|date:'short'}}</div>
 
-  <button (click)="uploadupdatephotos()" class="photouploadbtn">upload photos </button>
-</div>
+      <button >view</button>
 
-
-<div class="btnholder">
-  <input (change)="updatephotouploads($event)" type="file" class="hidden" multiple #uploads name="" id="">
-  <button (click)="uploads.click()">choose photos</button>
-  <button class="cancelbtn" (click)="closemodal()">cancel</button>
-</div>
-
+      
+      
+    </div>
   </div>
 
 </ng-container>

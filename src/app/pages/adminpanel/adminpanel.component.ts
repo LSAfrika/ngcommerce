@@ -27,6 +27,10 @@ this.adminproducts$=this.productsservice.adminproducts
 
   }
 
+  ngOnInit(){
+    //this.admindashboardsatistics$.subscribe(console.log)
+
+  }
 
   ngOnDestroy(){
     this.productsservice.resetstorepagination()
@@ -34,7 +38,7 @@ this.adminproducts$=this.productsservice.adminproducts
   openmodal(index:number){
 this.adminservice.switchmodal$.next(index)
 
-console.log('current index',this.adminservice.switchmodal$.value);
+console.log('current modal index',this.adminservice.switchmodal$.value);
 
 
 

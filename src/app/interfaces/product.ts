@@ -27,8 +27,10 @@ export interface Dashboard{
   stockbalance:number
   totalviews: number,
   totalsales: number,
-  soldproducts: number
-  products:[dashboardproduct]
+  soldproducts: number,
+  orderscount:number
+  products:[dashboardproduct],
+  orders:[Dashboardorder]
 }
 
 interface dashboardproduct{
@@ -43,5 +45,15 @@ interface dashboardproduct{
       totalsold:number
 }
 
+interface Dashboardorder{
+created:number,
+_id:string,
+orderstatus:string,
+orderowner:{_id:string,username:string},
+products:[
+  {quantity:number,productprice:number,sumtotal:number,product:{_id:string,productname:string}}
+]
 
+
+}
 

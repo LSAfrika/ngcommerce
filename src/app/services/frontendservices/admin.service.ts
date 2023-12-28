@@ -33,7 +33,8 @@ private http=inject(HttpClient)
 
   getdashboard(){
 
-   return this.http.get<Dashboard>(this.dashboardurl).pipe(shareReplay(100))
+   return this.http.get<Dashboard>(this.dashboardurl)
+   //.pipe(shareReplay(100))
   }
 
 
