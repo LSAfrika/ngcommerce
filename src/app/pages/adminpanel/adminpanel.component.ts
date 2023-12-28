@@ -28,7 +28,7 @@ this.adminproducts$=this.productsservice.adminproducts
   }
 
   ngOnInit(){
-    //this.admindashboardsatistics$.subscribe(console.log)
+    this.admindashboardsatistics$.subscribe(console.log)
 
   }
 

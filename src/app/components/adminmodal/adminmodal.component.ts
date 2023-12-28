@@ -68,6 +68,13 @@ closemodalandresetform(){
   this.closemodal()
 }
 
+openorder(i:number){
+
+  const order= this.dashboardstats.orders[i]
+
+  console.log(order);
+  
+}
 
 
 

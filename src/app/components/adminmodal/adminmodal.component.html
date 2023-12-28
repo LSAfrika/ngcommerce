@@ -244,6 +244,9 @@
     style="fill: rgba(20 184 166)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
     </div>
     <!-- <pre>{{dashboardstats.orders|json}}</pre> -->
+
+    <ng-container *ngIf="dashboardstats.orders.length>0; else noorders">
+
     <div [ngClass]="{margintop:i==0&&dashboardstats.orders.length>1}" class="orderviewcontainer" *ngFor="let order of dashboardstats.orders;let i=index">
       
 
@@ -251,11 +254,19 @@
    <div> <span>status:</span> {{order.orderstatus}}</div> 
    <div class="time">{{order.created|date:'short'}}</div>
 
-      <button >view</button>
+      <button (click)="openorder(i)">view</button>
 
       
       
     </div>
+  </ng-container>
+
+    <ng-template #noorders>
+
+      <div class="my-auto text-teal-500 font-semibold text-sm md:text-2xl">no orders received/completed</div>
+
+    </ng-template>
+
   </div>
 
 </ng-container>
