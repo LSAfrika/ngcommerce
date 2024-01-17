@@ -4,6 +4,7 @@ import { BehaviorSubject, map, switchMap } from 'rxjs';
 import { Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { AdminService } from 'src/app/services/frontendservices/admin.service';
+import { FrontEndCartService } from 'src/app/services/frontendservices/cart.service';
 
 @Component({
   selector: 'app-adminpanel',
@@ -13,6 +14,7 @@ import { AdminService } from 'src/app/services/frontendservices/admin.service';
 export class AdminpanelComponent {
 
   public adminservice=inject(AdminService)
+  public cartservice=inject(FrontEndCartService)
   public productsservice=inject(ProductsService)
   private activeroute=inject(ActivatedRoute)
 

@@ -89,3 +89,5 @@
 </ng-container> -->
 <app-globalmodal *ngIf="productsservice.updateproduct$.value==true" [modalmessage]="productsservice.productmodalmessage"
 [spinnerstate]="productsservice.modalspinner$.value"></app-globalmodal>
+<app-globalmodal *ngIf="cartservice.processorder$.value==true" [modalmessage]="cartservice.cartprocessmessage"
+[spinnerstate]="cartservice.modalspinner$.value"></app-globalmodal>

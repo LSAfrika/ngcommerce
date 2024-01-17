@@ -6,6 +6,7 @@ import { order } from 'src/app/interfaces/order.interface';
 import { Dashboard, Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { AdminService } from 'src/app/services/frontendservices/admin.service';
+import { FrontEndCartService } from 'src/app/services/frontendservices/cart.service';
 import { UiService } from 'src/app/services/frontendservices/ui.service';
 
 @Component({
@@ -23,6 +24,7 @@ export class AdminmodalComponent {
   currentorder:any
   modalmessage=''
   public adminservice=inject(AdminService)
+  public cartservice=inject(FrontEndCartService)
   public uiservice=inject(UiService)
   admindashboardsatistics$=this.adminservice.getdashboard()
 public productservice=inject(ProductsService)
@@ -31,6 +33,7 @@ productformdata=new FormData()
 destroy$=new Subject<void>()
 photos:File[]=[]
 maxphotoupload=6
+currentorderindex=0
 constructor(private formbulder:FormBuilder) {
    console.log('product received',this.productservice.producttoedit);
 this.openmodal=5
@@ -76,7 +79,7 @@ closeorderspanel(){
 openorder(i:number){
 
   this.currentorder= this.dashboardstats.orders[i] as order
-
+  this.currentorderindex=i
   let total=0
   this.currentorder.products.forEach((product:any) => {
 
@@ -86,10 +89,56 @@ openorder(i:number){
   this.currentorder.ordertotal=total
   this.uiservice.openadminorderpanel.next(true)
 
-  console.log(this.currentorder);
+  // console.log(this.currentorder);
   
 }
 
+processorder(status:string,orderid:string){
+  this.cartservice.processorder$.next(true)
+  this.cartservice.modalspinner$.next(true)
+  if(status=='canceled')  this.cartservice.cartprocessmessage='canceling order'
+  if(status=='completed') this.cartservice.cartprocessmessage='completing order'
+
+ 
+     this.cartservice.processcart(status,orderid).pipe(
+      catchError((err:HttpErrorResponse)=> {
+
+        console.log(err,err.status);
+        
+       return of({message:err.statusText})
+      
+      }),
+      tap((res:{message:string,status?:number})=>{ 
+        console.log(res);
+       this.processorderuistatus(res.message) }),
+      takeUntil(this.destroy$)).subscribe()
+  
+  }
+
+processorderuistatus(message:string){
+  let messageout=''
+  if(message=='canceled')messageout='order canceled successfully'
+  if(message=='completed')messageout='order completed successfully'
+  if(message=='Not Found')messageout='error while performing operation try again later'
+  if(message=='completed'||message=='canceled'){
+    this.currentorder.orderstatus=message
+    this.dashboardstats.orders[this.currentorderindex]=this.currentorder
+   
+  }
+
+    this.cartservice.modalspinner$.next(false)
+    this.cartservice.cartprocessmessage=messageout
+
+  setTimeout(() => {
+    this.cartservice.processorder$.next(false)
+    this.cartservice.modalspinner$.next(true)
+
+    this.cartservice.cartprocessmessage=''
+    this. closeorderspanel()
+ 
+  }, 3000);
+
+}
 
 
 createproductform(){

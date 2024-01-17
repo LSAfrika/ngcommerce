@@ -14,9 +14,13 @@ export class FrontEndCartService {
   private uiservice=inject(UiService)
   private indexendpoints=inject(IndexRoutesService)
   ROOT_CART_URL='http://localhost:3000/api/v1/cart/'
+  PROCESS_ORDERS_URL ='http://localhost:3000/api/v1/orders/'
 
+  cartprocessmessage=''
 cartactivesection$=new BehaviorSubject<string>('cart')
 vieworderdetails$=new BehaviorSubject<boolean>(false)
+modalspinner$=new BehaviorSubject<boolean>(false)
+processorder$=new BehaviorSubject<boolean>(false)
 cartproductcount$=new BehaviorSubject(0)
 carthistory$!:BehaviorSubject<Carthistory>
 activecart$!: BehaviorSubject<Cart>
@@ -51,6 +55,13 @@ activecart$!: BehaviorSubject<Cart>
       updatecart(updatedata:cartupdatetransporter){
         const cartupdateurl= this.ROOT_CART_URL+'updatecart'
         return this.indexendpoints.CARTPATCH(cartupdateurl,updatedata)
+      }
+
+      processcart(orderstatus:string,orderid:string){
+
+        const cartprocessurl= this.PROCESS_ORDERS_URL+'processorder/'+orderid
+
+        return this.indexendpoints.POST(cartprocessurl,{status:orderstatus})
       }
 
 

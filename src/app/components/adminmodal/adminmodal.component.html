@@ -308,8 +308,8 @@
 
     <div class="w-full px-2 mt-5">
 
-      <button class="bg-teal-500 ml-auto mr-[5px]  min-w-[100px] rounded-sm text-white font-semibold text-sm p-2 px-5">complete order</button>
-      <button class="bg-red-500 mr-auto ml-[5px] min-w-[100px] rounded-sm text-white font-semibold text-sm p-2 px-5">cancel order</button>
+      <button (click)="processorder('completed',currentorder._id)" class="bg-teal-500 ml-auto mr-[5px]  min-w-[100px] rounded-sm text-white font-semibold text-sm p-2 px-5">complete order</button>
+      <button (click)="processorder('canceled',currentorder._id)"  class="bg-red-500 mr-auto ml-[5px] min-w-[100px] rounded-sm text-white font-semibold text-sm p-2 px-5">cancel order</button>
     </div>
     </ng-container>
     </div>
