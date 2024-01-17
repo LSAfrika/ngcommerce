@@ -8,7 +8,7 @@
       <h1 class="maintitle">Add new product</h1>
       <svg (click)="closemodalandresetform()" class="close" xmlns="http://www.w3.org/2000/svg"
     width="24" height="24" viewBox="0 0 24 24"
-    style="fill: rgba(20 184 166)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
+    style="fill: rgba(255 255 255)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
     </div>
 
     <form class="productform" [formGroup]="productform">
@@ -141,7 +141,7 @@
     <h1 class="maintitle">product view</h1>
     <svg (click)="closemodal()" class="close" xmlns="http://www.w3.org/2000/svg"
   width="24" height="24" viewBox="0 0 24 24"
-  style="fill: rgba(20 184 166)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
+  style="fill: rgba(255 255 255)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
   </div>
 
 
@@ -166,7 +166,7 @@
       <h1 class="maintitle">Stock balance</h1>
       <svg (click)="closemodal()" class="close" xmlns="http://www.w3.org/2000/svg"
     width="24" height="24" viewBox="0 0 24 24"
-    style="fill: rgba(20 184 166)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
+    style="fill: rgba(255 255 255)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
     </div>
 
     <div class="productviewcontainer" *ngFor="let product of dashboardstats.products">
@@ -188,7 +188,7 @@
       <h1 class="maintitle">Sold products</h1>
       <svg (click)="closemodal()" class="close" xmlns="http://www.w3.org/2000/svg"
     width="24" height="24" viewBox="0 0 24 24"
-    style="fill: rgba(20 184 166)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
+    style="fill: rgba(255 255 255)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
     </div>
 
     <div class="productviewcontainer" *ngFor="let product of dashboardstats.products">
@@ -210,7 +210,7 @@
       <h1 class="maintitle">Total sales</h1>
       <svg (click)="closemodal()" class="close" xmlns="http://www.w3.org/2000/svg"
     width="24" height="24" viewBox="0 0 24 24"
-    style="fill: rgba(20 184 166)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
+    style="fill: rgba(255 255 255)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
     </div>
 
     <div class="sales productviewcontainer">
@@ -239,9 +239,9 @@
     <div class="nav">
 
       <h1 class="maintitle">Orders</h1>
-      <svg (click)="closemodal()" class="close" xmlns="http://www.w3.org/2000/svg"
+      <svg *ngIf="uiservice.openadminorderpanel.value==false" (click)="closemodal()" class="close" xmlns="http://www.w3.org/2000/svg"
     width="24" height="24" viewBox="0 0 24 24"
-    style="fill: rgba(20 184 166)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
+    style="fill: rgba(255 255 255)"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
     </div>
     <!-- <pre>{{dashboardstats.orders|json}}</pre> -->
 
@@ -267,7 +267,58 @@
 
     </ng-template>
 
-  </div>
+
+    <!-- <div class="w-full h-screen fixed top-0 left-0 bg-red-400 displayorder"> -->
+
+      <div *ngIf="uiservice.openadminorderpanel.value==true" class="detailsmodal">
+
+        
+        <div class="nav" [ngClass]="{navpadding:uiservice.openadminorderpanel.value==true}">
+          <svg (click)="closeorderspanel()" style="fill:rgb(255 255 255)" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="close" ><path _ngcontent-pei-c16="" d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
+          <div>product</div>
+          <div>quantity</div>
+          <div>total</div>
+        </div>
+        <div class="completeorder">
+    <ng-container *ngIf="currentorder!=undefined">
+  
+    <div class="product" *ngFor="let product of currentorder.products; let i=index">
+    <div class="productname">{{product.product.productname}}</div>
+    <div class="quantity">{{product.quantity}}</div>
+    <div class="totalprice">{{product.sumtotal}}</div>
+    </div>
+    <div class="shipping shippinggap">
+      <span class="spantext">product cost:</span>
+      <span>{{currentorder.ordertotal}}</span>
+    </div>
+    <div class="shipping ">
+      <span class="spantext">shipping cost:</span>
+      <span>2500</span>
+    </div>
+    
+    <div class="total">
+      <span class="spantext">total cost:</span>
+      <span >{{currentorder.ordertotal +2500}}</span>
+    </div>
+    <span class="status"> {{currentorder.created|date:'longDate'}} at {{currentorder.created|date:'shortTime'}}</span>
+
+    <div class="status">
+      <div class="spantext">status: {{currentorder.orderstatus}} </div> <br>
+    </div>
+
+    <div class="w-full px-2 mt-5">
+
+      <button class="bg-teal-500 ml-auto mr-[5px]  min-w-[100px] rounded-sm text-white font-semibold text-sm p-2 px-5">complete order</button>
+      <button class="bg-red-500 mr-auto ml-[5px] min-w-[100px] rounded-sm text-white font-semibold text-sm p-2 px-5">cancel order</button>
+    </div>
+    </ng-container>
+    </div>
+ 
+      </div>
+
+    </div>
+
+  <!-- </div> -->
 
 </ng-container>
 

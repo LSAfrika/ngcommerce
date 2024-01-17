@@ -1,5 +1,12 @@
+========CRITICAL============
+current orders loosing state upon opening SOLVED
+
+
+
+
+
 =======IN PROGRESS======
-add stripe payments
+add stripe payments partialy done --> webhooks remaining
 
 add initial check for products on nhome page if they are in cart
 

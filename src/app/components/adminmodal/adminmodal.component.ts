@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { catchError, delay, of, Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { order } from 'src/app/interfaces/order.interface';
 import { Dashboard, Product } from 'src/app/interfaces/product';
 import { ProductsService } from 'src/app/services/endpoints/products.service';
 import { AdminService } from 'src/app/services/frontendservices/admin.service';
@@ -19,6 +20,7 @@ export class AdminmodalComponent {
   @Output()creatednewproductemitter:EventEmitter<boolean>=new EventEmitter<boolean>()
   @Output()closemodalemit:EventEmitter<boolean>=new EventEmitter()
 
+  currentorder:any
   modalmessage=''
   public adminservice=inject(AdminService)
   public uiservice=inject(UiService)
@@ -67,12 +69,24 @@ closemodalandresetform(){
   this.productservice.productspecs=[]
   this.closemodal()
 }
-
+closeorderspanel(){
+  this.uiservice.openadminorderpanel.next(false)
+  // this.closemodal()
+}
 openorder(i:number){
 
-  const order= this.dashboardstats.orders[i]
+  this.currentorder= this.dashboardstats.orders[i] as order
 
-  console.log(order);
+  let total=0
+  this.currentorder.products.forEach((product:any) => {
+
+    total=total+product.sumtotal
+    
+  });
+  this.currentorder.ordertotal=total
+  this.uiservice.openadminorderpanel.next(true)
+
+  console.log(this.currentorder);
   
 }
 
