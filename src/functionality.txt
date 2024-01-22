@@ -1,7 +1,7 @@
 ========CRITICAL============
 current orders loosing state upon opening SOLVED
 
-
+on home navigation previous search still persistent reset to get all ads
 
 
 
