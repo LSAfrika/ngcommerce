@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { catchError, delay, of, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { order } from 'src/app/interfaces/order.interface';
@@ -12,7 +12,8 @@ import { UiService } from 'src/app/services/frontendservices/ui.service';
 @Component({
   selector: 'app-adminmodal',
   templateUrl: './adminmodal.component.html',
-  styleUrls: ['./adminmodal.component.scss']
+  styleUrls: ['./adminmodal.component.scss'],
+
 })
 export class AdminmodalComponent {
 

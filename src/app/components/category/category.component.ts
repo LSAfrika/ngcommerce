@@ -73,6 +73,7 @@ this.uiservice.closeallpanels()
 
       return
     }
+    if(category=='Game consoles')category='game console'
    category=='All categories' ?
    this.endpointsprodcutservice.category=this.brandcategoryservice.currentcategory='all' :
    this.endpointsprodcutservice.category=this.brandcategoryservice.currentcategory=category
