@@ -20,8 +20,15 @@ export class HeroComponent {
   destroy$=new Subject<void>()
 
 constructor(){
+  this.resetsearchfield()
 this.initializeserchform()
 this.searchoutput()
+}
+
+resetsearchfield(){
+  this.productservice.searchinput=''
+  this.productservice.products$=new BehaviorSubject<Product[]>([])
+
 }
 
 initializeserchform(){
@@ -34,6 +41,8 @@ searchoutput(){
   this.searchform.valueChanges.pipe(
     debounceTime(500),
     tap((search:{search:string})=>{
+      console.log('search term: ',search);
+      
       this.productservice.searchinput=search.search
       this.productservice.pagination$.next(0)
       this.productservice.products$=new BehaviorSubject<Product[]>([])
