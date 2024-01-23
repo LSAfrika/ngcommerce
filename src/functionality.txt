@@ -1,7 +1,7 @@
 ========CRITICAL============
 current orders loosing state upon opening SOLVED
 
-on home navigation previous search still persistent reset to get all ads
+on home navigation previous search still persistent reset to get all ads SOLVED
 
 
 
@@ -14,7 +14,7 @@ add initial check for products on nhome page if they are in cart
 
 ======WORKS======
 
-add check for behaviour subject to avoid unecessary network calls bsubh=jects in products service
+add check for behaviour subject to avoid unecessary network calls bsubjects in products service
 
 
   add filter panel to and search input to categories page

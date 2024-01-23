@@ -241,7 +241,7 @@ this.uiservice.productphotoupdate$.next(true)
 }
 
 updateproductphotosonly(){
-  this.openmodal=5
+  this.openmodal=6
 }
 
 newproductcreatedevent(){
