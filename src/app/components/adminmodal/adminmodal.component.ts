@@ -232,7 +232,7 @@ completedupdatingproduct(){
   this.productservice.productmodalmessage='updated successfully'
 setTimeout(() => {
 this.productservice.modalspinner$.next(true)
-this.openmodal=5
+this.openmodal=6
 this.productservice.productmodalmessage=''
 this.productservice.updateproduct$.next(false)
 this.uiservice.productphotoupdate$.next(true)

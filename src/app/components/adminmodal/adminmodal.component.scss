@@ -147,7 +147,7 @@ input[type=number] {
     md:max-w-[550px] bg-slate-200
   }
   input{
-    @apply w-full px-2 outline-none bg-slate-200 focus:outline-teal-500 max-w-[350px] min-h-[40px] mb-5 rounded-sm md:max-w-[550px]
+    @apply w-full px-2 outline-none bg-slate-200 text-slate-800 focus:outline-teal-500 max-w-[350px] min-h-[40px] mb-5 rounded-sm md:max-w-[550px]
   }
   button{
     @apply bg-teal-500 px-5 min-w-[150px] py-2 text-sm font-semibold text-white rounded-md md:min-w-[400px]
