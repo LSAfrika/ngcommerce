@@ -12,6 +12,7 @@ export class UiService {
 
   openfilter=false
   openadminorderpanel=new BehaviorSubject<boolean>(false)
+  welcome$=new BehaviorSubject<boolean>(true)
   editprofilemodal$=new BehaviorSubject(false)
   globalmodal$=new BehaviorSubject<boolean>(false)
   globalmodalcart$=new BehaviorSubject<boolean>(false)

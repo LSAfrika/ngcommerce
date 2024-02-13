@@ -14,6 +14,7 @@ import { GlobalmodalComponent } from '../../components/globalmodal/globalmodal.c
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterComponent } from '../../components/filter/filter.component';
 import { OrderdetailsComponent } from '../../components/orderdetails/orderdetails.component';
+import { WelcomeComponent } from 'src/app/components/welcome/welcome.component';
 
 
 
@@ -30,7 +31,8 @@ import { OrderdetailsComponent } from '../../components/orderdetails/orderdetail
     CartpanelComponent,
     GlobalmodalComponent,
     FilterComponent,
-    OrderdetailsComponent
+    OrderdetailsComponent,
+    WelcomeComponent
   ],
   imports: [
     CommonModule,RouterModule,ReactiveFormsModule
@@ -45,7 +47,7 @@ import { OrderdetailsComponent } from '../../components/orderdetails/orderdetail
     CategoryComponent,
     ProductComponent,
     CartpanelComponent,
-    GlobalmodalComponent,FilterComponent,OrderdetailsComponent
+    GlobalmodalComponent,FilterComponent,OrderdetailsComponent,WelcomeComponent
   ]
 })
 export class ShareduiModule { }

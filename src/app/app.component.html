@@ -3,3 +3,5 @@
 <app-filter *ngIf="uiservice.openfilter==true"></app-filter>
 
 <router-outlet></router-outlet>
+
+<app-welcome *ngIf="uiservice.welcome$.value==true"></app-welcome>
