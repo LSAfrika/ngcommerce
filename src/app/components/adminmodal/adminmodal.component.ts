@@ -119,6 +119,8 @@ processorder(status:string,orderid:string){
 processorderuistatus(message:string){
   let messageout=''
   if(message=='canceled')messageout='order canceled successfully'
+  if(message=='order already proccessed')messageout='order already proccessed'
+  
   if(message=='completed')messageout='order completed successfully'
   if(message=='Not Found')messageout='error while performing operation try again later'
   if(message=='completed'||message=='canceled'){

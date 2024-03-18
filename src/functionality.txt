@@ -10,7 +10,7 @@ add stripe payments partialy done --> webhooks remaining
 
 add initial check for products on nhome page if they are in cart
 
-
+URGENT!!!! product card to disable add cart if product is in cart
 
 ======WORKS======
 
